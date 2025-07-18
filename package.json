@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mediapipe/camera_utils": "^0.3.1675466862",
+    "@mediapipe/face_mesh": "^0.4.1633559619",
     "@popperjs/core": "^2.11.8",
     "@tiptap/extension-color": "^2.6.6",
     "@tiptap/extension-font-family": "^2.6.6",
