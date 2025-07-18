@@ -1,0 +1,40 @@
+.create-dependence-form {
+    &__title {
+        width: 80%;
+        margin: auto;
+        margin-top: 0;
+        font-weight: bolder;
+        font-size: $text-size-normal;
+        border-bottom: 1px solid #bebebe;
+    }
+    &__content {
+        width: 80%;
+        margin: auto;
+        margin-top: 0;
+
+        &__form {
+            margin-top: $margin-top-header;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            place-items: center;
+            align-content: start; 
+            gap: 0rem .5rem;
+            &__card {
+                padding: 1vh;
+                height: $button-size-height;
+                width: 100%;
+                input,
+                select {
+                    border: 1px solid $border-fields;
+                    width: 100%;
+                    height: 100%;
+                    margin: auto;
+                    padding: 0.5rem;
+                    box-sizing: border-box;
+                    transition: all ease-out 0.2s;
+                    font-size:  $text-size-short;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,100 @@
+.list {
+    background-color: rgba(163, 66, 66, 0);
+    color: rgb(216, 47, 47);
+    transition: all ease-out 0.1s;
+    text-align: start;
+    align-items: center;
+
+    &:hover {
+        background-color: rgba(216, 216, 216, 0);
+    }
+
+    &:active {
+        background-color: rgba(190, 190, 190, 0);
+    }
+
+    &--green {
+        color: white;
+        background-color: green;
+    }
+
+    &--blue {
+        background-color: #006cd8;
+        color: white;
+
+        &:hover {
+            background-color: #0065ca;
+        }
+
+        &:active {
+            background-color: #005bb500;
+        }
+    }
+
+    &--gray-blue {
+        background-color: rgb(238, 238, 238);
+
+        color: black;
+
+        &:hover {
+            background-color: #006cd8;
+            color: white;
+        }
+
+        &:active {
+            background-color: #005bb5;
+            color: white;
+        }
+    }
+
+    &--red {
+        &:hover {
+            background-color: rgb(255, 0, 0);
+            color: white;
+        }
+    }
+
+    &__element {
+        margin-top: 1em;
+
+        &__container {
+            display: flex;
+            align-items: center;
+            color: #000000;
+            max-width: -moz-fit-content;
+            max-width: fit-content;
+
+            &:hover {
+                color: #006cd8;
+                font-weight: bold;
+            }
+
+            &:active {
+                color: #006cd8;
+            }
+
+            &:focus {
+                color: #006cd8;
+            }
+
+            &__img {
+                width: .5rem;
+
+            }
+
+            &__text {
+                span {
+                    color: #006cd8;
+                    font-weight: 900;
+                }
+            }
+
+
+
+
+        }
+
+    }
+
+
+}

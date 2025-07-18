@@ -1,0 +1,26 @@
+.table-correspondence-dashboard-title {
+    display: grid;
+    background-color: rgba(10, 10, 167, 0) !important;
+    margin-bottom: .5rem;
+    height: 10%;
+
+    &__block {
+        gap: .3rem;
+        display: flex;
+        align-items: baseline;
+        background-color: #0f020200;
+    }
+}
+
+.table-correspondence-dashboard-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: auto;
+    flex-grow: 1;
+    max-height: 100%;
+    box-sizing: border-box;
+}
+.table__row{
+    grid-template-columns: 2.5rem 40% repeat(auto-fit, minmax(1px, 1fr));
+}

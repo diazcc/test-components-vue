@@ -1,0 +1,11 @@
+.container__form{
+    background-color: rgb(119, 119, 119);
+    padding: 1rem;
+    width: 40%;
+    min-width: max-content;
+    display: flex;
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

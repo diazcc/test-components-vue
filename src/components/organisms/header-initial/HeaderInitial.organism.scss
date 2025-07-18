@@ -1,0 +1,28 @@
+.header-initial {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-height: 3rem;
+
+    &__img {
+        object-fit: contain;
+        width: $logo-size;
+    }
+
+    &__button {
+        color: white;
+        display: flex;
+        gap: 0.8rem;
+        justify-content: center;
+        place-content: center;
+        place-items: center;
+        background-color: $bg-gray;
+        border: 1px solid $bg-gray;
+
+        &:hover {
+            border: 1px solid $gray-black-mx-hover;
+        }
+    }
+}

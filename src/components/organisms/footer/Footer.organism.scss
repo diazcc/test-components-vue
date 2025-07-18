@@ -1,0 +1,114 @@
+.footer {
+    // background-color: #333333; //Fondo Original
+    color: rgb(51, 50, 50);
+    display: flex;
+    height: auto;
+    width: calc(100vw - $width-menu);
+    place-self: end;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 0rem 1.5rem;
+    box-sizing: border-box;
+    flex-grow: 1;
+
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        box-sizing: border-box;
+        height: 100%;
+        padding: .5rem 0rem;
+        box-sizing: border-box;
+
+        .footer__section {
+            text-align: start;
+            width: 30%;
+
+            h3 {
+                font-size: calc($text-size-normal + 0.1rem);
+                margin-left: -0.5rem;
+            }
+
+            &__container {
+                display: flex;
+                width: 100%;
+                justify-content: start;
+                align-items: center;
+                gap: 0.5rem;
+                margin: -5px;
+
+                img {
+                    width: 0.9rem;
+                    height: 0.9rem;
+                }
+
+                p {
+                    font-size: .7rem;
+                }
+
+                a {
+                    color: inherit;
+                    text-decoration: none;
+                    font-size: .7rem;
+
+                    position: relative;
+
+                    &:hover {
+                        text-shadow: 0px 0px 4px var(--menu-text-shadow);
+                    }
+                }
+            }
+        }
+
+        .--hr {
+            border: 1px solid RGB(0, 0, 0, 0.5);
+        }
+    }
+
+    &__copyright {
+        width: calc(100% - (5px + 2.8rem));
+        text-align: left;
+        margin-bottom: -15px;
+
+        p {
+            font-size: $text-size-short;
+        }
+
+        &--home {
+            color: white;
+            width: auto;
+            position: absolute;
+            bottom: 0;
+            margin-bottom: 0;
+            left: calc(0.25rem - $width-menu);
+        }
+    }
+}
+
+.white {
+    filter: invert(100%);
+
+    &--hr {
+        hr {
+            border: 1px solid RGB(255, 255, 255, 0.5);
+        }
+    }
+}
+
+
+// MÓVIL (hasta 767px)
+@media (max-width: 767px) {
+    // estilos para móviles
+}
+
+// TABLET (768px a 1023px)
+@media (min-width: 768px) and (max-width: 1023px) {
+    // estilos para tablets
+
+}
+
+// ESCRITORIO (1024px en adelante)
+@media (min-width: 1024px) {
+    // estilos para escritorio
+}

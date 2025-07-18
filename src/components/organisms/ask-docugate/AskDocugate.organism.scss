@@ -1,0 +1,167 @@
+.ask-docugate-template{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box; /* Incluir border y padding en el tamaño total */
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    animation: appear 0.4s;
+    &__go-back-navbar {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+    &__chat-window {
+        height: 100%;
+        width: 80%;
+        margin: auto;
+        display: grid;
+        grid-template-rows: 80% 20%;
+        &__text-container {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            &__conversation {
+                margin: auto;
+                width: 80%;
+                height: 100%;
+                &__message-container {
+                    position: relative;
+                    overflow: visible;
+                    &__box {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1rem;
+                        margin-top: 1rem;
+                        overflow: visible;
+                        &__question {
+                            box-sizing: border-box;
+                            max-width: 80%;
+                            place-self: end;
+                            background-color: #e9eef6;
+                            padding: 1rem;
+                            border-radius: 20px 0 20px 20px;
+                            margin-right: 0.5rem;
+                        }
+                        &__answer {
+                            box-sizing: border-box;
+                            max-width: 80%;
+                            position: relative;
+                            overflow: visible;
+                            &__icon {
+                                width: 65px;
+                                height: 65px;
+                                position: absolute;
+                                left: -80px;
+                                top: -20px;
+                                border-radius: 50%;
+                                &--loader img {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    transform: translate(18%, 18%);
+                                    width: 45px;
+                                    height: 45px;
+                                }
+                            }
+                            &__text {
+                                color: rgba(0, 0, 0, 0.637);
+                                padding-left: 1rem;
+                            }
+                        }
+                    }
+                    &--zero {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -200%);
+                        h1 {
+                            font-size: $text-size-large;
+                            background-image: linear-gradient(to right, $blue, #ff931f);
+                            background-clip: text;
+                            color: transparent;
+                            animation: appear 1s;
+                        }
+                    }
+                }
+            }
+        }
+        &__input-container {
+            display: flex;
+            width: 100%;
+            height: inherit;
+            place-content: center;
+            place-items: end;
+            &__input-area{
+                display: grid;
+                box-sizing: border-box;
+                width: 80%;
+                max-height: 200%;
+                min-height: 5rem;
+                border-radius: 2.5rem;
+                padding: 0.5rem 2rem;
+                margin-bottom: 0.5rem;
+                transition: height 0.2s ease;
+                background-color: #ffffff;
+                border: $border-color-line solid 1px;
+                position: relative;
+                &__input {
+                    box-sizing: border-box;
+                    width: 90%;
+                    margin: auto;
+                    height: 100%;
+                    min-height: 4rem;
+                    overflow-y: auto;
+                    border: none;
+                    z-index: 2;
+                    &::placeholder {
+                        text-align: left;
+                        color: gray;
+                    }
+                }
+                &__nav {
+                    box-sizing: border-box;
+                    position: absolute;
+                    width: 97%;
+                    bottom: 0.5rem;
+                    display: flex;
+                    justify-content: space-between;
+                    z-index: 1;
+                    &__item {
+                        position: relative;
+                        img {
+                            box-sizing: border-box;
+                            height: 3.5rem;
+                            transform: translateX(0.8rem);
+                            margin: 0 0 -0.21rem;
+                            padding: 0.8rem;
+                        }
+                        .tooltip {
+                            left: 1rem;
+                            top: 4rem;
+                        }
+
+                        img:hover ~ .tooltip {
+                            visibility: visible;
+                            opacity: 1;
+                            animation: tooltipAppear 0.12s;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.spinner {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: 
+      radial-gradient(farthest-side, #006cd8 0%, #ff931f 50%, #ffffff 50%) top/8px no-repeat,
+      conic-gradient(#006cd8 0%, #ff931f 50%, transparent 50%);
+    -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+    animation: l13 0.8s infinite linear,
+}
+  
+@keyframes l13 { 
+    100% { transform: rotate(1turn); }
+}

@@ -1,0 +1,91 @@
+.table__row {
+    grid-template-columns: 2.5rem 1fr 30% repeat(2, 1fr) minmax(6rem, 6%);
+}
+
+.records--form {
+    border-left: 3px solid var(--border-right-line-card);
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 20% 10% 50% 20%;
+    max-height: 90vh;
+    animation: appear 0.4s;
+    position: relative;
+    width: 100%;
+    background-color: white;
+    &__header {
+        margin-top: $margin-top-header;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        padding: 1rem;
+        text-align: center;
+        place-content: center;
+        h1 {
+            font-size: $text-size-large;
+            color: var(--title-color);
+        }
+    }
+    &__title {
+        width: 80%;
+        margin: auto;
+        margin-top: 0;
+        font-weight: bolder;
+        font-size: $text-size-normal;
+        border-bottom: 1px solid #bebebe;
+    }
+    &__content {
+        width: 80%;
+        margin: auto;
+        margin-top: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        place-items: center;
+        align-content: start;
+        &__card {
+            padding: 1vh;
+            height: $button-size-height;
+            width: 80%;
+            display: flex;
+            flex-direction: row;
+            gap: 0.2rem;
+            input,
+            select {
+                border: 1px solid $border-fields;
+                width: 100%;
+                height: 100%;
+                margin: auto;
+                padding: 0.5rem;
+                box-sizing: border-box;
+                transition: all ease-out 0.2s;
+                font-size: $text-size-short;
+            }
+            input[type="number"] {
+                -ms-appearance: none;
+                appearance: none;
+            }
+            input[type="number"]::-webkit-inner-spin-button,
+            input[type="number"]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            /* Internet Explorer 10+ */
+            input[type="number"]::-ms-clear,
+            input[type="number"]::-ms-reveal {
+                display: none;
+            }
+            &__code {
+                max-width: 4rem;
+                display: flex;
+            }
+        }
+    }
+    &__nav {
+        display: flex;
+        justify-content: $button-position;
+        width: 80%;
+        margin: auto;
+        &__button {
+            width: $button-size-width;
+            height: $button-size-height;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+.document-creator-page {
+    background-color: white;
+    margin: 2rem 5rem;
+    display: flex;
+    flex-direction: column;
+    filter: $dropshadow-page;
+    height: min-content;
+    width: min-content;
+}

@@ -1,0 +1,80 @@
+.user-info {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 15% max-content 1fr;
+    height: 100%;
+    animation: appear 0.4s;
+    position: relative;
+    width: 100%;
+    background-color: white;
+    border-left: 3px solid var(--border-right-line-card);
+    overflow: auto;
+    &__header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        place-content: center;
+        place-items: end;
+        border-bottom: 1px solid #d0d0d0;
+        padding-bottom: 0.5rem;
+        width: 90%;
+        margin: auto;
+        padding-left: 10px;
+        &__title{
+            width: 100%;
+        }
+        &__edit{
+            width: $button-size-width;
+            height: $button-size-height;
+        }
+        &__nav__img {
+            position: absolute;
+            left: 5px;
+            top: 5px;
+        }
+    }
+    &__content {
+        width: 90%;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        position:relative;
+        gap: 0rem 2rem;
+
+        &__card {
+            flex: 0 0 calc(45% - 10px);
+            padding: 1rem;
+            height: min-content;
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+            align-items: center;
+            justify-content: space-between;
+            label{
+                min-width: auto !important;
+                width: 37%;
+            }
+            input,
+            select {
+                border: 1px solid $border-fields;
+                min-width: 5rem;
+                width: 60%;
+                padding: 0.5rem;
+                box-sizing: border-box;
+                transition: all ease-out 0.2s;
+            } 
+        }
+    }
+    &__nav {
+        display: flex;
+        justify-content: $button-position;
+        width: 90%;
+        margin: auto;
+        align-items: end;
+        padding: $button-padding-bottom 0;
+        &__button {
+            width: $button-size-width;
+            height: $button-size-height;
+        }
+    }
+}

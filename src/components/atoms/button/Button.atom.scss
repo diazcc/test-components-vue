@@ -1,0 +1,144 @@
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    place-items: center;
+    background-color: rgb(238, 238, 238);
+    color: black;
+    transition: all ease-out 0.1s;
+    font-weight: bolder;
+    gap: $button-internal-gap;
+    &__text{
+        font-size: $text-size-short;
+        &--large{font-size: $text-size-large};
+        &--normal{font-size: $text-size-normal};
+    }
+    &__img{
+        width: $button-icon-size;
+        height: $button-icon-size;
+        &--short{width: $button-icon-size-short; height: $button-icon-size-short;}
+        &--large{width: $button-icon-size-large; height: $button-icon-size-large;}
+    }
+    &--reverse{flex-direction: row-reverse;}
+    &:hover {
+        background-color: rgb(216, 216, 216);
+    }
+    &:active {
+        background-color: rgb(190, 190, 190);
+    }
+
+    &--green {
+        color: white;
+        background-color: green;
+    }
+    &--blue {
+        background-color: #006cd8;
+        color: white;
+        &:hover {
+            background-color: #0065ca;
+        }
+        &:active {
+            background-color: #005bb5;
+        }
+        img{filter: invert(100%);}
+    }
+    &--gray-blue {
+        background-color: rgb(238, 238, 238);
+        color: black;
+        &:hover {
+            background-color: #006cd8;
+            color: white;
+        }
+        &:active {
+            background-color: #005bb5;
+            color: white;
+        }
+    }
+    &--red {
+        background-color: rgb(255, 0, 0);
+        color: white;
+        &:hover {
+            background-color: rgb(238, 0, 0);
+            color: white;
+        }
+        &:active {
+            background-color: rgb(214, 0, 0);
+            color: white;
+        }
+        img{filter: invert(100%);}
+    }
+    &--gray-red {
+        &:hover {
+            background-color: rgb(255, 0, 0);
+            color: white;
+            img {filter: invert(100%);}
+            
+        }
+        
+    }
+
+    &--blue-close {
+        opacity: 0;
+        visibility: hidden;
+        background-color: #006cd8;
+        color: white;
+        transition: all ease-out 0.2s;
+
+        &:hover {
+            background-color: #0065ca;
+        }
+        &:active {
+            background-color: #005bb5;
+        }
+    }
+    &--blue-open {
+        transition: all ease-out 0.2s;
+        visibility: visible;
+        opacity: 1;
+        background-color: #006cd8;
+        color: white;
+        &:hover {
+            background-color: #0065ca;
+        }
+        &:active {
+            background-color: #005bb5;
+        }
+    }
+
+    &--blue-appear {
+        background-color: #006cd8;
+        color: white;
+        animation: appear 0.2s;
+        &:hover {
+            background-color: #0065ca;
+        }
+        &:active {
+            background-color: #005bb5;
+        }
+        img{filter: invert(100%);}
+    }
+
+    &--appear {
+        animation: appear 0.5s;
+    }
+
+    &--gray-dark {
+        background-color: rgb(218, 218, 218);
+        &:hover {
+            background-color: rgb(208, 208, 208);
+        }
+    }
+
+    &--gray-mouse-blue {
+        background-color: #b4b4b4;
+        color: black;
+        &:hover {
+            background-color: #006cd8;
+            color: white;
+        }
+        &:active {
+            background-color: #005bb5;
+            color: white;
+        }
+    }
+}

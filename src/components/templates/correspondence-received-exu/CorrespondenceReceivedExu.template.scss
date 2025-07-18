@@ -1,0 +1,50 @@
+.correspondence-received-exu__navegation {
+    flex-grow: 1;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: appear 0.4s;
+    position: relative;
+    &__title {
+        padding: 1rem;
+    }
+    &__body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        flex-grow: 1;
+        &__wrapper {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            &__button-back {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            button:not(.correspondence-received-exu__navegation__body__wrapper__button-back) {
+                padding: 1.5rem 3rem;
+                width: 16rem;
+                font-size: 1rem;
+            }
+        }
+    }
+
+    &--flow {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+
+        &__nav {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+
+            button {}
+        }
+    }
+}

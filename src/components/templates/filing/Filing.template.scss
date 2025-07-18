@@ -1,0 +1,175 @@
+.filing {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 15% 25% 60%;
+    max-height: 90vh;
+    animation: appear 0.4s;
+    position: relative;
+    width: 100%;
+    background-color: white;
+    border-left: 3px solid var(--border-right-line-card);
+    &__header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        place-content: center;
+        place-items: end;
+        border-bottom: 1px solid #d0d0d0;
+        padding-bottom: 0.5rem;
+        width: 90%;
+        margin: auto;
+        padding-left: 10px;
+        &__title {
+            width: 100%;
+        }
+        &__actions { 
+            min-width: 15rem;
+            max-width: max-content;
+        }
+        &__buttons-nav{
+            &__img{
+                position: absolute;
+                left: 5px;
+                top: 5px;
+            }
+        }
+    }
+    &__info {
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        gap: 2.5rem;
+        width: 90%;
+        height: 100%;
+        margin: auto;
+        margin-top: 0;
+        &__content {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            &__card {
+                $increment: 100%/5; // Ajusta según el número total de elementos
+                @for $i from 1 through 5 {
+                    // Ajusta el rango según el número real de elementos
+                    &:nth-child(#{$i}) {
+                        .filing__info__content__card {
+                            &__subtitle {
+                                width: 100%;
+                                &--load {
+                                    width: calc(100% - #{($i - 1) * $increment});
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &__subtitle {
+                    font-weight: bolder;
+                    width: 100%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis; 
+                    span {
+                        font-weight: lighter;
+                    }
+
+                    &--load {
+                    }
+                }
+                &--action {
+                    overflow-y: scroll;
+                }
+            }
+        }
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        height: 100%;
+        width: 89%;
+        margin: auto;
+        overflow: auto;
+        &__navegation {
+            -webkit-user-select: none;
+            user-select: none;
+            display: flex;
+            flex-direction: row;
+            gap: 0.2rem;
+            height: 3.5rem;
+            min-height: 3.5rem;
+            &__card {
+                padding: 0.5rem 1rem;
+                font-weight: bold;
+                background-color: #f0f0f0;
+                width: 8rem;
+                min-width: max-content;
+                transform: translateY(18px);
+                transition: all ease-out 0.2s;
+                height: 1.3rem;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1;
+
+                border-left: 1px solid #d0d0d0;
+                border-top: 1px solid #d0d0d0;
+                border-right: 1px solid #d0d0d0;
+                &:hover {
+                    background-color: #d5d5d5;
+                }
+                &:active {
+                    background-color: #b6b6b6;
+                }
+                &--focused {
+                    height: 2rem;
+                    transform: translateY(7px);
+                    background-color: var(--filing-backgound-color);
+
+                    color: $menu-text-color;
+                    z-index: 3;
+                    &:hover {
+                        background-color: var(--filing-backgound-color-hover);
+                    }
+                }
+            }
+        }
+        &__container {
+            padding: 1rem 0;
+            overflow-y: auto;
+            background-color: white;
+            box-sizing: border-box;
+            border-top: 1px solid #d0d0d0;
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            &__info {
+                animation: appear 0.4s;
+                display: flex;
+                gap: 1rem 0rem;
+                flex-direction: column;
+                flex-grow: 1;
+                align-items: center;
+                &__button{
+                    height: $button-size-height;
+                    width: $button-size-width;
+                }
+            }
+        }
+    }
+}
+
+.table {
+    height: 98%;
+    &__row {
+        grid-template-columns: 2.5rem 45% repeat(auto-fit, minmax(1px, 1fr));
+    }
+    &--row2 {
+        grid-template-columns: auto 5rem;
+    }
+}

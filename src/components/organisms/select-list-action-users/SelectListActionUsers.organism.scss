@@ -1,0 +1,171 @@
+.select-list-users {
+    flex-direction: column;
+    display: flex;
+    height: 100%;
+    box-sizing: border-box;
+    animation: appear 0.2s;
+    gap: .5rem;
+    &__container {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        max-height: 94%;
+        justify-content: center;
+        flex-grow: 1;
+        width: 100%;
+
+        &__box {
+            max-width: 34rem;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid $gray-black;
+            flex: 1;
+            flex-grow: 1;
+
+            &__subtitle {
+                box-sizing: border-box;
+                padding: 0.5rem;
+                font-weight: bold;
+                background-color: $gray-dark;
+                height: 3rem;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 0.5rem;
+
+                &__option {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 0.5rem;
+                }
+            }
+
+            &__body {
+                display: flex;
+                overflow-y: auto;
+                flex-direction: column;
+                gap: 0.5rem;
+                flex-grow: 1;
+
+                &__card {
+                    display: flex;
+                    flex-direction: column;
+                    border: 1px solid $gray-dark;
+                    gap: 0.2rem;
+
+                    button {
+                        max-width: 1.5rem;
+                        padding: 0rem;
+                        max-height: 1.5rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    select {
+                        border: 1px solid $border-fields;
+                        // width: 10rem;
+                        min-width: max-content;
+                        padding: 0.5rem;
+                        box-sizing: border-box;
+                        transition: all ease-out 0.2s;
+                    }
+
+                    &__controls {
+                        background-color: white;
+                        display: flex;
+                        flex-direction: row;
+                        gap: 0.5rem;
+                        align-items: center;
+                        -webkit-user-select: none;
+                        user-select: none;
+                        justify-content: space-between;
+                    }
+
+                    &__container {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.2rem;
+
+                        &__user {
+                            padding: 0.5rem 1rem;
+                            align-items: center;
+                            display: flex;
+                            flex-direction: row;
+                            gap: 0.5rem;
+                            background-color: $gray-light;
+                            justify-content: space-between;
+                            -webkit-user-select: none;
+                            user-select: none;
+                        }
+
+                        &--open {
+                            overflow: visible;
+                            height: auto;
+                            min-height: max-content;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &__form {
+        width: 100%;
+        margin: auto;
+        margin-top: $margin-top-header;
+        margin-bottom: $margin-top-header;
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        &__title {
+            font-size: .85rem;
+        }
+        &__btn-add {
+            width: 2.5rem;
+        }
+
+        .select-search{
+            width:50%;
+        }
+    }
+
+    .table {
+        height: 70%;
+        &__row {
+                        grid-template-columns: 2.5rem repeat(auto-fit, minmax(100px, 1fr));
+            &__cell {
+                select {
+                    min-width: inherit;
+                    font-size: $text-size-short;
+                    height: $button-size-height;
+                    margin: -.4rem auto;
+                    max-width: 11.5rem;
+                    box-sizing: border-box;
+                    text-align:center;
+                }
+            }
+        }
+    }
+
+    &__type-response {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+        padding: $min-rem;
+        box-sizing: border-box;
+        &__container {
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+        }
+    }
+}
+
+select,input[type="text"] {
+    width: 12rem;
+    max-width: 12rem;
+}

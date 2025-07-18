@@ -1,0 +1,167 @@
+@keyframes slide-left {
+    0% {
+        transform: translateX(+100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+.sidebar-menu {
+    background-color: #242424;
+    width: $width-menu;
+    min-width: $width-menu;
+    max-width: $width-menu;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    padding-bottom: 1rem;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0rem;
+        left: 0;
+        width: 100%;
+        height: 4rem;
+        background-image: linear-gradient(to bottom, #33333300 10%, #33333371 50%, #333333 100%);
+    }
+    &__title {
+        padding: 2rem 2rem 2rem 2rem;
+        color: var(--menu-title-color);
+        display: block;
+        text-wrap: wrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-align: center;
+        font-size: calc($text-size-normal + 0.1rem);
+    }
+    &__subtitle {
+        font-size: 0.9rem;
+        padding: 2rem 2rem 2rem 2rem;
+        color: $blue;
+    }
+    &__content-list {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        max-height: calc(100vh - $height-navbar - $height-footer);
+        overflow-y: auto;
+        margin-bottom: 100px;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        &__card {
+            color: white;
+            padding: 1rem 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            transition: all ease-out 0.3s;
+            height: max-content;
+            cursor: pointer;
+            &--unfocused {
+                &:hover {
+                    background-color: #2b2b2b;
+                }
+            }
+            &--focused {
+                background-color: $menu-background;
+                padding: 1rem 0.5rem;
+                position: relative;
+                font-weight: bold;
+                z-index: 1;
+                .sidebar-menu__content-list__card__submenu__card {
+                    opacity: 1;
+                    transform: translateX(0%);
+                    transition:
+                        height 0.4s 0.1s,
+                        opacity 0.5s 0.04s,
+                        transform 0.3s 0.01s;
+                    @for $i from 1 through 10 {
+                        &:nth-child(#{$i}) {
+                            transition-delay: $i * 0.04s;
+                        }
+                    }
+                }
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 3.1rem;
+                    transform: translateX(+100%);
+                    animation: slide-left 0.2s forwards;
+                    z-index: -1;
+                    background-color: rgb(27, 27, 27);
+                }
+            }
+
+            &__title {
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+
+                &__text {
+                    color: $menu-text-color;
+                    &--focused {
+                        color: var(--menu-text-focused-color)
+                    }
+                }
+                &__img {
+                    max-width: 7px;
+                    transition: all ease-out 0.2s;
+                    &--focused {
+                        transform: rotate(90deg);
+                        filter: var(--menu-img-color);
+                    }
+                }
+            }
+            &__submenu {
+                margin-left: 1rem;
+                border-left: 2px solid var(--border-right-line);
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+                font-size: 0.9rem;
+                overflow: hidden;
+                transition: all ease-out 0.2s;
+                max-height: 0px;
+                &__card {
+                    cursor: pointer;
+                    -webkit-user-select: none;
+                    user-select: none;
+                    color: $menu-text-color;
+                    padding: 0.3rem 0.3rem 0.3rem 0.8rem;
+                    transform: translateX(-110%);
+                    opacity: 0;
+                    transition: all ease-out 0.2s;
+                    font-size: 0.8rem;
+
+                    &--focused {
+                        font-style: italic;
+                        background-color: var(--menu-focused-background-color)
+                    }
+                    &:hover {
+                        text-shadow: 0px 0px 4px var(--menu-text-shadow);
+                    }
+                    &:active {
+                        background-color: var(--menu-active-background-color);
+                    }
+                }
+
+                &--focused {
+                    // height: 7.1rem; -- COMMENT FOR UNEXPECTED COUNTER OF ALL ROUTES CHILDRENS
+                    animation : heightAnimate .2s forwards;
+                    margin-top: 1rem;
+                }
+            }
+        }
+    }
+}
+
+

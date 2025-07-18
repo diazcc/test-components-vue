@@ -1,0 +1,95 @@
+.list-documents {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.267);
+    backdrop-filter: blur(2px);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    //z-index: $modal-z-index; this moda could be with others modals,if that case, this mustb be watched first
+    z-index: 3;
+    transition: all ease-out 0.2s;
+
+    &__content {
+        background-color: white;
+        padding: 1rem;
+        width: 50%;
+        height: 70%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all ease-out 0.2s;
+
+        &__title {
+            font-size: $text-size-large;
+        }
+
+        &--show {
+            animation: bigAnimate 0.3s forwards;
+        }
+
+        &--hidde {
+            animation: smallAnimate 0.3s forwards;
+        }
+
+        &__nav {
+            display: flex;
+            justify-content: $button-position;
+            width: 100%;
+            margin: auto;
+            padding: 0 0 $button-padding-bottom;
+
+            &__button {
+                width: $button-size-width;
+                height: $button-size-height;
+            }
+        }
+    }
+
+    &--show {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    &--hidde {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
+.table {
+    height: 100%;
+
+    &__row {
+        grid-template-columns: auto 5rem;
+
+        &--img {
+            &--view {
+                img {
+                    /*
+                    This is being doing assuming all icons come in black color. And this tranform the black icon to blue  
+                    */
+                    filter: invert(47%) sepia(73%) saturate(3200%) hue-rotate(200deg) brightness(95%) contrast(100%);
+                }
+            }
+            &--delete {
+                img {
+                    filter: invert(37%) sepia(90%) saturate(10000%) hue-rotate(0deg) brightness(100%) contrast(100%);
+                }
+            }
+            &--download {
+                img {
+                    filter: none;
+                }
+            }
+        }
+    }
+}

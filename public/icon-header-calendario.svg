@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.8 20.54">
+  <defs>
+    <style>
+      .cls-1 {
+        <!-- fill: #f1f1f2; -->
+        fill: #555555;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        <!-- fill: #e6e6e7; -->
+        fill: #555555;
+      }
+    </style>
+  </defs>
+  <g id="Object">
+    <g>
+      <rect class="cls-2" x="3.52" y="8.71" width="2.49" height="2.49"/>
+      <rect class="cls-2" x="9.38" y="8.71" width="2.49" height="2.49"/>
+      <rect class="cls-2" x="15.23" y="8.71" width="2.49" height="2.49"/>
+      <rect class="cls-2" x="3.52" y="13.79" width="2.49" height="2.49"/>
+      <rect class="cls-2" x="9.38" y="13.79" width="2.49" height="2.49"/>
+      <rect class="cls-2" x="15.23" y="13.79" width="2.49" height="2.49"/>
+      <path class="cls-1" d="m20.8,20.26V2.44c0-.16-.13-.28-.28-.28h-4.71V.28c0-.16-.13-.28-.28-.28s-.28.13-.28.28v1.88H5.41V.28c0-.16-.13-.28-.28-.28s-.28.13-.28.28v1.88H.28c-.16,0-.28.13-.28.28v17.82c0,.16.13.28.28.28h20.23c.16,0,.28-.13.28-.28Zm-.57-.28H.57V5.53h19.66v14.45Zm0-15.02H.57v-2.23h4.28v1.24c0,.16.13.28.28.28s.28-.13.28-.28v-1.24h9.82v1.24c0,.16.13.28.28.28s.28-.13.28-.28v-1.24h4.42v2.23Z"/>
+    </g>
+  </g>
+</svg>

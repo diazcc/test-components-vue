@@ -1,0 +1,45 @@
+.trd-container{
+    width: 80%;
+    height: max-content;
+    margin: auto;
+    animation: appear 0.4s;
+    // overflow-x: hidden;
+    margin-top: 1rem;
+    &__trd-title {
+        width: 100%;
+        color: $blue;
+        margin: auto;
+        font-weight: bolder;
+        margin-bottom: 1rem;
+        font-size: $text-size-normal;
+        border-bottom: 1px solid $blue;
+        &__document-name {
+            font-size: $text-size-normal;
+            font-weight: lighter;
+            position: absolute;
+        }
+      }
+    &__form-trd {
+  width: 100%;
+    height: 70%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-content: start;
+    gap: .5rem;
+        &__card {
+            padding: 0.5rem;
+            width: 9    0%;
+            input,
+            select {
+                border: 1px solid $border-fields;
+                width: 100%;
+                height: 100%;
+                margin: auto;
+                padding: 0.5rem;
+                box-sizing: border-box;
+                transition: all ease-out 0.2s;
+                font-size:  $text-size-short;
+            }
+        }
+    }
+}

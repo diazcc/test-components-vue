@@ -1,0 +1,30 @@
+.input-files {
+    width: 100%;
+    height: $button-size-height;
+    padding: 0.5vw;
+    border: 1px solid $color-border-input;
+    box-sizing: border-box;
+    display: flex;
+    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+    transition: all ease-out .2s;
+    &__text{
+        font-size: $text-size-short;
+    }
+    &__counter {
+        color: white;
+        font-weight:bolder;
+        width: $pointer-size;
+        height: $pointer-size;
+        font-size: $text-size-short;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background-color: #006cd8;
+    }
+    &:hover{
+        border: 1px solid #006cd8;
+    }
+}

@@ -1,0 +1,13 @@
+.table__row {
+  grid-template-columns: 2.5rem 30% repeat(3, 1fr) 5rem;
+  &--less-column {
+    grid-template-columns: 2.5rem 30% repeat(2, 1fr) 5rem;
+  }
+  &--new-cell {
+    width: 98%;
+    &__white {
+      background-color: white;
+      width: 100%;
+    }
+  }
+}

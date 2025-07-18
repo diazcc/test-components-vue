@@ -1,0 +1,38 @@
+.wrapper-home {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    &__container {
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        max-height: calc(100vh - $height-navbar - $height-footer);
+        position: relative;
+        box-sizing: border-box; /* Incluir border y padding en el tamaño total */
+        position: relative;
+        &__content {
+            background-color: $transparent;
+            width: 100%;
+            display: flex;
+            margin: 0.6rem 0.6rem -0.9rem;
+            border-radius: 1rem;
+            padding: 1rem;
+            box-sizing: border-box; /* Incluir border y padding en el tamaño total */
+            position: relative;
+            &__header {
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+                padding: 1rem;
+            }
+        }
+        &__ask_docugate {
+            height: 100%;
+            width: 100%;
+            background-color: antiquewhite;
+        }
+    }
+}

@@ -1,0 +1,59 @@
+.table-user {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    flex-grow: 1;
+    background-color: white;
+    padding: 1.5rem;
+    height: auto;
+    border-left: 3px solid var(--border-right-line-card);
+    &__nav-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &__select {
+            border: 1px solid $border-fields;
+            padding: 0.5rem;
+            width: min-content;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+    }
+    .table {
+        margin-top: 0.5rem;
+        &__row {
+            grid-template-columns: 2.5rem repeat(9, 1fr) 5rem;
+        }
+    }
+}
+
+.table__select {
+    appearance: none; /* Elimina el estilo predeterminado del navegador */
+    background-color: #ffffff; /* Fondo blanco */
+    border: 1px solid #ccc; /* Borde gris */
+    border-radius: 4px; /* Bordes redondeados */
+    padding: 0.4rem 1rem; /* Espaciado interno */
+    font-size: 0.9rem; /* Tamaño de fuente */
+    color: #333; /* Color del texto */
+    cursor: pointer; /* Indicador de interactividad */
+    width: 100%; /* Ocupa todo el espacio disponible */
+    max-width: 150px; /* Limita el ancho */
+    text-align: center; /* Centra el texto */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Animación al interactuar */
+  }
+  
+  .table__select:hover {
+    border-color: #007bff; /* Cambia el borde al color principal al pasar el mouse */
+  }
+  
+  .table__select:focus {
+    outline: none; /* Elimina el contorno azul predeterminado */
+    border-color: #007bff; /* Color del borde al enfocar */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Brillo alrededor */
+  }
+  
+  .table__select option {
+    background-color: #fff; /* Fondo de las opciones */
+    color: #333; /* Color del texto */
+    padding: 0.4rem; /* Espaciado interno */
+  }

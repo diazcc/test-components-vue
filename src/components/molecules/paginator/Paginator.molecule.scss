@@ -1,0 +1,49 @@
+.paginator {
+    background-color: white;
+    padding: 1rem;
+    // width: 97%;
+    height: auto;
+    border-left: 3px solid var(--border-right-line-card);
+    box-sizing: border-box;
+    &__hr {
+        border: none;
+        border-top: 2px solid $gray;
+        margin-bottom:.5rem ;
+    }
+
+    &__article {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+
+        &__select {
+            border: 1px solid $border-fields;
+            cursor: pointer;
+            font-size: $text-size-short;
+        }
+        &__info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            &__p {
+                border: 1px solid $gray;
+                border-radius: 100%;
+                padding: 5px;
+    
+                &--active {
+                    background-color: $gray;
+                }
+            }
+    
+            &__p:hover {
+                border: 1px solid $gray;
+                border-radius: 100%;
+                padding: 5px;
+                background-color: $gray;
+            }
+        }
+
+    }
+
+}

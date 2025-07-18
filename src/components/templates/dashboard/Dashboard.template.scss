@@ -1,0 +1,75 @@
+.dashboard {
+  width: 100%;
+  height: 100%;
+  // grid-template-rows: repeat(2, 1fr);
+  color: #444;
+  gap: 1.5rem 1.5rem;
+  animation: appear 0.4s;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  &__widget {
+    background-color: white;
+    width: 49%;
+    max-width: 49%;
+    height: 47%;
+    max-height: 47%;
+    display: flex;
+    border-left: 3px solid $blue;
+    padding: 1rem;
+    flex-direction: column;
+    box-sizing: border-box;
+    gap:.5rem;
+    flex: 1;
+    flex-basis:40%;
+    &__header{
+      width: 100%;
+      height: 2rem;
+      display: flex;
+      flex-direction: row;
+      gap: .5rem;
+      align-items: center;
+      &__title{
+        flex: 1;
+        max-height: min-content;
+        max-width: min-content;
+      }
+      &__subtitle{
+        flex: 1;
+        max-height: min-content;
+        
+      }
+    }
+
+  }
+}
+
+.mi-router-link {
+  position: relative;
+  color: #006cd9;
+  text-decoration: none;
+  font-weight: bolder;
+  font-size: .87rem;
+  height: 1.5rem;
+}
+
+.mi-router-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  width: 4rem;
+  height: 1px;
+  background-color: #006cd9;
+  transition: none;
+}
+
+.mi-router-link:hover {
+  color: #006cd9;
+}
+
+.mi-router-link:visited::after {
+  background-color: transparent;
+}

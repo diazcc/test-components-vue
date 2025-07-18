@@ -1,0 +1,75 @@
+.card-portfolio {
+    width: clamp(25rem, 90%, 30rem);;
+    height: clamp(8rem, 20vh, 12rem);
+    display: flex;
+    box-sizing: border-box;
+    border: 1px solid $border-color-line;
+    margin: auto;
+    background: linear-gradient(rgb(255, 255, 255), rgb(245, 245, 245));
+    &__icon {
+        position: relative;
+        padding: 1rem 0;
+        width: 15%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        img {
+            width: 70%;
+            margin: 0 0 1rem 0;
+            object-fit: contain;
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 10%;
+            height: 80%;
+            width: 0;
+            border-left: 2px solid $border-color-line; // Cambia el grosor/color si quieres
+            transform: translateY(0);
+        }
+    }
+    &__text-container {
+        padding: 1rem 0;
+        width: 75%;
+        display: flex;
+        flex-direction: column;
+        padding-left: 1rem;
+        &__title {
+            height: 30%;
+            font-size: calc($text-size-normal + 0.21rem);
+            color: $table-text-color;
+            font-weight: 600;
+        }
+    }
+    &__img {
+        padding: 1rem 0;
+        width: 10%;
+        position: relative;
+        flex-direction: column;
+        justify-items: center;
+        gap: 1rem;
+        > * {
+            margin-bottom: 1rem;
+        }
+        > *:first-child {
+            margin-bottom: 2rem;
+        }
+        > *:last-child {
+            margin-bottom: 0;
+        }
+        &--to-active {
+            visibility: hidden;
+        }
+    }
+    &:hover {
+        transition: 0.3s;
+        .card-portfolio__icon {
+            background-color: $blue;
+        }
+        .card-portfolio__img--to-active {
+            visibility: visible;
+        }
+    }
+}

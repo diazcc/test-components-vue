@@ -1,0 +1,77 @@
+.menu-configuration-header {
+    background-color: white;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    width: 100%;
+    box-sizing: border-box;
+    height: 0rem;
+    visibility: hidden;
+    transition: height 0.2s ease-out;
+    z-index: 2;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+
+    &__card {
+        cursor: pointer;
+        padding: 0.5rem;
+        height: 1.37rem;
+        background-color: white;
+        opacity: 0;
+        transition: all 0.1s ease-out;
+        position: relative;
+        
+        &:hover {
+            background-color: #f0f0f0;
+        }
+        &:active {
+            background-color: #d0d0d0;
+        }
+
+        &__submenu {
+            position: absolute;
+            top: 0px;
+            right: -102%;
+            background-color: white;
+            box-shadow: 0px 7px 9px rgba(0, 0, 0, 0.26);
+            visibility: hidden;
+            opacity: 1;
+            width: 100%;
+            box-sizing: border-box;
+            transition: height 0.2s ease-out;
+            z-index: 2;
+            border-radius: 0.5rem;
+            animation: all ease-out 0.2s;
+            overflow: hidden;
+            li {
+                padding: 0.5rem;
+                &:hover {
+                    background-color: #f0f0f0;
+                }
+                &:active {
+                    background-color: #d0d0d0;
+                }
+            }
+
+            &--show {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+        &:last-child {
+            border-bottom-left-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+        }
+    }
+    &--show {
+        height: 9.5rem;
+        box-shadow: 0px 7px 9px rgba(0, 0, 0, 0.26);
+        visibility: visible;
+        .menu-configuration-header__card {
+            animation: appear 0.2s;
+            opacity: 1;
+            
+
+        }
+    }
+}

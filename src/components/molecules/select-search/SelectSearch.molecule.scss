@@ -1,0 +1,102 @@
+.select-search {
+    position: relative;
+    z-index: 2;
+    display:flex;
+    flex-direction: row;
+    gap:0.5rem;
+    padding-right: 1rem;
+    border: 1px solid $gray-dark;
+    transition:all ease-out 5s;
+    &__input {
+        padding: $min-rem;
+        border: 1px solid $border-fields;
+        box-sizing: border-box;
+        height: $button-size-height;
+        font-size: $text-size-short;
+        flex-grow:1;
+        border: none;
+        background-color:white;
+    }
+    &__icon{
+            width: 24px;
+            object-fit: contain;
+    }
+    &__container {
+        border: 1px solid $blue;
+        border-top: 0;
+        width: calc(100% + 2px); // 2px Machetazo
+        margin-left: -1px; //Machetazo
+        position: absolute;
+        top: 100%;
+        background-color: white;
+        box-sizing: border-box;
+        z-index: 1;
+        max-height: 14rem;
+        overflow: hidden;
+        overflow-y: auto;
+
+        &__nodata{
+
+            background-color:red;
+
+        }
+        &__card {
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: row;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            background-color: white;
+            color: black;
+            gap: 0.5rem;
+
+            &:hover {
+                background-color: $blue;
+                color: white;
+                cursor: pointer;
+            }
+
+            &__name {
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                max-width: 100%;
+                overflow: hidden;
+                &__title{
+                    font-size: .9rem;
+
+
+                }
+            }
+
+            &__email {
+                font-size: $text-size-short;
+                color: $gray-black;
+                overflow: hidden;
+                display: block;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                text-align: left;
+            }
+
+            &__img {
+                width: 20px;
+                object-fit: contain;
+
+            }
+
+            &:hover {
+
+                .select-search__container__card__img {
+                    filter: invert(1) brightness(3);
+                }
+            }
+        }
+    }
+
+
+    &--enabled{
+            animation: jump-empty .2s;
+            border:1px solid $blue;
+    }
+}

@@ -1,0 +1,25 @@
+.request-form{
+    box-sizing: border-box;
+    animation: appear .2s;
+    flex-grow: 1;
+    gap: .5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__subtitle{
+        width: 50%;
+        text-align: center;
+    }
+    &__container{
+        flex-grow: 1;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        &__input-file{
+            padding: .5rem;
+
+        }
+
+    }
+}

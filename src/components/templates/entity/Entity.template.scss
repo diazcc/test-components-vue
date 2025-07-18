@@ -1,0 +1,216 @@
+.entity {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 15% max-content 30% 1fr;
+    height: 100%;
+    animation: appear 0.4s;
+    position: relative;
+    width: 100%;
+    background-color: white;
+    border-left: 3px solid var(--border-right-line-card);
+    overflow: auto;
+    &__header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        place-content: center;
+        place-items: end;
+        border-bottom: 1px solid #d0d0d0;
+        padding-bottom: 0.5rem;
+        width: 90%;
+        margin: auto;
+        padding-left: 10px;
+        &__title {
+            width: 100%;
+        }
+
+        &__actions {
+            width: $button-large-width;
+            height: $button-size-height;
+        }
+        &__nav{
+            &__img{
+                position: absolute;
+                left: 5px;
+                top: 5px;
+            }
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        width: 90%;
+        margin: auto;
+        margin-top: 0;
+        &__content {
+            padding-top: 0.5rem;
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+
+            &__card {
+                $increment: 100% / 5;
+
+                @for $i from 1 through 5 {
+                    &:nth-child(#{$i}) {
+                        .entity__info__content__card {
+                            &__subtitle {
+                                width: 100%;
+
+                                &--load {
+                                    width: calc(100% - #{($i - 1) * $increment});
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &__form {
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 0;
+            &__card {
+                
+                width: 50%;
+                height: 100%;
+                display: grid;
+                grid-template-columns: 30% 60%;
+                align-items: center;
+                label {
+                    font-weight: bold;
+                    min-width: auto;
+                }
+
+                input[type="text"],
+                select {
+                    padding: 0.5rem;
+                    width: 100%;
+                }
+
+                input[type="checkbox"] {
+                    margin-right: 70%;
+                }
+            }
+        }
+    }
+
+    &__correspondence {
+        border-top: 1px solid $border-color-line;
+        display: flex;
+        gap: 1rem;
+        width: 90%;
+        margin: auto;
+        &__card {
+            flex: 1;
+            padding: $min-padding;
+            display: flex;
+            flex-direction: column;
+            gap: $min-padding;
+
+            &__number-filing {
+                display: flex;
+                padding: $min-padding;
+                border: 1px solid $gray;
+                gap: $min-rem;
+
+                &__card {
+                    display: flex;
+                    background-color: $gray;
+                    width: 7rem;
+                    position: relative;
+                    flex: 1;
+                    height: 2rem;
+                    justify-content: center;
+                    align-items: center;
+
+                    &__button {
+                        position: absolute;
+                        padding: 0rem;
+                        width: 2rem;
+                        max-width: 2rem;
+                        min-width: 2rem;
+                        height: 100%;
+                        max-height: 100%;
+                        min-height: 100%;
+                        transition: all ease-out 0.2s;
+                        opacity: 0;
+                        visibility: hidden;
+                        color: $blue;
+                        background-color: $gray;
+                        font-weight: bolder;
+
+                        &:first-child {
+                            top: 0;
+                            left: 0;
+                        }
+
+                        &:last-child {
+                            top: 0;
+                            right: 0;
+                        }
+
+                        &:hover {
+                            background-color: $gray-dark-hover;
+                        }
+
+                        &:active {
+                            transition: none;
+
+                            background-color: #9c9c9c;
+                        }
+
+                    }
+
+                    p {
+                        font-size: 0.9rem;
+                        -webkit-user-select: none;
+                        user-select: none;
+                    }
+
+                    &:hover {
+                        .entity__correspondence__card__number-filing__card__button {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+
+                    &:first-child {
+                        .entity__correspondence__card__number-filing__card__button:first-child {
+                            display: none;
+                        }
+                    }
+
+                    &:nth-last-child(2) {
+                        .entity__correspondence__card__number-filing__card__button:last-child {
+                            display: none;
+                        }
+                    }
+
+
+                    &--focused {
+                        border: 1px solid $blue;
+                    }
+                }
+            }
+        }
+    }
+
+    &__nav {
+        display: flex;
+        justify-content: $button-position;
+        width: 90%;
+        height: 60%;
+        margin: auto;
+        align-items: end;
+        padding: $button-padding-bottom 0;
+        &__button {
+            width: $button-size-width;
+            height: $button-size-height;
+        }
+    }
+}

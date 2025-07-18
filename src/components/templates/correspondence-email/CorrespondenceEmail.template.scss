@@ -1,0 +1,143 @@
+.template-table-view {
+    &__list {
+        .table__row{
+            grid-template-columns: 2.5rem 2.5rem auto 30% 15% 15%;
+        }
+        &__bottom {
+            background-color: white;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+            color: #999999;
+            -webkit-user-select: none;
+            user-select: none;
+            margin-top: 0.5rem;
+            &__delete {
+                margin-right: auto;
+                height: $button-size-height;
+                width: $button-size-width;
+            }
+        }
+    }
+}
+
+.correspondence-email__form {
+        border-left: 3px solid var(--border-right-line-card);
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        background-color: white;
+        animation: appear 0.4s;
+        justify-content: space-evenly;
+        &__title {
+            margin-top: 1rem;
+            text-align: center;
+            padding-bottom: 0.5rem;
+            font-size: $text-size-large;
+            color: var(--title-color);
+        }
+
+        &__wrapper {
+            display: grid;
+            place-items: center;
+            align-content: start;
+            position: relative;
+            height: 65%;
+            max-width: 1100px;
+            width: 90%;
+            margin: auto;
+            grid-template-columns: 5fr 4fr;
+
+            &__email-info {
+                display: grid;
+                grid-template-rows: $button-size-height $button-size-height auto;
+                gap: 1vh;
+                height: 100%;
+                width: 100%;
+
+                input:not([type="checkbox"]) {
+                    width: 100%;
+                    height: $button-size-height;
+                    border: 1px solid $border-fields;
+                    width: 100%;
+                    box-sizing: border-box;
+                    transition: all ease-out 0.2s;
+                    font-size: $text-size-normal;
+                }
+
+                &__desciption {
+                    height: 80%;
+                }
+            }
+
+            &__remitter-info {
+                height: inherit;
+                border-left: 1px solid #d0d0d0;
+                display: flex;
+                height: 90%;
+                gap: 1vh;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1vw;
+                margin: auto;
+                padding-top: 0;
+                margin-top: 0;
+                overflow-y: scroll;
+
+                input:not([type="checkbox"]),
+                select {
+                    border: 1px solid $border-fields;
+                    width: 100%;
+                    height: $button-size-height;
+                    padding: 1vh 1vw;
+                    box-sizing: border-box;
+                    transition: all ease-out 0.2s;
+                    animation: appear 0.2s;
+                    font-size: $text-size-normal;
+                    justify-content: center;
+                }
+
+                li {
+                    height: 2rem;
+                }
+
+                &__nav {
+                    display: flex;
+                    gap: 1vw;
+                    align-items: center;
+
+                    label {
+                        font-size: $text-size-normal;
+                    }
+
+                    input {
+                        height: $text-size-normal;
+                        width: $text-size-normal;
+                    }
+                }
+            }
+        }
+
+        &__nav {
+            display: flex;
+            justify-content: $button-position;
+            margin: auto;
+            max-width: 1100px;
+            width: 90%;
+            margin: auto;
+            padding: 0 0 $button-padding-bottom;
+
+            &__button {
+                width: $button-size-width;
+                height: $button-size-height;
+            }
+
+            &__img {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+            }
+        }
+}

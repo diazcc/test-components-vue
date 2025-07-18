@@ -1,0 +1,53 @@
+// Se puede visualizar al crear correctamente una radiación en el modulo de aceptados paso 5
+
+.confirmation-modal-background{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.236);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+    visibility: hidden;
+    z-index: 999999;
+    opacity: 0;
+    animation: height ease-out .5s;
+    &__container{
+        background-color: rgb(255, 254, 254);
+        padding: 2rem;
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 1rem;
+        &__button {
+            width: $button-size-width;
+            height: $button-size-height;
+        }
+    }
+}
+.showContainer{
+    animation: bigAnimate .3s  forwards;
+}
+
+.hiddeContainer{
+    animation: smallAnimate .3s  forwards;
+
+}
+
+.show{
+    transition: all ease-out .2s;
+    opacity: 1;
+    visibility: visible;
+}
+
+.hidde{
+    transition: all ease-in .2s;
+    opacity: 0;
+    visibility: hidden;
+}
+

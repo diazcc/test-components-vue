@@ -1,0 +1,38 @@
+/* HTML: <div class="clock"></div> */
+
+.pulse {
+  width: 10px;
+  height: 10px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #a20a0f;
+  box-shadow: 0 0 0 0 #7d1411;
+  position: relative;
+  display: none;
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: 0 0 0 0 #ff0707;
+    animation: inherit;
+    animation-delay: 0.5s;
+  }
+  &--status-red {
+    display: block;
+    animation: l2 2s infinite ease-in-out;
+    background: #de5d0d;
+    box-shadow: 0 0 0 0 #c3481b;
+    &:before, &:after {
+      box-shadow: 0 0 0 0 #fb7703;
+    }
+  }
+  &--status-black {
+    display: block;
+    animation: l2 2s infinite ease-in-out;
+  }
+}
+
+@keyframes l2 {
+    100% {box-shadow: 0 0 0 8px #f9f9f900}
+}

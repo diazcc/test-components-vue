@@ -1,0 +1,83 @@
+.select-lang {
+    position: relative;
+    min-width: 10rem;
+    height: 100%;
+    transition: all ease-out 0.2s;
+    -webkit-user-select: none;
+    user-select: none;
+    
+    &__header {
+        padding: $padding;
+        color: white;
+        display: flex;
+        flex-direction: row;
+        gap: .5rem;
+        p{
+            text-shadow: 0px 0px 3px black;
+        }
+    }
+    &__list {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        max-width: 100%;
+        visibility: hidden;
+        height: 0rem;
+        max-height: 0rem;
+        opacity: 0;
+        &__card {
+            background-color: white;
+            padding: $padding;
+            display: flex;
+            flex-direction: row;
+            gap: .5rem;
+            &__img{
+                width: 24px;
+                object-fit: contain;
+            }
+           
+            &:hover {
+                background-color: rgb(211, 211, 211);
+                cursor: pointer;
+            }
+            &:active {
+                background-color: rgb(192, 192, 192);
+
+            }
+        }
+
+        &--active {
+            visibility: visible;
+            height: max-content;
+            max-height: max-content;
+            opacity: 1;
+        }
+    }
+
+    &:hover {
+        filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.418));
+        cursor: pointer;
+        background-color: $bg-gray-hover;
+    }
+    &:active {
+        filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.575));
+        cursor: pointer;
+        background-color: $bg-gray-hover-active;
+    }
+    &--active {
+        filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.575));
+        cursor: pointer;
+        background-color: white;
+        color: black ;
+        .select-lang__header {
+            color: black;
+        }
+        &:hover {
+            background-color: white;
+        }
+        p{
+            text-shadow: none;
+        }
+    }
+}

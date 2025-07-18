@@ -1,0 +1,105 @@
+.filing-form {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    overflow: hidden;
+    padding: 0.5rem;
+    flex-grow: 1;
+    animation: appear 0.2s;
+    &__form {
+        // min-width: calc(100% + 0.5rem);
+        transition: all ease-out 0.2s;
+        display: flex;
+        flex-direction: row;
+
+        &--hidde {
+            margin-left: calc(-100% - 0.5rem);
+            opacity: 0;
+        }
+
+        &__container {
+            border-top: 1px solid #bebebe;
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: 1.5rem;
+            height: min-content;
+            &__card {
+                li {
+                }
+                flex: 0 0 calc(40% - 10px);
+                padding: 1rem;
+                height: min-content;
+                display: flex;
+                gap: 1rem;
+                input:not([type="checkbox"]),
+                select {
+                    border: 1px solid $border-fields;
+                    width: 100%;
+                    padding: 0.5rem;
+                    box-sizing: border-box;
+                    transition: all ease-out 0.2s;
+                }
+            }
+            &__editor {
+                margin: 0;
+                flex: auto;
+                padding: 1rem;
+                height: min-content;
+                display: flex;
+                gap: 0rem;
+            }
+        }
+    }
+
+    &__response {
+        box-sizing: border-box;
+        min-width: 100%;
+        padding: 1rem 3rem 0rem 3rem;
+        display: flex;
+        flex-direction: column;
+        &__title {
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        &__content {
+            display: flex;
+            padding: 1rem;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            gap: 1rem;
+            flex-grow: 1;
+            align-items: center;
+            &__img {
+                border-radius: 0.3rem;
+                padding: 1rem;
+                display: flex;
+                width: 10rem;
+                height: 10rem;
+                justify-content: center;
+                align-items: center;
+                img {
+                    width: 100%;
+                }
+            }
+            &__card {
+                padding: 1rem;
+
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                &--assign-button {
+                    align-items: center;
+                    min-width: 70%;
+                }
+            }
+            &__nav {
+                display: flex;
+                justify-content: flex-end;
+                padding: 1rem;
+                &__assign-button {
+                    margin-right: 20%;
+                }
+            }
+        }
+    }
+}

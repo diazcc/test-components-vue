@@ -1,0 +1,103 @@
+.template-table-view {
+    .table__row {
+        grid-template-columns: 2.5rem 30% repeat(auto-fit, minmax(1px, 1fr));
+    }
+}
+
+.series-template--form {
+    box-sizing: border-box;
+    animation: appear 0.4s;
+    position: relative;
+    width: 100%;
+    border-left: 3px solid var(--border-right-line-card);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: white;
+    padding: 1rem;
+    animation: appear 0.4s;
+    &__wrapper {
+        animation: appear 0.2s;
+        display: flex;
+        flex-direction: row;
+        height: 70%;
+        place-content: center;
+        align-items: center;
+        gap: 1.5vw;
+        &__option {
+            width: $button-large-width;
+            height: $button-large-height;
+        }
+    }
+    &__header {
+        margin-top: $margin-top-header;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        padding: 1rem;
+        text-align: center;
+        place-content: center;
+        h2 {
+            font-size: $text-size-large;
+            color: var(--title-color);
+        }
+    }
+    &__title {
+        width: 80%;
+        margin: auto;
+        margin-top: 0;
+        font-weight: bolder;
+        font-size: $text-size-normal;
+        border-bottom: 1px solid #bebebe;
+    }
+
+    &__content {
+        animation: appear 0.2s;
+        width: 80%;
+        margin: auto;
+        display: grid;
+        margin-top: 0;
+        grid-template-columns: repeat(2, 1fr);
+        place-items: center;
+        align-content: start;
+        gap: 0rem 0.5rem;
+        &__card {
+            padding: 1vh;
+            height: $button-size-height;
+            width: 100%;
+            input,
+            select {
+                border: 1px solid $border-fields;
+                width: 100%;
+                height: 100%;
+                margin: auto;
+                padding: 0.5rem;
+                box-sizing: border-box;
+                transition: all ease-out 0.2s;
+                font-size: $text-size-short;
+            }
+
+            input[type="text"],
+            input[type="date"] {
+                transition: all 1s ease-in-out; // Transición suave
+            }
+        }
+    }
+
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+        margin: auto;
+        padding: 0 0 1.5vh;
+        &__img {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        &__button {
+            width: $button-size-width;
+            height: $button-size-height;
+        }
+    }
+}

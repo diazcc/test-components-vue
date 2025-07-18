@@ -1,0 +1,124 @@
+$blue: #006cd8; 
+$blue-hover: rgb(0, 88, 177);
+$blue-active: rgb(0, 80, 160);
+$blue-light: #0180ff;
+$color-red-status: #ffa9a9;
+$color-orange-dark-status: #ffa9a9;
+$color-orange-status: #ffa9a9;
+$color-border-input: #dbdbdb;
+$border-fields: #c2c2c2;
+$gray: #e5e5e5;
+$gray-dark: #d4d3d3;
+$gray-light: #f0f0f0;
+$gray-light-mx: #fbfbfb;
+$gray-hover: #dbdbdb;
+$gray-dark-hover: #c1c1c1;
+$gray-active: rgb(204, 204, 204);
+$transparent: rgba(255, 255, 255, 0);
+$gray-black: #afafaf;
+$gray-black-mx: #919191;
+$gray-black-mx-hover: #757575;
+$dropshadow-page :  drop-shadow(0px 2px 2px gray);
+$gray-pressed: #c3c3c3;
+$drop-shadow :0px 0px 2px rgba(0, 0, 0, 0.5);
+$border-radius-min:0.4rem;
+$min-padding: 0.5rem;
+$min-rem: 0.5rem;
+$padding: 1rem;
+$border-color-line: #d0d0d0;
+$delete: red;
+$delete-hover: rgb(224, 0, 0);
+$delete-active: rgb(188, 0, 0);
+$bg-gray: #555555;
+$bg-gray-hover: #4e4e4e;
+$bg-gray-hover-active: #494949;
+$bg-gray-light: #686868;
+$bg-gray-light-hover: #616161;
+$bg-text-light: #d1d1d1;
+$modal-z-index: 100;
+$logo-size: 15rem;
+$margin-title-backgorund: -1.6rem;
+
+// Data of home
+$height-footer: 6rem;
+$height-navbar: 3.8rem;
+$width-menu: 13.95rem;
+
+
+//DATA OF DOCUMENT CREATOR
+$icon-width :24px;
+$docreat-margin-between-lines: 1.5rem;
+$docreat-lateral-margin: 2.5rem;
+$blue-hover-opacity : #4ba5ff94;
+
+$padding-input: 0.8rem;
+$padding-input-min: 0.4rem;
+
+// Text size
+$text-size-short: 0.825rem; // Subtitle or navegation
+$text-size-normal: 1rem; // body text
+$text-size-large: 2.2rem; // Titles
+
+//------header content
+// Header
+$margin-top-header: 1.2rem;
+
+//pointer
+$pointer-size: 1.5rem;
+
+// Buttons variables (back, continue, add, delete, edit, upload, etc)
+$button-position: space-between;
+$button-padding-bottom: 1.5vh;
+$button-padding-side: 1rem;
+$button-size-height: 3rem;
+$button-size-width: 9.5rem; //$button-size-width: 9.5rem;  Cambios recomendaciones de luis por firmadoc
+$button-internal-gap: 0.8rem; //$button-internal-gap: 0.8rem;
+
+// Buttons icons size
+$button-icon-size: 0.8rem;
+$button-icon-size-large: 1.1rem;
+$button-icon-size-short: 0.6rem;
+
+// Buttons variables for big ones
+$button-large-width: 12.5rem;
+$button-large-height: 5.5rem;
+
+$color-background: rgba(0, 0, 0, 0.236);
+
+// Table variables
+
+// Unchangable
+$table-cell-odd-background: #f9f9f9;
+$table-text-color: rgb(32, 31, 31);
+$table-header-text-color: rgb(32, 31, 31);
+$table-headder-backgorund-color: #ffffff;
+$table-cell-even-background: #e9e9e9;
+
+// Menu
+// Unchangable
+$menu-background: #292929;
+$menu-text-color: #f9f9f9;
+
+:root {
+    // Table variables
+    // Changable
+    --table-hover-cell-background: #AECFEE;
+    --border-right-line-card: #006CD8;
+    --title-color: #00407D;
+    --filter-background: #006CD836;
+    --menu-filter-img-color: invert(32%) sepia(75%) saturate(2500%) hue-rotate(193deg) brightness(91%) contrast(97%);
+
+    // Menu
+    // Changable
+    --menu-focused-background-color: #3B6FA1;
+    --menu-text-shadow: #1f66a9;
+    --border-right-line: #006CD8;
+    --menu-title-color: #006CD8;
+    --menu-text-focused-color: #006CD8;
+    --menu-active-background-color: #2f5980;
+    --menu-img-color: invert(32%) sepia(75%) saturate(2500%) hue-rotate(193deg) brightness(91%) contrast(97%);
+
+    //Filing variables
+    --filing-backgound-color: #4181bc;
+    --filing-backgound-color-hover: #3B6FA1;
+}

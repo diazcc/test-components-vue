@@ -1,0 +1,26 @@
+.input-search {
+    display: flex;
+    flex-direction: row;
+    background-color: $gray-light;
+    padding: 0.3rem;
+    width: 100%;
+    max-width: 30rem;
+    justify-content: space-between;
+    align-items: center;
+    height: min-content;
+    border: 1px solid $gray-light;
+    height: $button-size-height;
+    box-sizing: border-box;
+    transition: all ease-out .2s;
+    input {
+        width: 100%;
+        border: none;
+        padding: $min-rem !important;
+        background-color: #f0f0f0;
+        font-size: $text-size-short;
+        max-height: 100%;
+    }
+    &--active {
+        border: 2px solid #75baff;
+    }
+}

@@ -1,0 +1,59 @@
+// Se puede visualizar al presionar crear en el modulo de aceptados paso 3
+
+.alert-modal-background {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.236);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+    z-index: calc($modal-z-index + 2);
+    visibility: hidden;
+    opacity: 0;
+    &__container {
+        background-color: rgb(255, 254, 254);
+        padding: 2rem;
+        opacity: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        gap: 1rem;
+        width: 70%;
+        min-width: max-content;
+        max-width: 18rem;
+        height: 100%;
+        max-height: 8rem;
+        p {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 25rem;
+            text-align: center;
+        }
+    }
+}
+.showContainer {
+    animation: bigAnimate 0.3s forwards;
+}
+
+.hiddeContainer {
+    animation: smallAnimate 0.3s forwards;
+}
+
+.show {
+    transition: all ease-out 0.2s;
+    opacity: 1;
+    visibility: visible;
+}
+
+.hidde {
+    transition: all ease-in 0.2s;
+    opacity: 0;
+    visibility: hidden;
+}

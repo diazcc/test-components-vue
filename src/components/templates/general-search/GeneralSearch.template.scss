@@ -1,0 +1,14 @@
+.search {
+    width: 100%;
+    
+    flex-grow: 1;
+    &__table {
+        border-left: 3px solid var(--border-right-line-card);
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        flex-grow: 1;
+        background-color: white;
+        padding: 1.5rem;
+    }
+}

@@ -1,0 +1,30 @@
+
+.colaborative-work {
+
+    text-align: center;
+    display: grid;
+   
+    background-color: rgba(3, 3, 126, 0) !important;
+
+    &__title {
+        gap: 1rem;
+        display: flex;
+        align-items: center;
+        padding-bottom: 10px;
+    }
+
+    &__content {
+        background-color: #f5f5f5;
+        padding: 1.4rem 0;
+        &__img {
+            fill: #006cd8;
+                margin-top: 1rem;
+        }
+
+        &__router {
+            margin-top: 1.5rem;
+        }
+    }
+
+
+}

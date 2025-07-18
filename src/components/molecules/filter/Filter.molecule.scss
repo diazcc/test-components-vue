@@ -1,0 +1,105 @@
+.filter {
+    width: 20rem;
+    height: 22rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+    background-color: rgb(255, 255, 255);
+    &__sort-container {
+        width: 100%;
+        &__text-container {
+            display: flex;
+            justify-content: space-between;
+            &__text {
+                justify-self: end;
+                box-sizing: border-box;
+                width: 90%;
+                padding: 0.2rem;
+                margin: 0.1rem 0;
+                text-align: left;
+                font-size: $text-size-short;
+                font-weight: 100;
+                &:hover{
+                    cursor: pointer;
+                    background-color: rgba(128, 128, 128, 0.159);
+                }
+                &--inactive {
+                    color: grey;
+                    &:hover{
+                        cursor: default;
+                        background-color: white;
+                    }
+                }
+
+            }
+            img {
+                width: 1.125rem;
+                margin-left: 0.5rem;
+                &.grey {
+                    filter: invert(11%) sepia(100%) saturate(524%) hue-rotate(48deg) brightness(40%) contrast(30%);
+                }
+            }
+        }
+        &__multi-select {
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-self: end;
+            box-sizing: border-box;
+            width: calc(95%);
+            height: 8rem;
+            background-color: var(--filter-background);
+            margin: 0 0.5rem 0;
+            padding: 0.3rem 0;
+            border: 1px solid grey;
+            gap: 0.2rem;
+            &__option {
+                border-left: 2px dotted black;
+                margin-left: 0.5rem;
+                padding-left: 0.5rem;
+                display: flex;
+                gap: 0.5rem;
+                height: fit-content;
+                p {
+                    width: 100%;
+                    word-wrap: break-word;
+                    font-size: $text-size-short;
+                    font-weight: 100;
+                    text-align: left;
+                }
+                &:hover {
+                    cursor: pointer;
+                    background-color: rgba(128, 128, 128, 0.205);
+                }
+            }
+        }
+        &__search {
+            box-sizing: border-box;
+            width: 95%;
+            margin: 0 auto 0.5rem;
+            height: 2rem;
+            font-size: $text-size-short;
+            background-color: $gray-light;
+            border: 1px solid transparent;
+        }
+    }
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        width: 95%;
+        margin: 0.5rem auto;
+        button {
+          width: 7rem;  
+        }
+    }
+    &__line {
+        width: 95%;
+        margin: 0 auto;
+    }
+    &--display-none {
+        display: none;
+    }
+}

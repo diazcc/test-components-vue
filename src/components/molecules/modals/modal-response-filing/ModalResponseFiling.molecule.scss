@@ -1,0 +1,216 @@
+//Se puede visualizar en el modulo de radicacción acciones responder radicado
+
+.modal-response-filing {
+    background-color: white;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    width: 80%;
+    height: 90%;
+    justify-content: space-between;
+    visibility: hidden;
+    opacity: 0;
+    transition: all ease-out 0.2s;
+    justify-content: space-between;
+    position: relative;
+    z-index: $modal-z-index;
+    &__document {
+        overflow: hidden;
+        animation: appear 0.2s;
+        width: 80%;
+        flex-grow: 1;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        &__file {
+            display: flex;
+            background-color: red;
+            flex-grow: 1;
+            flex-direction: column;
+            gap: 0.5rem;
+            justify-content: center;
+            align-items: center;
+            background-color: $gray-light;
+            border: 4px dashed $gray-dark;
+            padding: 0.5rem;
+            transition: all ease-out 0.2s;
+            &:hover {
+                border: 4px dashed $blue;
+                cursor: pointer;
+            }
+        }
+        &__subject {
+            padding: $min-rem;
+            border: 1px solid $border-fields;
+        }
+    }
+    &__container-header {
+            display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        &__title {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--title-color);
+        }
+
+        &__content-process {
+            display: flex;
+            flex-direction: row;
+            width: 80%;
+            margin: $margin-top-header 0 0 0;
+            justify-content: space-between;
+            position: relative;
+
+            &__pointer {
+                z-index: calc(1 + $modal-z-index);
+                color: white;
+                background-color: #f0f0f0;
+                padding: 0.5vw;
+                width: $pointer-size;
+                height: $pointer-size;
+                font-size: $text-size-short;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                transition: background-color ease-out 0.2s;
+
+                &--focused {
+                    background-color: var(--bg-color);
+                    animation: jump 0.2s forwards;
+                }
+            }
+
+            &__line {
+                width: 100%;
+                height: 2px;
+                background-color: #f0f0f0;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                z-index: calc(1 + $modal-z-index);
+                display: flex;
+                transition: all ease-out 0.2s;
+
+                &--step12 {
+                    &::before {
+                        width: 25%;
+                        height: 2px;
+                        content: "";
+                        background-color: #006cd8;
+                    }
+                }
+
+                &--step123 {
+                    &::before {
+                        width: 50%;
+                        height: 2px;
+                        content: "";
+                        background-color: #006cd8;
+                    }
+                }
+
+                &--step1234 {
+                    &::before {
+                        width: 75%;
+                        height: 2px;
+                        content: "";
+                        background-color: #006cd8;
+                    }
+                }
+
+                &--step12345 {
+                    &::before {
+                        width: 100%;
+                        height: 2px;
+                        content: "";
+                        background-color: #006cd8;
+                    }
+                }
+            }
+        }
+    }
+    &__background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        z-index: calc(1 + $modal-z-index);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(1px);
+        // background-color: $color-background;
+        visibility: hidden;
+        opacity: 0;
+        transition: all ease-out 0.2s;
+
+        &--show {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+    &__actions {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        max-height: 80%;
+        width: 80%;
+        margin: 0rem auto;
+        gap: 1rem;
+        &__content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            gap: 0.5rem;
+            flex-wrap: nowrap;
+            overflow-y: auto;
+            &__title{
+                border-bottom: 1px solid $gray;
+                font-size: 1.2rem
+            }
+            &__message{
+                word-break: break-word;
+                text-align: justify;
+                font-size: 1rem;
+                height: 3rem;
+                min-height: max-content;
+                padding: 1rem;
+                border:2px dashed $blue;
+                background-color: $gray-light;
+            }
+        }
+    }
+
+    &__navegation {
+        display: flex;
+        justify-content: $button-position;
+        width: 80%;
+        margin: 0rem auto;
+        height: $button-size-height;
+        &__button {
+            width: $button-size-width;
+            height: 100%;
+        }
+        &__img {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    }
+
+    &--show {
+        animation: appear 0.2s;
+        visibility: visible;
+        opacity: 1;
+    }
+}

@@ -1,0 +1,22 @@
+.table-correspondence-received {
+    border-left: 3px solid var(--border-right-line-card);
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    flex-grow: 1;
+    background-color: white;
+    padding: 1rem;
+    &__nav-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+    .table__row {
+        grid-template-columns: 2.5rem 20% repeat(auto-fit, minmax(1px, 1fr)); // Moficator of cass global style.scss structure 
+    }
+}
+
+.hidden{
+    opacity: 0;
+}

@@ -1,0 +1,38 @@
+.text {
+
+    &--bold {
+        font-weight: bolder;
+    }
+
+    &--light {
+        font-weight: 500;
+    }
+
+    &--italic {
+        font-style: italic;
+    }
+    &--italic-small {
+        font-style: italic;
+        font-size: $text-size-short;
+    }
+    &--center {
+        text-align: center;
+        justify-content: center;
+    }
+
+    &--white {
+        color: white;
+    }
+
+    &--gray {
+        color: gray;
+    }
+
+    &--small {
+        font-size: $text-size-short;
+    }
+
+    &--big {
+        font-size: calc($text-size-normal + 0.1rem);
+    }
+}

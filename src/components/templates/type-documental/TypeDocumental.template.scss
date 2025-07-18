@@ -1,0 +1,72 @@
+.documentary-type--form {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 20% 10% 50% 20%;
+    max-height: 90vh;
+    animation: appear 0.4s;
+    position: relative;
+    width: 100%;  
+    background-color: white;
+    border-left: 3px solid var(--border-right-line-card); 
+    &__header{
+        margin-top: $margin-top-header;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        padding: 1rem;
+        text-align: center;
+        place-content: center;
+        h1 {
+            font-size: $text-size-large;
+            color: var(--title-color);
+        }
+    }
+    &__title{
+        width: 80%;
+        margin: auto;
+        margin-top: 0;
+        font-weight: bolder;
+        font-size: $text-size-normal;
+        border-bottom: 1px solid #bebebe;
+    }
+    &__content {
+        width: 80%;
+        margin: auto;
+        margin-top: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        place-items: center;
+        align-content: start;
+        gap: 0rem .5rem;
+        &__card {
+            padding: 0.5rem;
+            height: $button-size-height;
+            width: 100%;
+            input,
+            select {
+                border: 1px solid $border-fields;
+                width: 100%;
+                height: 100%;
+                margin: auto;
+                padding: 0.5rem;
+                box-sizing: border-box;
+                transition: all ease-out 0.2s;
+                font-size:  $text-size-short;
+            }
+        }
+    }
+    &__nav{
+        display: flex;
+        justify-content: $button-position;
+        width: 80%;
+        height: $button-size-height;
+        margin: auto;
+        &__button {
+            width: $button-size-width;
+            height: 100%;
+        }
+    }
+}
+
+.table__row {
+    grid-template-columns: 2.5rem 40% repeat(auto-fit, minmax(1px, 1fr));
+}

@@ -1,0 +1,125 @@
+.profile {
+    background-color: white;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    border-left: 2px solid $blue;
+    animation: appear 0.2s;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+
+    &__wrapper {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        animation: appear 0.2s;
+        gap: 1rem;
+
+        &__photo {
+            display: flex;
+            width: min-content;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 10rem;
+            height: 10rem;
+            overflow: hidden;
+            border: 2px solid $gray-dark;
+            border-radius: 50%;
+
+            &__front {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-weight: bold;
+                transition: all ease-out 0.2s;
+                opacity: 0;
+                border: 2px solid $gray-dark;
+                box-sizing: border-box;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.278);
+                    border: 2px solid $blue;
+                    opacity: 1;
+                    cursor: pointer;
+                }
+            }
+
+            &__img {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: $gray;
+            }
+
+            input[type="file"] {
+                visibility: hidden;
+                display: none;
+            }
+        }
+
+        &__container {
+            flex-grow: 1;
+            padding: 0.5rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem 3%;
+
+            &__card {
+                display: flex;
+                flex-direction: column;
+
+                input,
+                select {
+                    border: 1px solid $border-fields;
+                    width: 100%;
+                    height: $button-size-height;
+                    margin: auto;
+                    padding: 0.5rem;
+                    box-sizing: border-box;
+                    transition: all ease-out 0.2s;
+                    font-size: $text-size-normal;
+                    border: 1px solid $blue;
+
+                    &:disabled {
+                        border: 1px solid $gray-dark !important;
+                    }
+                }
+            }
+        }
+    }
+
+    &__buttons-nav {
+        display: flex;
+        justify-content: $button-position;
+        width: 100%;
+        margin: auto;
+        padding: 1rem;
+        position: sticky;
+        bottom: 0;
+        background-color: white;
+        box-sizing: border-box;
+        &__button {
+            width: $button-size-width;
+            height: $button-size-height;
+        }
+
+        &__img {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+    }
+}

@@ -1,0 +1,57 @@
+.user-menu-header {
+    display: flex;
+    position: relative;
+    gap: 0.3rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    transition: all ease-in 0.2s;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    text-overflow: clip;
+    flex-direction: column;
+
+    &__card {
+        display: flex;
+        gap: 0.3rem;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(255, 255, 255);
+        padding: 0.5rem;
+        border-radius: 1rem;
+        transition: all ease-in 0.2s;
+        cursor: pointer;
+        -webkit-user-select: none;
+        user-select: none;
+        text-overflow: clip;
+        &:hover {
+            background-color: rgb(223, 223, 223);
+        }
+        &:active {
+            background-color: rgb(189, 189, 189);
+            transition: background-color ease-in 0.1s;
+        }
+        &--focused {
+            transition: background-color;
+            border-radius: 1rem 1rem 0rem 0rem;
+            background-color: rgb(255, 255, 255);
+            cursor: auto;
+
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
+            &:hover {
+                background-color: rgb(255, 255, 255);
+            }
+            &:active {
+                background-color: rgb(255, 255, 255);
+            }
+        }
+
+        &__name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-wrap: nowrap;
+            max-width: 7rem;
+        }
+    }
+}

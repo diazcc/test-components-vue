@@ -1,0 +1,26 @@
+.tooltip-icon-container {
+    position: relative;
+    width: 1.2rem;
+    height: 1.2rem;
+    img {
+        cursor: pointer;
+        height: inherit;
+        width: inherit;
+        margin-top: -0.1rem;
+        object-fit: contain;     
+    }
+    .tooltip {
+        right: 1.1rem;
+        top: 1.7rem;
+    }
+    &:hover .tooltip {
+        visibility: visible;
+        opacity: 1;
+    }
+    &--red img {
+        filter: invert(37%) sepia(90%) saturate(10000%) hue-rotate(0deg) brightness(100%) contrast(100%);
+    }
+    &--blue img {
+        filter: invert(47%) sepia(73%) saturate(3200%) hue-rotate(200deg) brightness(95%) contrast(100%);
+    }
+}

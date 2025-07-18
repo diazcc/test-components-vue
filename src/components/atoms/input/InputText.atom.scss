@@ -1,0 +1,66 @@
+.input {
+    border: 1px solid transparent;
+    border: 1px solid gray;
+    height: $button-size-height;
+    // border-radius: .3rem;
+
+    &--form {
+        border: 1px solid $border-fields;
+        padding: 0.5rem;
+        box-sizing: border-box;
+        transition: all ease-out 0.2s;
+    }
+
+    &--digit {
+        padding: $min-rem !important;
+        box-sizing: border-box;
+        transition: all ease-out 0.2s;
+        border: 1px solid white;
+        width: 5.5rem;
+        text-align: center;
+        animation: all ease-out 0.2s;
+        &:hover {
+            border: 1px solid $border-fields;
+        }
+        &:active {
+            border: 1px solid $border-fields;
+        }
+        &:focus {
+            border: 1px solid $border-fields;
+        }
+    }
+
+    &--form-close {
+        border: 1px solid $border-fields;
+        padding: 0.5rem 0rem;
+        border: none;
+        box-sizing: border-box;
+        transition: all ease-out 0.2s;
+        width: 0px;
+    }
+
+    &--form-open {
+        border: 1px solid $border-fields;
+        padding: 0.5rem;
+        box-sizing: border-box;
+        transition: all ease-out 0.2s;
+        width: 15rem;
+    }
+    &--form-max{
+        border: 1px solid $border-fields;
+        padding: 0.5rem;
+        box-sizing: border-box;
+        transition: all ease-out 0.2s;
+        width: 18rem;
+    }
+
+
+    &--read{
+        border: 1px solid $transparent;
+        padding: 0.5rem;
+        box-sizing: border-box;
+        transition: all ease-out 0.2s;
+        width: 17rem;
+        pointer-events: none;
+    }
+}

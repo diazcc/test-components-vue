@@ -1,0 +1,34 @@
+.table-dependence {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    flex-grow: 1;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    height: 100%;
+    border-left: 3px solid var(--border-right-line-card);
+
+    &__nav-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &__select {
+            border: 1px solid $border-fields;
+            padding: 0.5rem;
+            width: min-content;
+            cursor: pointer;
+            margin: 0.5rem;
+
+        }
+    }
+    .table{
+        margin-top: 1rem;
+        &__row {
+            grid-template-columns: 2.5rem 15rem repeat(2, 1fr) 15rem repeat(auto-fit, minmax(1px, 1fr));
+            input {
+                font-size: $text-size-short;
+            }
+        }
+    }
+}

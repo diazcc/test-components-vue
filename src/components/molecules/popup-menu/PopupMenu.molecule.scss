@@ -1,0 +1,74 @@
+.popup-menu {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    -webkit-user-select: none;
+    user-select: none;
+    &__title {
+        border-radius: 0.5rem;
+        padding: $padding-input;
+        display: flex;
+        flex-direction: row;
+        gap: 0.2rem;
+        p,
+        img {
+            height: 24px;
+            min-height: 24px;
+            align-content: center;
+        }
+        &--active {
+            background-color: $gray-pressed;
+        }
+        &:hover {
+            cursor: pointer;
+            background-color: $gray-pressed;
+        }
+        &__arrow{
+            width: 16px;
+        }
+    }
+    &__list {
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        background-color: white;
+        filter: drop-shadow($drop-shadow);
+        padding: 0.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        visibility: hidden;
+        opacity: 0;
+        border-radius: $border-radius-min;
+        gap: .2rem;
+        width: max-content;
+        max-width: 272px;
+        &__card {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            min-width: min-content; 
+            max-width: min-content;  
+            flex: 1 1 auto;
+            padding: $padding-input-min;
+            border-radius: $border-radius-min;
+
+            &__icon {
+                max-width: min-content;
+            }
+            &__text {
+            }
+
+            &--active {
+                background-color: $gray-pressed;
+            }
+            &:hover {
+                cursor: pointer;
+                background-color: $gray-pressed;
+            }
+        }
+        &--active {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}

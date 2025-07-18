@@ -1,0 +1,95 @@
+.card-information-filing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  flex-grow: 1;
+  padding: 0.5rem;
+  padding-bottom: 2rem;
+
+  &__card {
+    box-sizing: border-box;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    &:nth-child(1) {
+      flex-basis: 100%;
+      width: 100%;
+
+      // Solo el __list del primer card en dos columnas
+      .card-information-filing__card__list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        &__card {
+          flex-basis: calc(48.7% - 1rem);
+          display: flex;
+          flex-direction: row;
+          gap: 0.5rem;
+          padding: 0.5rem 0rem;
+        }
+      }
+    }
+
+    &:nth-child(n + 2) {
+      flex-basis: calc(50.9% - 1rem);
+    }
+
+    &__label {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: $blue;
+      padding: 0.5rem 0rem;
+      border-bottom: 1px solid $blue;
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+      gap: 0rem 2.9rem;
+      &__card {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 0.5rem;
+        padding: 0.5rem 0rem;
+        justify-content: space-between;
+        box-sizing: border-box;
+        align-items: center;
+        &__label {
+          font-size: 0.9rem;
+          color: #666;
+        }
+
+        &__value {
+          font-size: 0.88rem;
+          color: #222;
+          text-align: right;
+          &--left {
+            text-align: left;
+          }
+        }
+        &__saw {
+          transition: all ease-out 0.2s;
+          border: 1px solid $blue;
+          width: 2rem;
+          height: 2rem;
+          padding:0.2rem;
+          img {
+             object-fit: contain;
+    width: 14px;
+           
+          }
+          &:hover {
+            background-color: $blue;
+          img{
+              filter: brightness(2);
+            }
+          }
+        }
+      }
+    }
+  }
+}

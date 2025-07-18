@@ -1,0 +1,154 @@
+.login__wrapper {
+    display: flex;
+    min-height: 100vh;
+    box-sizing: border-box;
+    flex-direction: column;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    background-color: $bg-gray;
+    &__header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        max-height: 3rem;
+        &__img {
+            object-fit: contain;
+            width: $logo-size;
+        }
+
+        &__button {
+            color: white;
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            place-content: center;
+            place-items: center;
+            background-color: $bg-gray;
+            border: 1px solid $bg-gray;
+
+            &:hover {
+                border: 1px solid $gray-black-mx-hover;
+            }
+        }
+    }
+    &__content {
+        padding: 1rem;
+        width: 40%;
+        max-width: 40rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        flex-grow: 1;
+        transition: all 0.2s ease-out;
+        animation: appear 0.4s;
+        &__header {
+            margin-top: -4rem; //Added for dor icon
+            text-align: center;
+            h1 {
+                font-size: 1.5rem;
+                font-weight: lighter;
+            }
+        }
+
+        &__options {
+            display: flex;
+            gap: 1rem;
+
+            &--register {
+                .login__wrapper__content__options__card {
+                    width: 6.5rem;
+                    height: 4.5rem;
+                    .login__wrapper__content {
+                        background-color: red;
+                    }
+                }
+            }
+            &__card {
+            }
+        }
+
+        &__form {
+            width: 100%;
+            max-width: 40rem;
+            padding: 2rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 1rem;
+            transition: all 0.2s ease;
+            animation: appear 0.2s;
+            opacity: 1;
+            input[type="text"],
+            input[type="number"],
+            input[type="password"] {
+                width: 100%;
+                max-width: 20rem;
+                padding: 0.5rem;
+                border: 1px solid #d0d0d0;
+                font-size: $text-size-short;
+            }
+            &--register {
+                overflow: hidden;
+            }
+            span {
+                display: flex;
+                gap: 1rem;
+                flex-direction: row;
+                label {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 0.5rem;
+                }
+            }
+            &--hidde {
+                height: 0px;
+                max-height: 0px;
+                padding: 0rem 1rem;
+                gap: 0rem;
+                overflow: hidden;
+                opacity: 0;
+                visibility: hidden;
+            }
+            &__options {
+                color: white;
+            }
+            button {
+                height: $button-size-height;
+            }
+        }
+
+        &__forgot {
+            font-style: italic;
+            color: white;
+            text-decoration: underline;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        &__advices {
+            font-style: normal;
+            color: $bg-text-light;
+            text-align: justify;
+
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        &--register {
+            gap: 1rem;
+
+            .login__wrapper__content__form {
+                padding: 1rem;
+            }
+        }
+    }
+    &__footer {
+        place-self: center;
+        color: rgb(255, 255, 255, 0.6);
+        flex-grow: initial;
+    }
+}

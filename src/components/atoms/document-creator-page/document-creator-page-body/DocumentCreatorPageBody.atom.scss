@@ -1,0 +1,24 @@
+.document-creator-page-body {
+    box-sizing: border-box;
+    padding: $docreat-lateral-margin $docreat-lateral-margin $docreat-lateral-margin  $docreat-lateral-margin;
+    /* 
+    width: 793.7px !important;
+    min-width: 793.7px !important;
+    max-width: 793.7px !important;
+    height: 882.5px !important;
+    min-height: 882.5px !important;
+    max-height: 882.5px !important; 
+
+        todo: ! Its await for dev templates, for momento will use the next dimensions !
+    
+    */
+    width: 793.7px !important;
+    min-width: 793.7px !important;
+    max-width: 793.7px !important;
+    height: 1122px !important;
+    min-height: 1122px !important;
+    max-height: 1122px !important;
+    overflow: hidden;
+    background-color: white;
+    display: flex; //Be care with this line, this could be effect in a algoritm
+}

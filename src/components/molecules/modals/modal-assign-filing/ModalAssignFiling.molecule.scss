@@ -1,0 +1,144 @@
+// Se puede visualizar al seleccionar acciones y poner asignar radicado
+
+.modal-assign-filing {
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.106);
+    backdrop-filter: blur(1px);
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    overflow-y: auto;
+    transition: all ease-out 0.2s;
+    z-index: $modal-z-index;
+
+    &__content {
+        overflow: auto;
+        width: 50%;
+        height: max-content;
+        max-width: 30rem;
+        max-height: 85%;
+        padding: 1rem;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        &__title {
+            font-size: calc($text-size-normal + 0.5rem);
+        }
+
+        &__form {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-direction: column;
+            select,
+            input {
+                width: 100%;
+                overflow-y: scroll;
+            }
+        }
+
+        &__editor {
+            overflow-y: auto;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #cecece;
+            flex-grow: 1;
+            display: flex;
+
+            &__header {
+                display: flex;
+                padding: 0.5rem;
+                flex-wrap: wrap;
+                gap: 0.2rem;
+                position: sticky;
+                top: 0;
+
+                &__icon {
+                    padding: 0.5rem;
+                    border-radius: 0.5rem;
+                    &:hover {
+                        background-color: #c3c3c3;
+                    }
+                }
+            }
+
+            &--background-white {
+                padding: 1rem;
+                height: 100%;
+            }
+        }
+
+        &__footer {
+            display: flex;
+            justify-content: $button-position;
+            width: 100%;
+            margin: auto;
+            &__buttons {
+                width: $button-size-width;
+                height: $button-size-height;
+            }
+        }
+        &--show {
+            visibility: visible;
+            animation: appear 0.2s forwards;
+            opacity: 1;
+        }
+        &--hidde {
+            visibility: hidden;
+            animation: disappear 0.2s forwards;
+            opacity: 0;
+        }
+    }
+
+    &__buttom {
+        align-self: flex-end;
+        color: black;
+
+        &--close {
+            width: auto;
+            &:hover {
+                background-color: rgba(255, 59, 59, 0.861);
+                color: white;
+            }
+        }
+
+        &--send {
+            &:hover {
+                background-color: rgba(42, 180, 248, 0.925);
+                color: white;
+            }
+        }
+        &--show {
+            visibility: visible;
+            animation: appear 0.2s forwards;
+            opacity: 1;
+        }
+        &--hidde {
+            visibility: hidden;
+            animation: disappear 0.2s forwards;
+            opacity: 0;
+        }
+    }
+
+    &--show {
+        visibility: visible;
+        opacity: 1;
+    }
+    &--hidde {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
+.divider {
+    background-color: rgb(195 195 195);
+    width: 2px;
+    min-height: 100%;
+}

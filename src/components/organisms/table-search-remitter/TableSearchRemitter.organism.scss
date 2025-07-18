@@ -1,0 +1,29 @@
+.table-search {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+    flex-grow: 1;
+    &__header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-direction: row;
+        &__input-search {
+            box-sizing: border-box;
+            margin-left: auto;
+            height: $button-size-height;
+        }
+        &__text {
+            min-width: max-content;
+            font-size: $text-size-normal
+        }
+        &__button {
+            height: $button-size-height;
+            width: $button-size-width;
+        }
+    }
+}

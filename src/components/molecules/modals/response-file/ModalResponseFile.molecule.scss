@@ -1,0 +1,184 @@
+.modal-response-file {
+    position: fixed;
+    left: 0rem;
+    top: 0rem;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(1px);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    visibility: hidden;
+    opacity: 0;
+    transition: all ease-out 0.2s;
+    background-color: rgba(0, 0, 0, 0.081);
+    &__wrapper {
+        padding: 1rem;
+        background-color: white;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.286);
+        display: flex;
+        width: 60%;
+        min-width: 800px;
+        max-width: 1000px;
+        box-sizing: border-box;
+        height: 90%;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        &__header {
+            height: 15%;
+            width: 80%;
+            margin: 0rem auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            &__title {
+                color: $blue;
+            }
+            &__content-process {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                margin: $margin-top-header 0 0 0;
+                justify-content: space-between;
+                position: relative;
+
+                &__pointer {
+                    z-index: calc(1 + $modal-z-index);
+                    color: white;
+                    background-color: #f0f0f0;
+                    padding: 0.5vw;
+                    width: $pointer-size;
+                    height: $pointer-size;
+                    font-size: $text-size-short;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 50%;
+                    transition: background-color ease-out 0.2s;
+                    font-size:1rem;
+                    font-weight:bolder;
+                    &--focused {
+                        background-color: var(--bg-color);
+                        font-size:1.3rem;
+                        animation: jump 0.2s forwards;
+                    }
+                }
+
+                &__line {
+                    width: 100%;
+                    height: 2px;
+                    background-color: #f0f0f0;
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    z-index: calc(1 + $modal-z-index);
+                    display: flex;
+                    transition: all ease-out 0.2s;
+
+                    &--step12 {
+                        &::before {
+                            width: 50%;
+                            height: 2px;
+                            content: "";
+                            background-color: #006cd8;
+                        }
+                    }
+
+                    &--step123 {
+                        &::before {
+                            width: 100%;
+                            height: 2px;
+                            content: "";
+                            background-color: #006cd8;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__content {
+            width: 80%;
+            align-items: center;
+            margin: 0rem auto;
+            height: 75%;
+            overflow: hidden;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            > * {
+                border-bottom: 1px solid #0000001b;
+            }
+            ::-webkit-scrollbar {
+                display: none;
+            }
+            &__address {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                gap: 1rem;
+                transition: animation ease-out 0.2s;
+                animation: appear 0.2s;
+                flex-grow:1;
+                padding-bottom:1rem;
+                .table {
+                    height: 100%;
+                    &__row {
+                        grid-template-columns: auto 5rem;
+
+                        &__cell {
+                            display: flex;
+                            gap: 0.5rem;
+                        }
+                    }
+                }
+                .select-list-users__type-response{
+                    margin: 5rem 0rem;
+                }
+                .trd-container {
+                    width: 100%;
+                }
+                &__label {
+                    font-weight: bold;
+                    font-size: 1.1rem;
+                    color: $blue;
+                    padding: 0.5rem 0rem;
+                    border-bottom: 1px solid $blue;
+                    transition: all ease-out 0.2s;
+                    animation: appear 0.2s;
+                }
+                &__form {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    padding: 2rem 5rem;
+                    &__card {
+                        flex: 1;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 1rem;
+                    }
+                }
+            }
+        }
+        &__actions {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            height: 10%;
+            align-items: center;
+            margin: 0rem auto;
+        }
+    }
+    &--active {
+        animation: appear 0.2s ease-in-out;
+        visibility: visible;
+        opacity: 1;
+    }
+}
