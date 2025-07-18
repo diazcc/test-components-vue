@@ -8,6 +8,7 @@ import Test from './components/pages/Test.vue';
 
 // Pre login
 const Login = () => import('./components/pages/login/Login.page.vue');
+/* 
 const Home = () => import('./components/pages/home/Home.page.vue');
 const SendVerificationCode = () => import('./components/pages/send-verification-code/SendVerificationCode.page.vue');
 const ResetPassword = () => import('./components/pages/reset-password/ResetPassword.page.vue');
@@ -53,19 +54,21 @@ const EmailConfiguration = () => import('./components/pages/email-configuration/
 const Series = () => import('./components/pages/series/Series.page.vue');
 const Subseries = () => import('./components/pages/subseries/Subseries.page.vue');
 const TypeDocumental = () => import('./components/pages/type-documental/TypeDocumental.page.vue');
-const Trd = () => import('./components/pages/trd/Trd.page.vue');
+const Trd = () => import('./components/pages/trd/Trd.page.vue'); */
 
 //Definition routes - it about BD of Backend
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/login'
+    redirect: '/test'
   },
-  {
-    path: '/login',
-    component: Login,
-    beforeEnter: isAuth
-  },
+   {
+         path: '/test',
+         component: Test
+       }
+  
+  ,
+  /* 
   {
     path: '/login/:user?',
     component: Login,
@@ -316,11 +319,11 @@ const routes: RouteRecordRaw[] = [
         redirect: '/home/dashboard'
       }
     ]
-  },
+  },*/
   {
     path: '/:pathMatch(.*)*',
-    redirect: '/login'
-  }
+    redirect: '/test'
+  } 
 ];
 
 const router = createRouter({

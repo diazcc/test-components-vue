@@ -1,7 +1,6 @@
 .test{
-    background-color: white;
-    flex-grow: 1;
-    display: flex;
+    width: 100%;
     padding: 1rem;
-    flex-direction: column;
+    box-sizing: border-box;
+    height: 100vh;
 }
