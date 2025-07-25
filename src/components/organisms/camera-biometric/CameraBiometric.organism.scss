@@ -1,0 +1,34 @@
+.dual-cameras {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.camera {
+    position: relative;
+    width: 320px;
+    height: 240px;
+    background: #222;
+}
+
+video,
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 320px;
+    height: 240px;
+}
+
+h3, .dual-cameras div
+p {
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+    margin: 0;
+    color: white;
+    font-size: 0.9em;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2px 4px;
+    border-radius: 4px;
+}
