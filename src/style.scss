@@ -21,6 +21,20 @@
     font-weight: bold;
     font-style: normal;
 }
+
+@font-face {
+  font-family: 'Inter';
+  src: url('@/assets/fonts/Inter/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('@/assets/fonts/Inter/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+}
 /* GLOBAL VARIABLES */
 
 $hover-white: rgb(223, 223, 223);
@@ -272,7 +286,7 @@ $blue: #006cd8;
     padding: 0;
     list-style: none;
     text-decoration: none;
-    font-family: Poppins, sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 0.95rem;
 }
 

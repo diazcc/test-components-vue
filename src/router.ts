@@ -7,7 +7,7 @@ import hasPermissions from './guards/hasPermissions.guard';
 import Test from './components/pages/Test.vue';
 
 // Pre login
-const Login = () => import('./components/pages/login/Login.page.vue');
+const Home = () => import('./components/pages/home/Home.page.vue');
 /* 
 const Home = () => import('./components/pages/home/Home.page.vue');
 const SendVerificationCode = () => import('./components/pages/send-verification-code/SendVerificationCode.page.vue');
@@ -62,11 +62,17 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     redirect: '/test'
   },
-   {
-         path: '/test',
-         component: Test
-       }
-  
+  {
+    path: '/home',
+    component: Home
+  }
+
+  ,
+  {
+    path: '/test',
+    component: Test
+  }
+
   ,
   /* 
   {
@@ -320,10 +326,11 @@ const routes: RouteRecordRaw[] = [
       }
     ]
   },*/
+
   {
     path: '/:pathMatch(.*)*',
     redirect: '/test'
-  } 
+  }
 ];
 
 const router = createRouter({
@@ -339,7 +346,7 @@ router.beforeEach((to, from, next) => {
     const hasPermission = permissionsArray.some(permission => hasPermissions.validator(permission));
 
     if (!hasPermission) {
-      return next('/home/dashboard'); 
+      return next('/home/dashboard');
     }
   }
 
