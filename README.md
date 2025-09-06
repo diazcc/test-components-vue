@@ -1,20 +1,77 @@
-# Vue 3 + TypeScript + Vite
+# 🌐 Frontend - Docugate BPM
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Este es un proyecto **Vue 3 + TypeScript + Vite**, con arquitectura basada en **Atomic Design**, cuyo objetivo es contener, mostrar y desarrollar componentes reutilizables siguiendo buenas prácticas de mantenibilidad.
 
-## Recommended IDE Setup
+---
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## 🚀 Requisitos
 
-## Type Support For `.vue` Imports in TS
+- Node.js **18 o superior**
+- npm o yarn
+- VSCode con extensiones recomendadas:
+  - **Volar** (TypeScript Vue Plugin)
+  - Deshabilitar Vetur
+  - Opcional: habilitar *Take Over Mode* para mayor rendimiento
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+---
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## 📦 Instalación
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-# test-components-vue
-Es un proyecto Vue 3 script setup - Atomic Design, su objetivo principal es contener, mostrar y desarollar componente personalizados reutilizables en archivos indendientes mantiendo buenas practicas para la reutilibidad.
+1. Clonar el repositorio:
+
+   ```bash
+   git clone <repo-url>
+   cd frontend
+Instalar dependencias
+
+npm install
+# o
+yarn install
+▶️ Desarrollo local
+Para iniciar el servidor de desarrollo:
+
+npm run dev
+El proyecto estará disponible en:
+
+👉 http://localhost:5173
+
+🏗️ Compilación para producción
+npm run build
+Los archivos listos para producción estarán en la carpeta /dist.
+
+🔍 Pruebas unitarias
+Ejecutar pruebas unitarias con Vitest o Jest:
+
+npm run test:unit
+🌐 Despliegue en Firebase Hosting
+Autenticarse en Firebase:
+
+
+firebase login
+
+
+Compilar el proyecto:
+
+
+npm run build
+
+
+Desplegar en Firebase:
+
+
+firebase deploy
+
+
+La configuración está en firebase.json.
+
+📡 Conexión con el Backend
+Este frontend consume el backend de FastAPI + YOLO en Python.
+Verifica que el archivo donde haces la llamada a la API (fetch o axios) apunte a la URL correcta:
+
+
+const res = await fetch("http://localhost:8000/predict", {
+  method: "POST",
+  body: formData,
+})
+
+Si el backend está desplegado en la nube, reemplaza http://localhost:8000 por tu URL pública.
