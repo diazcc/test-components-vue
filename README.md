@@ -35,6 +35,9 @@ El proyecto estará disponible en:
 
 👉 http://localhost:5173
 
+Para acceder a proyecto o vista de la prueba una vez iniciado el proyecto:
+http://localhost:5173/slc-enterprice
+
 🏗️ Compilación para producción
 npm run build
 Los archivos listos para producción estarán en la carpeta /dist.
