@@ -5,6 +5,7 @@ import userAccess from './guards/userAccess.guard';
 import GeneralSearchPage from './components/pages/general-search/GeneralSearch.page.vue';
 import hasPermissions from './guards/hasPermissions.guard';
 import Test from './components/pages/Test.vue';
+import ZonaAmer from './components/pages/ZonaAmer.page.vue';
 
 // Pre login
 const Home = () => import('./components/pages/home/Home.page.vue');
@@ -71,7 +72,12 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/test',
     component: Test
+  },
+  {
+    path: '/slc-enterprice',
+    component: ZonaAmer
   }
+
 
   ,
   /* 
