@@ -1,4 +1,4 @@
-# 🌐 Frontend - Docugate BPM
+# 🌐 Frontend - Test YOLO AI
 
 Este es un proyecto **Vue 3 + TypeScript + Vite**, con arquitectura basada en **Atomic Design**, cuyo objetivo es contener, mostrar y desarrollar componentes reutilizables siguiendo buenas prácticas de mantenibilidad.
 
