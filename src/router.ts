@@ -61,7 +61,7 @@ const Trd = () => import('./components/pages/trd/Trd.page.vue'); */
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/test'
+    redirect: '/home'
   },
   {
     path: '/home',

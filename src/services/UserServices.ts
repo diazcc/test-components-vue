@@ -9,6 +9,13 @@ import { ref } from 'vue';
 const UserService = {
     user_data: ref([]),
     tenants_list: ref([]),
+
+
+    getConectionData() {
+        return axios.get('/users')
+            .then(response => response.data)
+            .catch((error: any) => { throw error; });   
+    },
     async login(email: string, password: string): Promise<boolean> {
         try {
             // Realizar la solicitud de inicio de sesión
