@@ -1,8 +1,9 @@
+import { getAuth,signInWithEmailAndPassword } from 'firebase/auth';
 // LoginService.ts
 import axios from 'axios';
 import { accessStore } from '../store/index.ts'; // Importa el store como un export nombrado
-
 import constants from '../constants/index.js'
+const auth = getAuth();
 
 import { ref } from 'vue';
 

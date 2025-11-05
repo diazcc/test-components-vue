@@ -32,6 +32,7 @@
     "axios": "^1.6.7",
     "chart.js": "^3.9.1",
     "face-api.js": "^0.22.2",
+    "firebase": "^12.5.0",
     "gsap": "^3.12.5",
     "lodash": "^4.17.21",
     "marked": "^15.0.6",
@@ -46,12 +47,13 @@
     "vue3-pdf-app": "^1.0.3"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.5.2",
+    "@types/firebase": "^2.4.32",
+    "@vitejs/plugin-vue": "^6.0.1",
     "jest": "^27.5.1",
     "sass": "^1.70.0",
     "sass-loader": "^14.1.0",
     "typescript": "^5.2.2",
-    "vite": "^5.0.8",
+    "vite": "^7.1.12",
     "vitest": "^1.6.0",
     "vue-tsc": "^2.0.29"
   },

@@ -1,14 +1,17 @@
-// main.js o main.ts
+// main.ts
 import { createApp } from 'vue';
-import { createPinia } from 'pinia'; // Importa createPinia desde Pinia
+import { createPinia } from 'pinia';
 import App from './App.vue';
 import router from './router.ts';
 import './style.scss';
 import 'v-calendar/style.css';
 import { setupCalendar } from 'v-calendar';
 import { createI18n } from 'vue-i18n';
-import lang  from './locales/lang.js';
-import { languageStore } from './store/language.ts'; // Importa el store como un export nombrado
+import lang from './locales/lang.js';
+import { languageStore } from './store/language.ts';
+
+// 👇 Importa tu configuración de Firebase (importante)
+import './firebaseConfig';  // ✅ Esta línea asegura que initializeApp() se ejecute
 
 const app = createApp(App);
 
@@ -18,19 +21,18 @@ app.use(pinia);
 
 const langStore = languageStore();
 
-// Use calendar defaults (optional)
+// Configuración de i18n
 const i18n = createI18n({
-    legacy: false,
-    messages: lang,
-    fallbackFormat: true,
-    locale: langStore.getLocale(),
-    fallbackWarn: false,
-    missingWarn: false, 
-    missing: (locale, key) => key
+  legacy: false,
+  messages: lang,
+  fallbackFormat: true,
+  locale: langStore.getLocale(),
+  fallbackWarn: false,
+  missingWarn: false,
+  missing: (locale, key) => key,
 });
 
-
-app.use(setupCalendar, {})
+app.use(setupCalendar, {});
 app.use(router);
 app.use(i18n);
 app.mount('#app');
