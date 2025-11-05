@@ -1,7 +1,9 @@
 <template>
     <main class="login__wrapper">
         <header class="login__wrapper__header">
-            <img src="/logos/docugate-ai-white.svg" alt="" class="login__wrapper__header__img">
+            <h1 style="color:white">
+                DOCMAIL
+            </h1>
             <SelectLangMolecule/>
         </header>
         <article
@@ -45,14 +47,14 @@
                 <InputText :dataInput="dataLogin.dataInputPassword" required />
                 <Button :dataButton="dataLogin.dataButton" />
             </section>
-            <p class="login__wrapper__content__forgot" v-if="dataLogin.stateForm" @click="dataLogin.sendVerificationCode">
+            <!-- <p class="login__wrapper__content__forgot" v-if="dataLogin.stateForm" @click="dataLogin.sendVerificationCode">
                 {{ t('have_you_forgotten_your_password') }}
             </p>
             <p class="login__wrapper__content__forgot" v-if="dataLogin.stateLogin=='user'" @click="dataLogin.redirectFiling">
                 {{ t('continue_without_user') }}
-            </p>
+            </p> -->
         </article>
-        <Footer class="login__wrapper__footer" :imgColor="'white'"/>
+        <!-- <Footer class="login__wrapper__footer" :imgColor="'white'"/> -->
 
         <ModalAlert :dataModalAlert="dataLogin.dataModalAlert" />
         <ModalConfirmation :dataModalConfirmation="dataLogin.dataModalConfirmation" />

@@ -1,9 +1,11 @@
 import { getAuth,signInWithEmailAndPassword } from 'firebase/auth';
 // LoginService.ts
+import { auth } from '../firebaseConfig.ts';
 import axios from 'axios';
 import { accessStore } from '../store/index.ts'; // Importa el store como un export nombrado
 import constants from '../constants/index.js'
-const auth = getAuth();
+import { useRouter } from "vue-router";
+const router: any = useRouter();
 
 import { ref } from 'vue';
 
@@ -11,33 +13,48 @@ const UserService = {
     user_data: ref([]),
     tenants_list: ref([]),
 
+    async uploadFile(formData:FormData){
+        return await axios.post('/upload-pdf',formData)
+            .then(response => response.data)
+            .catch((error: any) => { throw error; }); 
+    },
 
     getConectionData() {
         return axios.get('/users')
             .then(response => response.data)
             .catch((error: any) => { throw error; });   
     },
-    async login(email: string, password: string): Promise<boolean> {
-        try {
-            // Realizar la solicitud de inicio de sesión
-            const response = await axios.post('/auth/jwt/create/', { email, password });
+    async  login(email: string, password: string): Promise<boolean> {
+    try {
 
-            // Extraer tokens de la respuesta
-            const access = response.data.access;
-            const refresh = response.data.refresh;
+        // 1️⃣ Loguearse con Firebase JS SDK
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
 
-            // Guardar tokens en el almacenamiento local
-            localStorage.setItem('access', access);
-            localStorage.setItem('refresh', refresh);
+        // 2️⃣ Obtener el ID token del usuario
+        const idToken = await userCredential.user.getIdToken();
 
-            // Establecer el token de acceso en las cabeceras de autorización para futuras solicitudes
-            axios.defaults.headers.common['Authorization'] = 'JWT ' + access;
-            return true; // Indicar que el inicio de sesión fue exitoso
-        } catch (error) {
-            console.error('Error en el inicio de sesión:', error);
-            throw error; // Lanzar el error para que el componente pueda manejarlo
-        }
-    },
+        // 3️⃣ Guardar token localmente si quieres (opcional)
+        localStorage.setItem("idToken", idToken);
+        const store = accessStore();
+        store.setIdToken(idToken);
+        // 4️⃣ Enviar el token al backend para validar y obtener datos
+        const response = await axios.post("/verify_token", {
+            id_token: idToken
+        });
+
+        console.log("Usuario verificado:", response.data);
+
+        // 5️⃣ Opcional: configurar axios para futuras peticiones con el token
+        axios.defaults.headers.common["Authorization"] = "Bearer " + idToken;
+
+        return true;
+
+    } catch (error) {
+        console.error("Error en el login:", error);
+        return false;
+    }
+},
+
     getIdUserExtern(){
         return axios.get('/api/administration/external_users/')
             .then(response => response.data.response)
@@ -65,7 +82,7 @@ const UserService = {
         }
     },
     async registerExternalUser(data: any): Promise<boolean> {
-        const userData = {
+        const userData :any = {
             username: data.userName,
             email: data.email,
             password: data.password
@@ -81,18 +98,21 @@ const UserService = {
             return false;
         }
     },
-    async logOut() {
-        const access = accessStore();
-        axios.defaults.headers.common['Authorization'] = ''
-        localStorage.removeItem('access')
-        localStorage.removeItem('refresh')
-        localStorage.removeItem('permits')
-        access.setTenant(constants['DEFAULT_TENANT'])
-        access.access = ''
-        access.refresh = '';
+        async logOut() {
+        const store = accessStore();
+
+        // Limpiar token
+        store.clearIdToken();
+
+        // Limpiar datos de usuario si los guardas
+        // store.userData = null;
+        store.uploadedFiles.value = [];
+
+        // Opcional: si quieres redirigir al login
+        router.push("/login");
 
         return true;
-    },
+        },
     async getMe() {
         try {
             const access = localStorage.getItem('access');
@@ -273,11 +293,11 @@ const UserService = {
                 throw error.response.data;
             });
     },
-    async getPermissions(searched_value:any = "", page:any = 1, page_size:any = null) {
+    /* async getPermissions(searched_value:any = "", page:any = 1, page_size:any = null) {
         return axios.get(`/api/administration/permits?searched_value=${searched_value}&page=${page}&page_size=${page_size}`)
             .then(response=>response.data.response)
             .catch(error=>{throw error})
-    },
+    }, */
     async resetPassword(email:any, verification_code:any, new_password:any, confirmation_password:any) {
         return axios.get(`/api/administration/users?reset_user_password=true&email=${email}&new_password=${new_password}&confirmation_password=${confirmation_password}&verification_code=${verification_code}`)
             .then(response => response.data.response)

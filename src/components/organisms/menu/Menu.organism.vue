@@ -9,7 +9,7 @@
 
 <template>
     <aside class="sidebar-menu">
-        <h2 class="sidebar-menu__title">{{ te(currentModule)?t(currentModule):t('module') }}</h2>
+        <h2 class="sidebar-menu__title">{{ dataMenu.conectionRender}}</h2>
         <ul class="sidebar-menu__content-list">
             <li v-for="(path, index) in dataMenu.path" :key="index"
                 :class="'sidebar-menu__content-list__card sidebar-menu__content-list__card--' + ((path.state) ? 'focused' : 'unfocused')"

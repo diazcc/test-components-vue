@@ -5,8 +5,8 @@ import { accessStore } from '../store';
 const userAccess = async (to: any, from: any, next: any) => {
     try {
         const store =  accessStore();
-        const response = await UserService.getPermissions();
-        const user = response.name;
+        // const response = await UserService.getPermissions();
+        const user = '';
         function getValidationUser(user:string) {
             switch (user) {
                 case 'externo':
@@ -22,7 +22,6 @@ const userAccess = async (to: any, from: any, next: any) => {
         console.error(error);
         localStorage.removeItem('access');
         localStorage.removeItem('refresh');
-        localStorage.removeItem('permits');
         next('/login');
         throw error;
     }

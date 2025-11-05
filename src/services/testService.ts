@@ -67,56 +67,11 @@ const loginService = {
   },
 
   async logOut() {
-    const access = accessStore();
     axios.defaults.headers.common['Authorization'] = ''
-    localStorage.removeItem('access')
-    localStorage.removeItem('refresh')
-    access.setTenant(constants['DEFAULT_TENANT'])
-    access.access = ''
-    access.refresh = '';
+    localStorage.removeItem('idToken')
 
     return true;
 
-  },
-  getMe(): Promise<UserData | null> {
-    const access = localStorage.getItem('access');
-    const store = accessStore();
-  
-    if (!access) {
-      return Promise.resolve(null); // No hay acceso, devolvemos null
-    }
-  
-    return axios
-      .get<UserData>('/auth/users/me')
-      .then(async (response:any) => {
-        const validatedUserData = {
-          id: response.data?.id || '', 
-          name: `${response.data?.first_name || ''} ${response.data?.last_name || ''}`.trim() || '', 
-          email: response.data?.email || '',
-          role: response.data?.role || null,
-          tenant: response.data?.tenant || undefined,
-          key: response.data?.key || undefined,
-        };
-  
-        store.userData = validatedUserData;
-  
-        console.log(response);
-  
-        if (!store.userData.tenant && store.tenantData === constants['DEFAULT_TENANT']) {
-          await this.getMyTenants();
-        }
-  
-        if (store.userData.tenant && store.tenantData === constants['DEFAULT_TENANT']) {
-          store.setTenant(store.userData.tenant);
-        }
-  
-        return validatedUserData; // Retornamos los datos validados
-      })
-      .catch((error) => {
-        console.error('Error fetching user data:', error);
-        this.logOut();
-        return null; // Devolvemos null en caso de error
-      });
   },
   
   
@@ -181,7 +136,6 @@ const loginService = {
 
             store.setTenant(tenant)
 
-            this.getMe();
           }
         })
         .catch((error: any) => {

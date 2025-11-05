@@ -161,13 +161,13 @@ function redirectTo() {
 }
 
 function getLastNotifications() {
-  NotificationServices.getLastNotifications()
+  /* NotificationServices.getLastNotifications()
     .then((response: any) => {
       dataList.value = response.results;
     })
     .catch((error: any) => {
       console.error(error);
-    });
+    }); */
 }
 
 function redirectToFiling(id: any) {

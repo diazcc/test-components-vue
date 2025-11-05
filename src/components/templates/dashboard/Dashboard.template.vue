@@ -13,11 +13,11 @@
     <article class="dashboard__widget">
       <header class="dashboard__widget__header">
         <h1 class="dashboard__widget_header__title">
-          {{ t("correspondence") }}
+          {{ t("pending_documents") }}
         </h1>
-        <p class="dashboard__widget___header__subtitle">
+       <!--  <p class="dashboard__widget___header__subtitle">
           ( {{ t("latest_internal_filings") }} )
-        </p>
+        </p> -->
       </header>
       <TableCorrespondenceDashboard
         :dataTableCorrespondenceDashboard="
@@ -28,22 +28,22 @@
         t("see_all")
       }}</router-link>
     </article>
-    <article class="dashboard__widget">
+    <!-- <article class="dashboard__widget">
       <header class="dashboard__widget__header">
         <h1 class="dashboard__widget_header__title">
           {{ t("calendar") }}
         </h1>
       </header>
       <CalendarWidget :dataCalendarWidget="dataDashboardTemplate.dataCalendarWidget" />
-    </article>
+    </article> -->
     <article class="dashboard__widget">
       <header class="dashboard__widget__header">
         <h1 class="dashboard__widget_header__title">
-          {{ t("correspondence") }}
+          {{ t("sents") }}
         </h1>
-        <p class="dashboard__widget___header__subtitle">
+        <!-- <p class="dashboard__widget___header__subtitle">
           ( {{ t("latest_entry_filings") }} )
-        </p>
+        </p> -->
       </header>
       <TableCorrespondenceDashboard
         :dataTableCorrespondenceDashboard="
@@ -54,9 +54,9 @@
         t("search")
       }}</router-link>
     </article>
-    <article class="dashboard__widget">
+  <!--   <article class="dashboard__widget">
       <Statistic :dataStatistic="dataDashboardTemplate.dataStatistic"></Statistic>
-    </article>
+    </article> -->
   </section>
 </template>
 

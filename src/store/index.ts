@@ -10,7 +10,7 @@ interface UserDataConfig {
   tenant?: string | null;
   key?: string; // Permitir cualquier otra propiedad adicional
 }
-
+const idToken = ref<string | null>(localStorage.getItem("idToken"));
 export const accessStore = defineStore("global", () => {
   // state varaibles
   const access: any = ref("");
@@ -87,25 +87,18 @@ export const accessStore = defineStore("global", () => {
     });
   };
 
-  function initializeStore() {
-    axios.defaults.baseURL = formatString(
-      constants["DEFAULT_BASE_URL"],
-      tenantData.value
-    );
-    if (localStorage.getItem("access")) {
-      access.value = localStorage.getItem("access");
-      refresh.value = localStorage.getItem("refresh");
-      userPermit.value = localStorage.getItem("permit");
-    } else {
-      access.value = "";
-      refresh.value = "";
-      userPermit.value = [];
-    }
-  }
+function initializeStore() {
+  // Configura siempre la URL base con la constante
+  axios.defaults.baseURL = constants["DEFAULT_BASE_URL"];
 
-  async function isAuthenticated() {
-    return (await access.value) !== "" && (await refresh.value) !== "";
+  // Recupera token si existe
+  const idToken = localStorage.getItem("idToken");
+  if (idToken) {
+    axios.defaults.headers.common["Authorization"] = "Bearer " + idToken;
+  } else {
+    axios.defaults.headers.common["Authorization"] = "";
   }
+}
 
   function escapeHtmlContent(content: string): string {
     return content.replace(/"/g, "'");
@@ -145,7 +138,21 @@ export const accessStore = defineStore("global", () => {
     const blob = new Blob([byteArray], { type: fileType });
     return new File([blob], fileName, { type: fileType });
   }
+  function setIdToken(token: string) {
+    idToken.value = token;
+    localStorage.setItem("idToken", token);
+    axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+  }
 
+  function clearIdToken() {
+    idToken.value = null;
+    localStorage.removeItem("idToken");
+    axios.defaults.headers.common["Authorization"] = "";
+  }
+
+  async function isAuthenticated() {
+    return !!idToken.value;
+  }
   return {
     access,
     refresh,
@@ -174,6 +181,8 @@ export const accessStore = defineStore("global", () => {
     escapeHtmlContent,
     getUploadedFiles,
     isPdfUrl,
+    setIdToken,
+    clearIdToken,
   };
 });
 

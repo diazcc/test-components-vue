@@ -1,3 +1,4 @@
+import axios from "axios";
 import { nextTick } from "vue";
 
 const UtilsServices = {
@@ -261,6 +262,18 @@ const UtilsServices = {
         }
       });
     },
+    getConectionRender(){
+      return axios.get('/check-connection')
+      .then((response:any)=>{
+          console.log("✅ Conexión exitosa con Render y Firestore",response);
+
+      })
+      .catch((error:any)=>{
+          console.warn("⚠️ Backend responde, pero hay error en Firestore:", error.data.message);
+
+      });
+
+    },
     capitalizeFirstLetter(text: string): string {
       let ans: any = text;
       if (ans) {
@@ -343,5 +356,8 @@ const checkMenuOverflow = (index: any) => {
 function getValue(obj: any, property: any) {
   return property.split('.').reduce((acc: any, part: any) => acc && acc[part], obj);
 }
+
+
+
 
 export default UtilsServices;

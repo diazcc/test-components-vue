@@ -1,0 +1,53 @@
+.render-loading {
+    display: flex;
+    min-height: 100vh;
+    box-sizing: border-box;
+    flex-direction: column;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: $bg-gray;
+    &__card {
+        padding: 1rem 2rem;
+        display: flex;
+        flex-direction:column ;
+        align-items: center;
+        gap: 1rem;
+        &__line-container {
+            &__line {
+            }
+        }
+        &__name {
+            font-size: 3rem;
+            font-weight: bolder;
+            color: white;
+            padding-bottom: 1rem;
+            width: min-content;
+        }
+        &__subtitle {
+            font-size: 2rem;
+            color: #b6b6b6;
+        }
+        &__message {
+            font-size: 1rem;
+            color: gray;
+        }
+        &__loading {
+            color: yellow;
+        }
+        &__status {
+            color: $blue-light;
+        }
+    }
+
+    &__footer{
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 1rem;
+        color: #aca8a8;
+    }
+}

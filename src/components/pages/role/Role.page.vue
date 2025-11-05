@@ -227,23 +227,23 @@ function createNewRole() {
 }
 
 function getModules() {
-  UserServices.getPermissions().then((response: any) => {
-    const data = response.results.map((module: any) => ({
-      ...module,
-      active: false,
-      state: false,
-      submodule: module.submodule.map((submodule: any) => ({
-        ...submodule,
-        active: false,
-        state: false,
-        actions: submodule.actions.map((actions: any) => ({
-          ...actions,
-          active: false
-        }))
-      }))
-    }));
-    listModules.value = data;
-  });
+  // UserServices.getPermissions().then((response: any) => {
+  //   const data = response.results.map((module: any) => ({
+  //     ...module,
+  //     active: false,
+  //     state: false,
+  //     submodule: module.submodule.map((submodule: any) => ({
+  //       ...submodule,
+  //       active: false,
+  //       state: false,
+  //       actions: submodule.actions.map((actions: any) => ({
+  //         ...actions,
+  //         active: false
+  //       }))
+  //     }))
+  //   }));
+  //   listModules.value = data;
+  // });
 }
 
 function getRole(id: string | number) {

@@ -93,8 +93,8 @@ onMounted(() => {
 })
 
 function callServices() {
-    getFilings();
-    getRecords();
+    /* getFilings();
+    getRecords(); */
 }
 
 function getFilings() {

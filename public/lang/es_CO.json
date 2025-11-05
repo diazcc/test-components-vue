@@ -388,6 +388,8 @@
   "select_the_type_of_identity": "Selecciona el tipo de identidad",
   "select_the_type_of_person_to_fill_out_the_form": "Seleciona el tipo de persona para llenar el formulario",
   "select_trd": "Seleccionar TRD",
+  "please_wait_to_contection_components": "Por favor, espera mientras se conectan los componentes...",
+  "in_a_less_of_2_min_redirect_to_page": "Serás redirigido a la página en menos de 2 minutos.",
   "select_type_of_entity": "Selecciona el tipo de entidad",
   "select_user": "Seleccionar usuario",
   "send": "Enviar",

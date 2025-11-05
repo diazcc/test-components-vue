@@ -9,10 +9,13 @@ const authGuard = async (to :any, from :any, next:any) => {
   const isAuthenticated = await store.isAuthenticated();
   //? Validation if acces and refresh token of store has some value.
   if (isAuthenticated) {
+    console.log(isAuthenticated);
+    
     next(); //TODO let access 
   } else {
+    console.log(isAuthenticated);
 
-    next('/'); //TODO Redirect to principal view : login 
+    next('/login'); //TODO Redirect to principal view : login 
   }
 };
 

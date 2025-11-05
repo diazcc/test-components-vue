@@ -279,10 +279,10 @@ const dataUser = reactive({
 
 // Ciclos de vida del componente
 onMounted(() => {
-  getSearchUsers("", 1);
-  getDependences();
-  getRoles();
-  getDataIdentificationTypes();
+  // getSearchUsers("", 1);
+  // getDependences();
+  // getRoles();
+  // getDataIdentificationTypes();
 });
 
 watch(() => dataUser.dataPaginator.page_size, () => {

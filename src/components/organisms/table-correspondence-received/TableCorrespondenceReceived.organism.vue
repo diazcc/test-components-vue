@@ -40,12 +40,36 @@
 <template>
     <section class="table-correspondence-received">
         <nav class="table-correspondence-received__nav-options">
-            <MultiSelectAtom :dataMultiSelect="dataMultiSelect" @onChange="applyFilters"/>
-            <InputSearch :dataInputSearch="dataTableCorrespondenceReceived.dataInputSearch" />
+            <div class="table-correspondence-received__nav-options__filter-item">
+                <label for="">{{ t('filing') }}:</label>
+                <MultiSelectAtom :dataMultiSelect="{...dataMultiSelectFilings,key:1}" @onChange="applyFilters" :type="'text'"/>
+            </div>
+            <div  class="table-correspondence-received__nav-options__filter-item">
+                <label for=""> {{ dataTableCorrespondenceReceived.validateSubmenu ? t('remitter') :
+                        t('addressee')  }}:</label>
+                <MultiSelectAtom :dataMultiSelect="{...dataMultiSelect,key:2}" @onChange="applyFilters"/>
+            </div>
+            <div class="table-correspondence-received__nav-options__filter-item">
+                <label for="">{{ t('from') }}:</label>
+                <MultiSelectAtom :dataMultiSelect="{...dataMultiSelect,key:3}" @onChange="applyFilters"/>
+            </div>
+            <div class="table-correspondence-received__nav-options__filter-item">
+                <label for="">{{ t('email') }}:</label>
+                <MultiSelectAtom :dataMultiSelect="{...dataMultiSelect,key:4}" @onChange="applyFilters"/>
+            </div>
+            <div class="table-correspondence-received__nav-options__filter-item">
+                <label for="">{{ t('date') }}:</label>
+                <MultiSelectAtom :dataMultiSelect="{...dataMultiSelect,key:5}" @onChange="applyFilters"/>
+            </div>
+            <div class="table-correspondence-received__nav-options__filter-item">
+                <label for="">{{ t('state') }}:</label>
+                <MultiSelectAtom :dataMultiSelect="{...dataMultiSelect,key:6}" @onChange="applyFilters"/>
+            </div>
+            <InputSearch v-if="isSearch" :dataInputSearch="dataTableCorrespondenceReceived.dataInputSearch" />
         </nav>
         <table class="table" @scroll="UtilsServices.handleScroll(dataResults)">
             <thead class="table__row table--header">
-                <th class="table__row__cell">{{ t('item') }}</th>
+                <!-- <th class="table__row__cell">{{ t('item') }}</th> -->
                 <th class="table__row__cell">{{ t('subject') }}</th>
                 <th class="table__row__cell">{{ t('filing_number') }}</th>
                 <th class="table__row__cell" >
@@ -56,7 +80,7 @@
                 <th class="table__row__cell">{{ t('email') }}</th>
                 <th class="table__row__cell">{{ t('date_of_filing') }}</th>
                 <th class="table__row__cell">{{ t('state') }}</th>
-                <th class="table__row__cell">{{ t('actions') }}
+                <th class="table__row__cell" v-if="dataTableCorrespondenceReceived.validateSubmenu">{{ t('actions') }}
                 </th>
             </thead>
             <tbody class="table__row table--only-row loading-component"
@@ -69,40 +93,40 @@
                 v-else-if="dataResults.length < 1">
                 <td class="table__row__cell">{{ t('no_filing') }}</td>
             </tbody>
-            <tbody v-else class="table__row" v-for="(data, index) in dataResults" :key="index">
-                <td class="table__row__cell">
+            <tbody v-else class="table__row" v-for="(data, index) in dataResults" :key="index" @click="toggleMenu(data, $event, index)">
+                <!-- <td class="table__row__cell" >
                     {{ index + 1 }}
-                </td>
-                <td class="table__row__cell table__row__cell--left-align">
+                </td> -->
+                <td class="table__row__cell table__row__cell--left-align" >
                     {{ data?.filings ? data?.filings[data?.filings.length - 1]?.subject : data?.subject }}
                 </td>
-                <td class="table__row__cell">
+                <td class="table__row__cell" >
                     <span>{{ data?.filings ? data.filings[data?.filings.length - 1]?.filing_code :
                         data?.filing_code }}</span>
                 </td>
-                <td class="table__row__cell table__row__cell--left-align">
-                    {{ data?.filings ? remitterName(data.filings[data?.filings.length - 1]?.remitter) :
-                        (data?.remitter ? remitterName(data?.remitter) : remitterName(data)) }}
+                <td class="table__row__cell table__row__cell--left-align" >
+                    {{ data?.filings ? remitterName(data.filings[data?.filings.length - 1]?.filing_info.remitter) :
+                        (data?.filing_info.remitter ? remitterName(data?.filing_info.remitter) : remitterName(data)) }}
                 </td>
-                <td class="table__row__cell table__row__cell--left-align">
-                    {{ data.filings ? t(data.filings[data?.filings.length - 1].creation_medium) :
-                        t(data.creation_medium)
+                <td class="table__row__cell table__row__cell--left-align" >
+                    {{ data.filings ? t(data.filings[data?.filings.length - 1].filing_info.creation_medium) :
+                        t('web_filing')
                     }}
                 </td>
-                <td class="table__row__cell table__row__cell--left-align">
-                    {{ data.filings ? (data.filings[data?.filings.length - 1]?.remitter ?
-                        data.filings[data?.filings.length - 1]?.remitter.email : t('did_not_specify')) : data.remitter ?
-                        data.remitter.email : t('did_not_specify') }}
+                <td class="table__row__cell table__row__cell--left-align" >
+                    {{ data.filings ? (data.filings[data?.filings.length - 1]?.filing_info.remitter ?
+                        data.filings[data?.filings.length - 1]?.filing_info.remitter.email : t('did_not_specify')) : data.filing_info.remitter ?
+                        data.filing_info.remitter.email : t('did_not_specify') }}
                 </td>
-                <td class="table__row__cell">
-                    <span v-if="data?.filings != undefined">{{ data?.filings[0].filing_date }}</span>
-                    <span v-else>{{ data.filing_date }}</span>
+                <td class="table__row__cell" >
+                    <span v-if="data?.filings != undefined">{{ data?.filings[0].filing_info.filing_date }}</span>
+                    <span v-else>{{ data.filing_info.filing_date }}</span>
                 </td>
-                <td class="table__row__cell table__row__cell--positon-relative">
+                <td class="table__row__cell table__row__cell--positon-relative" >
                     <p
-                        :class="'table__row__cell__status table__row__cell__status--' + UtilsServices.getColorByPercentage(data.filings ? data.filings[0]?.percentage_of_relationship_matrix : data.percentage_of_relationship_matrix, data?.status?.code || data?.related_record_info?.status_display.code)">
-                        {{ data?.status_display ? t(data?.status_display.label || 'null') :
-                            t(data?.related_record_info?.status_display.label || 'N/A') }}
+                        :class="'table__row__cell__status table__row__cell__status--' + UtilsServices.getColorByPercentage(data.filings ? data.filings[0]?.percentage_of_relationship_matrix : data.percentage_of_relationship_matrix, data?.status?.code || data?.related_record_info?.filing_info.status_display.code)">
+                        {{ data?.filing_info.status_display ? t(data?.filing_info.status_display == 'in_process' ? 'unanswered'  : 'null') :
+                            t(data?.related_record_info?.filing_info.status_display.label == 'in_process' ? 'unanswered'  : 'N/A') }}
                     </p>
                     <div class="icon-container">
                         <span
@@ -146,14 +170,23 @@
                             :status="UtilsServices.getColorByPercentage(data.filings ? data.filings[0]?.percentage_of_relationship_matrix : data.percentage_of_relationship_matrix, data?.status?.code || data?.related_record_info?.status_display.code)" />
                     </div>
                 </td>
-                <td class="table__row__cell table__row--img">
-                    <TooltipIcon v-if="dataTooltipIconView.show()" :dataTooltipIcon="dataTooltipIconView" @click="dataTooltipIconView.onClick({data: data})"/>
-                    <TooltipIcon v-if="dataTableCorrespondenceReceived.validateSubmenu && dataTableCorrespondenceReceived?.dataTooltipIcons[0].show({data: data.user_actions})" :dataTooltipIcon="dataTableCorrespondenceReceived?.dataTooltipIcons[0]" @click="dataTableCorrespondenceReceived?.dataTooltipIcons[0].onClick({data: data})"/>
-                    <TooltipIcon v-if="dataTableCorrespondenceReceived.validateSubmenu && dataTableCorrespondenceReceived?.dataTooltipIcons[1].show({data: data.user_actions})" :dataTooltipIcon="dataTableCorrespondenceReceived?.dataTooltipIcons[1]" @click="dataTableCorrespondenceReceived?.dataTooltipIcons[1].onClick({data: data})"/>
-                    <TooltipIcon v-if="dataTableCorrespondenceReceived.validateSubmenu && dataTableCorrespondenceReceived?.dataTooltipIcons[2].show({data: data.user_actions})" :dataTooltipIcon="dataTableCorrespondenceReceived?.dataTooltipIcons[2]" @click="dataTableCorrespondenceReceived?.dataTooltipIcons[2].onClick({data: data})"/>
-                    <TooltipIcon v-if="dataTableCorrespondenceReceived.validateSubmenu && dataTableCorrespondenceReceived?.dataTooltipIcons[3].show({data: data.user_actions})" :dataTooltipIcon="dataTableCorrespondenceReceived?.dataTooltipIcons[3]" @click="dataTableCorrespondenceReceived?.dataTooltipIcons[3].onClick({data: data})"/>
-                    <TooltipIcon v-if="dataTableCorrespondenceReceived.validateSubmenu && dataTableCorrespondenceReceived?.dataTooltipIcons[4].show({data: data.user_actions})" :dataTooltipIcon="dataTableCorrespondenceReceived?.dataTooltipIcons[4]" @click="dataTableCorrespondenceReceived?.dataTooltipIcons[4].onClick({data: data})"/>
-                    <TooltipIcon v-if="dataTableCorrespondenceReceived.validateSubmenu && dataTableCorrespondenceReceived?.dataTooltipIcons[5].show({data: data.user_actions})" :dataTooltipIcon="dataTableCorrespondenceReceived?.dataTooltipIcons[5]" @click="dataTableCorrespondenceReceived?.dataTooltipIcons[5].onClick({data: data})"/>
+                <td class="table__row__cell table__row__cell--positon-relative" v-if="dataTableCorrespondenceReceived.validateSubmenu" >
+                    <ul v-if="data.isMenuOpen" class="table__row__cell__menu" :id="'table__row__cell__menu-' + index">
+                        <div v-for="(action, indexAction) in data.user_actions" :key="indexAction">
+                            <li @click="dataTableCorrespondenceReceived.actionsMenu(action, data)"
+                                v-if="!arrayActionsDecline.includes(action)">
+                                <img :src="iconsButtonMenu[action] ?? ''" alt="">
+                                <p>
+                                    {{ t(action) }}
+                                </p>
+                            </li>
+                        </div>
+                    </ul>
+                    <button
+                        :class="['table__row__cell__button', { 'table__row__cell__button--focused': data.isMenuOpen }]"
+                        @click="toggleMenu(data, $event, index)">
+                        <img src="/icon-arrow-item-menu-padre-white.svg">
+                    </button>
                 </td>
             </tbody>
         </table>
@@ -161,10 +194,10 @@
 </template>
 
 <script setup lang="ts">
-
 // Import vue libraries
-import { nextTick, onMounted, onUnmounted, Ref, ref, watch } from "vue";
-import { useRouter } from 'vue-router';
+import { nextTick, onMounted, onUnmounted, reactive, Ref, ref, watch } from "vue";
+import { useRouter } from 'vue-router'
+// import { useNavigationWithTenant } from '../../../composables/useNavigationWithTenant';;
 import { useI18n } from 'vue-i18n';
 
 // Import components
@@ -179,8 +212,9 @@ import UtilsServices from "../../../services/UtilsServices";
 // Define props, emits and configuration
 const { t } = useI18n();
 const router = useRouter();
+// const { navigateTo } = useNavigationWithTenant();
 // const validateSubmenu: any = ref();
-const props = defineProps(['dataTableCorrespondenceReceived']);
+const props = defineProps(['dataTableCorrespondenceReceived','isSearch']);
 const emits = defineEmits(['codeFiling', 'filingSelectedMenu']);
 
 // Define variables 
@@ -189,16 +223,6 @@ const arrayActionsDecline = ref(['action_approve_assignment_quoue_decline', 'act
 const search = ref("");
 const selectedFilters = ref<Array<string>>([]);
 const dataResults: Ref<any> = ref([]);
-const dataTooltipIconView: Ref<any> = ref(
-    {
-        text: UtilsServices.capitalizeFirstLetter(`${t("view")} ${t("radication")}`),
-        src: '/Buttons/icon-summary.svg',
-        color: 'blue',
-        alt: 'view',
-        show: () => { return true; },
-        onClick: ({data = {}}) => { validateMenuOpen(data) },
-    },
-);
 
 const filters = [
     'all',
@@ -212,8 +236,23 @@ const filters = [
     'web_filing',
     'email_filing'
 ];
+const iconsButtonMenu : any = {
+  assign: "/Buttons/icon-assign.svg",
+  response: "/Buttons/icon-send.svg",
+  view: "/Buttons/icon-open.svg",
+  respond: "/Buttons/icon-send.svg",
+  revert: "/Buttons/icon-refresh.svg",
+  aprove: "/Buttons/icon-aprove-filing.svg",
+  review: "/Buttons/icon-review.svg",
+  sign: "/Buttons/icon-check.svg"
+};
+const dataMultiSelectFilings = reactive( {
+    title: "filters",
+    model: [],
+    options: []
+})
 
-const dataMultiSelect = {
+const dataMultiSelect =  reactive({
     title: "filters",
     model: [],
     options: filters.map((value: any) => ({
@@ -221,9 +260,8 @@ const dataMultiSelect = {
         value: value,
         checked: false
     }))
-}
+})
 
-// Define functions and methods
 onMounted(async () => {
     document.addEventListener("click", outSideArea);
     applyFilters([]);
@@ -260,18 +298,32 @@ const remitterName = (remitter: any) => {
 };
 
 const toggleMenu = (item: any, event: any, index: any) => {
-    if (dataResults.value.some((data: any) => data.isMenuOpen)) {
-        dataResults.value.forEach((data: any) => {
-            data.isMenuOpen = false;
-        })
+    if (props.dataTableCorrespondenceReceived.validateSubmenu) {
+        
+        // DEBUG: Log completo del item
+        console.log('🔍 toggleMenu - Item completo:', item);
+        console.log('🔍 toggleMenu - user_actions:', item.user_actions);
+        console.log('🔍 toggleMenu - Cantidad de acciones:', item.user_actions?.length);
+        console.log('🔍 toggleMenu - isMenuOpen antes:', item.isMenuOpen);
+        
+        if (dataResults.value.some((data: any) => data.isMenuOpen)) {
+            dataResults.value.forEach((data: any) => {
+                data.isMenuOpen = false;
+            })
+        }
+        item.isMenuOpen = !item.isMenuOpen
+        
+        console.log('🔍 toggleMenu - isMenuOpen después:', item.isMenuOpen);
+        
+       /*  emits("codeFiling", item.filings[item.filings.length - 1].filing_code);
+        emits("filingSelectedMenu", item.filings[item.filings.length - 1]); */
+        event.stopPropagation();
+        nextTick(() => {
+            checkMenuOverflow(index);
+        });
+        return;
     }
-    item.isMenuOpen = !item.isMenuOpen
-    emits("codeFiling", item.filings[item.filings.length - 1].filing_code);
-    emits("filingSelectedMenu", item.filings[item.filings.length - 1]);
-    event.stopPropagation();
-    nextTick(() => {
-        checkMenuOverflow(index);
-    });
+    validateMenuOpen(item);
 };
 
 const closeMenus = () => {
@@ -292,7 +344,29 @@ const checkMenuOverflow = (index: any) => {
         }
     }
 };
-
+function validateMenuOpen(data: any) {
+    if (!data.isMenuOpen) {
+        // Si el filing tiene expediente_info, navegar al expediente
+        if (data.expediente_info?.id) {
+            // navigateTo('/home/filing/' + data.expediente_info.id);
+        } 
+        // Si tiene parent_folder (ID del expediente), usarlo
+        else if (data.filing_info.id) {
+            // navigateTo('/home/filing/' + data.filing_info.id);
+        }
+        // Si tiene record_id (para compatibilidad con datos legacy), usarlo
+        else if (data.record_id) {
+            // navigateTo('/home/filing/' + data.record_id);
+        }
+        // Si no pertenece a ningún expediente, mostrar el filing individual
+        // (esto requeriría una página diferente o una lógica diferente)
+        else {
+            console.warn('Filing', data.id, 'no pertenece a ningún expediente');
+            // Por ahora, intentar con el ID del filing
+            // navigateTo('/home/filing/' + data.id);
+        }
+    }
+}
 function applyFilter() {
     dataResults.value = [];
     selectedFilter.value == 'all' ? (() => {
@@ -302,14 +376,17 @@ function applyFilter() {
     })()
 }
 
-function validateMenuOpen(data: any) {
-    if (!data.isMenuOpen) {
-        router.push('/home/filing/' + (data.id ?? data.record_id));
-    }
-}
+
 
 watch(() => props.dataTableCorrespondenceReceived.data,
     (filings: any) => {
+        dataMultiSelectFilings.options = filings.map((filing: any) => {
+            return {
+                text: filing.filing_code,
+                value: filing.filing_code,
+                checked: false
+            }
+        } );
         applyFilters(dataMultiSelect.model)
     }
 )

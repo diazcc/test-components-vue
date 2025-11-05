@@ -1,19 +1,36 @@
 .table-correspondence-received {
-    border-left: 3px solid var(--border-right-line-card);
     display: flex;
     flex-direction: column;
     overflow: auto;
     flex-grow: 1;
-    background-color: white;
-    padding: 1rem;
+    // background-color: white;
+    // padding: 1rem;
     &__nav-options {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 0.5rem;
+        padding: 1rem;
+        border-left: 3px solid var(--border-right-line-card);
+        background-color: white;
+        gap: 1rem;
+        &__filter-item{
+          display: flex;
+          flex-direction: column;  
+          flex: 1;
+          label{
+            font-weight: bolder;
+          }
+        }
     }
-    .table__row {
-        grid-template-columns: 2.5rem 20% repeat(auto-fit, minmax(1px, 1fr)); // Moficator of cass global style.scss structure 
+    .table{
+        padding: 1rem;
+        box-sizing: border-box;
+        background-color: white;
+        border-left: 3px solid var(--border-right-line-card);
+
+        &__row {
+            grid-template-columns: 20% repeat(auto-fit, minmax(1px, 1fr)); // Moficator of cass global style.scss structure 
+        }
     }
 }
 

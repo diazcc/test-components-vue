@@ -7,14 +7,11 @@
   animation: appear 0.4s;
   box-sizing: border-box;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
 
   &__widget {
     background-color: white;
-    width: 49%;
-    max-width: 49%;
-    height: 47%;
     max-height: 47%;
     display: flex;
     border-left: 3px solid $blue;

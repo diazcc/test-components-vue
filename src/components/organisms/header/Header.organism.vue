@@ -5,7 +5,7 @@
     <header class="header">
         <ol class="header__content">
             <li class="header__content__icon">
-                <router-link to="/home">
+                <router-link to="/home/dashboard">
                     <Img :dataImg="dataHeaderOrganism.dataImgLogo" />
                 </router-link>
             </li>
@@ -14,9 +14,9 @@
             </li>
             <li v-else class="header__content__search"></li>
             <li class="header__content__nav">
-                <NavegationOptionsHeader
+               <!--  <NavegationOptionsHeader
                     :dataNavegationOptionsHeader="dataHeaderOrganism.dataNavegationOptionsHeader" />
-                <MenuConfigHeader :dataMenuConfigHeader="dataHeaderOrganism.dataMenuConfigHeader" />
+                <MenuConfigHeader :dataMenuConfigHeader="dataHeaderOrganism.dataMenuConfigHeader" /> -->
             </li>
             <li class="header__content__user">
                 <UserMenuHeader :dataUserMenuHeader="dataHeaderOrganism.dataUserMenuHeader" />
