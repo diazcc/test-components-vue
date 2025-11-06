@@ -213,7 +213,7 @@ function callServices() {
 }
 
 function getDependences() {
-  DependenceServices.searchDependences("", 1)
+  /* DependenceServices.searchDependences("", 1)
     .then((response) => {
       console.log(response);
       dataSelectDependence.options = response.results.map((value: any) => ({
@@ -223,7 +223,7 @@ function getDependences() {
     })
     .catch((error: any) => {
       console.error(error);
-    });
+    }); */
 }
 
 function getMRSeries() {

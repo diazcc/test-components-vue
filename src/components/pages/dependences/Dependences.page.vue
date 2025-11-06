@@ -292,13 +292,13 @@ async function searchDependencesList(searched_value: any, page: any) {
   dataDependence.dataTableDependence.stateLoadData = true;
   DependenceService.searchDependences(searched_value, page, dataDependence.dataPaginator.page_size)
     .then(response => {
-      dataDependence.dataPaginator.page = page
+      /* dataDependence.dataPaginator.page = page
       dataDependence.dataPaginator.total_pages = response.total_pages
       dataDependence.dataTableDependence.data = response.results.map((data: any) => ({
         ...data,
         editable: false, // Añade la propiedad isMenuOpen inicializada en false a cada objeto.
       }));
-      dataDependence.dataTableDependence.stateLoadData = false;
+      dataDependence.dataTableDependence.stateLoadData = false; */
     })
     .catch(error => {
       dataDependence.dataTableDependence.stateLoadData = false;

@@ -392,14 +392,14 @@ function getDocumentaryType() {
 }
 
 function getDependences() {
-    DependenceServices.getAllDependences(1)
+    /* DependenceServices.getAllDependences(1)
         .then((response: any) => {
             dataRelationshipMatrix.data = response;
             dataRelationshipMatrix.dataSelectDependence.options = response.results.map((value: any) => ({
                 value: value.code,
                 label: value.name
             }))
-        });
+        }); */
 }
 
 function sendDataNewRelationshipMatrix() {
