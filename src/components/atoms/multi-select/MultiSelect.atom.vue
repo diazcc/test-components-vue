@@ -24,13 +24,19 @@
 <template>
     <ul :id="`multi-select${props.dataMultiSelect?.key || 0}`" class="multi-select" @click.self="handleInsideClick">
         <li class="multi-select__header" @click="toggleDropdown">
-            <p class="multi-select__header__title">
+            <p v-if="type!= 'text'" class="multi-select__header__title">
                {{ truncatedSelectedOptionsLabel }}
             </p>
+            <input type="text" v-else class="multi-select__header__input" :placeholder="t('filings')"  >
             <img src="/icon-arrow-item-menu-padre lateral-cerrado.svg" alt=""
                 class="multi-select__header__img">
         </li>
         <ol class="multi-select__options" v-if="isOpen">
+            <li v-if="localMultiSelect?.options.length < 1" :class="'multi-select__options__option multi-select__options__option--'">
+                <label>
+                    {{  t('without_data') }}
+                </label>
+            </li>
             <li v-for="(option, index) in localMultiSelect?.options" :key="index" :class="'multi-select__options__option multi-select__options__option--'+(option.checked?'visible':'hidden')"
                 @click="toggleOption(index)">
                 <label>
@@ -47,7 +53,7 @@ import { Ref, ref, defineProps, defineEmits, reactive, onMounted, onBeforeUnmoun
 import { useI18n } from 'vue-i18n';
 
 const { t, te } = useI18n();
-const props: any = defineProps(['dataMultiSelect']);
+const props: any = defineProps(['dataMultiSelect', 'type']);
 const emit = defineEmits(['onChange']);
 
 let isOpen: Ref<boolean> = ref(false);
@@ -55,7 +61,7 @@ let isOpen: Ref<boolean> = ref(false);
 const localMultiSelect = reactive({
     title: props.dataMultiSelect.title,
     model: props.dataMultiSelect.model,
-    options: props.dataMultiSelect.options.map((option: any) => ({
+    options: props.dataMultiSelect?.options?.map((option: any) => ({
         ...option,
         value: (option?.value !== undefined && option?.value !== null) ? option.value : option.text
     }))

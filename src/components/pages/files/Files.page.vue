@@ -17,7 +17,7 @@ import FilesTemplate from '../../templates/files/Files.template.vue';
 import FilesServices from '../../../services/FilesServices.ts';
 import DataFlowServices from '../../../services/DataFlowServices.ts';
 import hasPermissions from '../../../guards/hasPermissions.guard.ts';
-import DependenceService from '../../../services/DependenceServices.ts';
+// import DependenceService from '../../../services/DependenceServices.ts';
 import UtilsServices from '../../../services/UtilsServices.ts';
 
 // Define and emits and configuration
@@ -340,7 +340,6 @@ const dataModalAssignTable: any = reactive({
 
 // Define methods and functions
 onMounted(() => {
-    getDependences();
     getFiles("", 1);
 });
 
@@ -357,13 +356,14 @@ function getFiles(searched_value:any, page:any) {
     dataFiles.stateLoadData = true;
     FilesServices.getFiles(searched_value, page, dataFiles.dataPaginator.page_size)
         .then((response: any) => {
+            console.log(response,'response');
+            
             dataFiles.dataPaginator.page = page
             dataFiles.dataPaginator.total_pages = response.total_pages
-            let userAction: any = hasPermissions.validator('share_file') ? ['see_document', 'open_document', 'assign_dependencies'] : ['see_document', 'open_document'];
+            
             dataFiles.data = response.results.map((value: any) => {
                 return {
                     ...value,
-                    dependences_to_show: value.dependence.map((obj: any) => obj.name).join(', '),
                     isMenuOpen: false,
                 }
             });
@@ -375,17 +375,7 @@ function getFiles(searched_value:any, page:any) {
         });
 }
 
-function getDependences() {
-    DependenceService.searchDependences("", 1)
-        .then(response => {
-            dataFiles.dataMultiselectDependence.options = response.results.map((value: any) => ({
-                checked: false,
-                value: value.code,
-                text: value.name
-            }))
-        })
-        .catch((error: any) => console.error(error));
-}
+
 
 function redirectNewFiles() {
     /**
@@ -399,25 +389,38 @@ function applyFilters(selectedOptions: Array<{ value: any }>) {
     console.log(selectedOptions);
 }
 
-function findUrl(url: any){
-    FilesServices.getDocumentContent(url)
-        .then(async response => {
-            openModalPdfViewer(response)
-            documentId.value = url
-        })
-        .catch((error: any) => {
-            openModalAlert('something_happened_try_later');
-            console.error(error);
-        });
-}
+async function findUrl(url: string) {
+  try {
+    // 1️⃣ Descarga el archivo como Blob
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Error al descargar el archivo');
 
+    // 2️⃣ Convierte a Blob con tipo PDF
+    const blob = await response.blob();
+    const pdfBlob = new Blob([blob], { type: 'application/pdf' });
+
+    // 3️⃣ Crea una URL temporal para el visor
+    const blobUrl = URL.createObjectURL(pdfBlob);
+
+    // 4️⃣ Abre el modal con el PDF
+    openModalPdfViewer(blobUrl);
+
+    // 5️⃣ Guarda el ID o URL original
+    documentId.value = url;
+  } catch (error) {
+    console.error(error);
+    openModalAlert('something_happened_try_later');
+  }
+}
 async function validateActionFile(action: any, file: any, index: any = null) {
     switch (action) {
         case 'see_document':
-            findUrl(file.document);
+            console.log(file,'filefilefilefile');
+            findUrl(file.url);
             break;
         case 'open_document':
-            router.push(`/home/files_records/${file.archive_number}`)
+            
+            // router.push(`/home/files_records/${file.archive_number}`)
             break;
         case 'assign_dependencies':
         case 'cancel':

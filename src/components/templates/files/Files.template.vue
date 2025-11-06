@@ -34,13 +34,13 @@
                         v-else v-for="(data, index) in dataFiles.data">
                         <td class="table__row__cell">{{ index + 1 }}</td>
                         <td class="table__row__cell table__row__cell--left-align">{{ data.document_name }}</td>
-                        <td class="table__row__cell table__row__cell--left-align" v-if="!dataFiles?.newView">{{ data.documentary_type.name_document_type }}</td>
+                        <td class="table__row__cell table__row__cell--left-align" v-if="!dataFiles?.newView">{{ 'data.documentary_type.name_document_type' }}</td>
                         <td class="table__row__cell table__row__cell--left-align" v-else>{{ data?.description || t('does_not_have') }}</td>
                         <li class="table__row__cell table__row__cell--left-align" v-if="!dataFiles?.newView && dataFiles?.fileToEdit !== index">{{ data.dependences_to_show }}</li>
                         <li class="table__row__cell table__row--new-cell table__row__cell--left-align" v-else-if="!dataFiles?.newView && dataFiles?.fileToEdit === index">
                             <MultiSelect class="table__row--new-cell__white" :dataMultiSelect="dataFiles.dataMultiselectDependence"/>
                         </li>
-                        <td class="table__row__cell">{{ data.date }}</td>
+                        <td class="table__row__cell">{{ data.created_at }}</td>
                         <td class="table__row__cell table__row--img">
                             <TooltipIcon v-if="dataTooltipIconView.show(index)" :dataTooltipIcon="dataTooltipIconView" @click="dataTooltipIconView.onClick({data: data, index: index, action: 'see_document'})"/>
                             <TooltipIcon v-if="!dataFiles?.newView && dataFiles?.dataTooltipIcons[0].show(index)" :dataTooltipIcon="dataFiles?.dataTooltipIcons[0]" @click="dataFiles?.dataTooltipIcons[0].onClick({data: data, index: index, action: 'open_document'})"/>

@@ -102,7 +102,7 @@ watch(() => props.dataModalAssignTable.dataPaginator.page_size, () => {
 });
 
 function getDependences() {
-  DependenceService.searchDependences("", 1)
+  /* DependenceService.searchDependences("", 1)
     .then(response => {
       props.dataModalAssignTable.dataMultiselectDependence.options = response.results.map((value: any) => ({
         checked: false,
@@ -110,7 +110,7 @@ function getDependences() {
         text: value.name
       }))
     })
-    .catch((error: any) => console.error(error));
+    .catch((error: any) => console.error(error)); */
 }
 
 function getFilesModal(searched_value: any, page: any){

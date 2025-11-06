@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const FilesServices = {
     getFiles(searched_value:any = "", page:any = 1, page_size:any = null) {
-        return axios.get(`/api/archive/archive?searched_value=${searched_value}&page=${page}&page_size=${page_size}`)
+    return axios.get(`/files?searched_value=${searched_value}&page=${page}&page_size=${page_size}`)
         .then(response => response.data.response)
         .catch((error: any) => { throw error.response.data });
     },

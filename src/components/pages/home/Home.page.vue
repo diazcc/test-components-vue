@@ -216,6 +216,14 @@ const mockModules = [
     paths: [
       { name: "users", path: "administration-tenant/users", state: false },
     ],
+  },
+  {
+    name: "files_records",
+    state: false,
+    templateColor: { menu: "#32CD32", table: "#E0FFE0" },
+    paths: [
+      { name: "files", path: "files_records", state: false },
+    ],
   }
 ];
 
