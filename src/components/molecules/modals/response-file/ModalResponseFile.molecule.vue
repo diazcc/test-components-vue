@@ -392,7 +392,7 @@ function scrollToSection(id: string) {
   }, 0);
 }
 async function getParentDependences() {
-  await DependenceServices.getParentDependences()
+/*   await DependenceServices.getParentDependences()
     .then(async (response: any) => {
       console.log(response,'response');
       props.dataModalResponseFile.assign.dataSelectDependence.options = 
@@ -404,7 +404,7 @@ async function getParentDependences() {
     })
     .catch((error: any) => {
       console.error(error)
-    });
+    }); */
 }
 
 

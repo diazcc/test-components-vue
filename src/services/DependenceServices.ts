@@ -8,9 +8,9 @@ const DependenceService = {
             .catch((error: any) => { throw error });
     },
     async getParentDependences() {
-        return axios.get('/api/administration/dependences/?all_parent_dependencies=parent')
+        /* return axios.get('/api/administration/dependences/?all_parent_dependencies=parent')
             .then(response=> response.data.response)
-            .catch ((error: any) => { throw error })
+            .catch ((error: any) => { throw error }) */
     },
     async searchDependences(searched_value:any = "", page:any = 1, page_size:any = null) {
         /* return axios.get(`api/administration/dependences?searched_value=${searched_value}&page=${page}&page_size=${page_size}`)

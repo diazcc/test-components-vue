@@ -147,6 +147,7 @@ function initializeStore() {
   function clearIdToken() {
     idToken.value = null;
     localStorage.removeItem("idToken");
+    localStorage.removeItem("uid");
     axios.defaults.headers.common["Authorization"] = "";
   }
 

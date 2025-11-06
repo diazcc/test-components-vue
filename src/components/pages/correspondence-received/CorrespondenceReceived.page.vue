@@ -45,7 +45,7 @@ import ActionServices from "../../../services/ActionServices";
 import RecordsServices from "../../../services/RecordsServices";
 import FilesServices from "../../../services/FilesServices";
 import FormValidators from "../../../validators/FormValidators";
-import DependenceServices from "../../../services/DependenceServices";
+// import DependenceServices from "../../../services/DependenceServices";
 import UtilsServices from "../../../services/UtilsServices";
 
 // Define props and emits and configuration
@@ -98,6 +98,7 @@ const dataCorrespondenceReceived: any = reactive({
   ],
   dataCreateRemitterForm: {
     form: {
+      name: "",
       first_name: "",
       middle_name: "",
       last_name: "",
@@ -880,8 +881,8 @@ watch(store.uploadedFiles, (newFiles: any, oldFiles) => {
 
 function callServices() {
   searchFilingsList("", 1); //Call function for get all filings exist on data base.
-  getParentDependences();
-  addCurrentUserToActionsModal();
+  // getParentDependences();
+  // addCurrentUserToActionsModal();
 }
 
 
@@ -1011,7 +1012,7 @@ function scrollToSection(id: string) {
   }, 100);
 }
 async function selectDependenceInputChangeResponseFile(data: any) {
-  const arrayData: any = [];
+  /* const arrayData: any = [];
   try {
     const response = await FilingServices.getUsersDependence(data);
     if (response.error) {
@@ -1033,7 +1034,7 @@ async function selectDependenceInputChangeResponseFile(data: any) {
       [];
     dataCorrespondenceReceived.dataModalResponseFile.assign.dataSelectUser.disabled =
       true;
-  }
+  } */
 }
 
 
@@ -1292,7 +1293,7 @@ function responseFiling() {
 }
 
 async function selectDependenceInputChange(data: any) {
-  const arrayData: any = [];
+ /*  const arrayData: any = [];
   try {
     const response = await FilingServices.getUsersDependence(data);
     if (response.error) {
@@ -1315,7 +1316,7 @@ async function selectDependenceInputChange(data: any) {
     dataCorrespondenceReceived.dataModalAssignFiling.dataSelectUser.disabled =
       true;
     idUser.value = "";
-  }
+  } */
 }
 
 async function assignFiling() {
@@ -1406,7 +1407,7 @@ function downloadFilingPdfSticker() {
 }
 
 async function getParentDependences() {
-  await DependenceServices.getParentDependences()
+  /* await DependenceServices.getParentDependences()
     .then(async (response: any) => {
       dataCorrespondenceReceived.dataModalAssignFiling.dataSelectDependence.options = 
         response.map((element: any) => { 
@@ -1417,7 +1418,7 @@ async function getParentDependences() {
     })
     .catch((error: any) => {
       console.error(error)
-    });
+    }); */
 }
 
 function getFilingSelected(data: any) {
@@ -1449,7 +1450,7 @@ function getDocumentFiling(file: any) {
 }
 
 async function addCurrentUserToActionsModal() {
-  UserServices.getUserLogged()
+  /* UserServices.getUserLogged()
     .then((response: any) => {
       dataCorrespondenceReceived.dataModalResponseFiling.dataSelectListActionUsers.usersSelecteds[0] =
         {
@@ -1463,11 +1464,14 @@ async function addCurrentUserToActionsModal() {
     .catch((error) => {
       dataCorrespondenceReceived.dataModalResponseFiling.dataSelectListActionUsers.usersSelecteds =
         [];
-    });
+    }); */
 }
 
 function getUser(user: any) {
   dataCorrespondenceReceived.id_remitter = user;
+  console.log(  dataCorrespondenceReceived.id_remitter);
+  console.log(  user);
+  
   assignButtonNextData("create_filing", "/Buttons/right-arrow.svg", "step1234");
 }
 
@@ -1477,17 +1481,21 @@ async function searchFilingsList(searched_value: any, page: any) {
     true;
   RecordsServices.searchFilings(searched_value, page, dataCorrespondenceReceived.dataPaginator.page_size)
     .then((response: any) => {
+      console.log(response);
+      
       dataCorrespondenceReceived.dataPaginator.page = page;
       dataCorrespondenceReceived.dataPaginator.total_pages =
         response.total_pages;
       dataCorrespondenceReceived.dataTableCorrespondenceReceived.stateLoadData =
         false;
       if (response.results.length > 0) {
+      console.log(response);
         dataCorrespondenceReceived.dataTableCorrespondenceReceived.data =
           response.results.map((data: any) => ({
             ...data,
             isMenuOpen: false,
           }));
+      console.log(dataCorrespondenceReceived.dataTableCorrespondenceReceived.data);
       }
     })
     .catch((error: any) => {
@@ -1505,137 +1513,20 @@ async function sendDataCreateRemitter() {
   const data: any = {};
   if (getValidationForm("create-remitter-form__content__form")) {
     dataCorrespondenceReceived.stateCreateRemmiter = false;
-
-    dataCorrespondenceReceived.dataCreateRemitterForm.form.personType != "" &&
-      dataCorrespondenceReceived.dataCreateRemitterForm.form.personType !=
-        null &&
       Object.assign(data, {
-        person_type:
-          dataCorrespondenceReceived.dataCreateRemitterForm.form.personType,
+        name:
+          dataCorrespondenceReceived.dataCreateRemitterForm.form.name,
       });
 
-    dataCorrespondenceReceived.dataCreateRemitterForm.form.first_name != "" &&
-      dataCorrespondenceReceived.dataCreateRemitterForm.form.first_name !=
-        null &&
-      Object.assign(data, {
-        first_name:
-          dataCorrespondenceReceived.dataCreateRemitterForm.form.first_name,
-      });
-
-    dataCorrespondenceReceived.dataCreateRemitterForm.form.middle_name != "" &&
-      dataCorrespondenceReceived.dataCreateRemitterForm.form.middle_name !=
-        null &&
-      Object.assign(data, {
-        middle_name:
-          dataCorrespondenceReceived.dataCreateRemitterForm.form.middle_name,
-      });
-
-    dataCorrespondenceReceived.dataCreateRemitterForm.form.last_name != "" &&
-      dataCorrespondenceReceived.dataCreateRemitterForm.form.last_name !=
-        null &&
-      Object.assign(data, {
-        last_name:
-          dataCorrespondenceReceived.dataCreateRemitterForm.form.last_name,
-      });
-
-    dataCorrespondenceReceived.dataCreateRemitterForm.form.second_last_name !=
-      "" &&
-      dataCorrespondenceReceived.dataCreateRemitterForm.form.second_last_name !=
-        null &&
-      Object.assign(data, {
-        second_last_name:
-          dataCorrespondenceReceived.dataCreateRemitterForm.form
-            .second_last_name,
-      });
-
-    dataCorrespondenceReceived.dataCreateRemitterForm.form
-      .identification_type != "" &&
-      dataCorrespondenceReceived.dataCreateRemitterForm.form
-        .identification_type != null &&
-      Object.assign(data, {
-        identification_type:
-          dataCorrespondenceReceived.dataCreateRemitterForm.form
-            .identification_type,
-      });
-
-    dataCorrespondenceReceived.dataCreateRemitterForm.form
-      .identification_number != "" &&
-      dataCorrespondenceReceived.dataCreateRemitterForm.form
-        .identification_number != null &&
-      Object.assign(data, {
-        identification_number:
-          dataCorrespondenceReceived.dataCreateRemitterForm.form
-            .identification_number,
-      });
-
-    dataCorrespondenceReceived.dataCreateRemitterForm.form.contact_name != "" &&
-      dataCorrespondenceReceived.dataCreateRemitterForm.form.contact_name !=
-        null &&
-      Object.assign(data, {
-        contact_name:
-          dataCorrespondenceReceived.dataCreateRemitterForm.form.contact_name,
-      });
-
-    dataCorrespondenceReceived.dataCreateRemitterForm.form.social_reason !=
-      "" &&
-      dataCorrespondenceReceived.dataCreateRemitterForm.form.social_reason !=
-        null &&
-      Object.assign(data, {
-        social_reason:
-          dataCorrespondenceReceived.dataCreateRemitterForm.form.social_reason,
-      });
-
-    dataCorrespondenceReceived.dataCreateRemitterForm.form.nit_number != "" &&
-      dataCorrespondenceReceived.dataCreateRemitterForm.form.nit_number !=
-        null &&
-      Object.assign(data, {
-        nit_number:
-          dataCorrespondenceReceived.dataCreateRemitterForm.form.nit_number,
-      });
-
-    dataCorrespondenceReceived.dataCreateRemitterForm.form.country != "" &&
-      dataCorrespondenceReceived.dataCreateRemitterForm.form.country != null &&
-      Object.assign(data, {
-        country: dataCorrespondenceReceived.dataCreateRemitterForm.form.country,
-      });
-
-    dataCorrespondenceReceived.dataCreateRemitterForm.form.department != "" &&
-      dataCorrespondenceReceived.dataCreateRemitterForm.form.department !=
-        null &&
-      Object.assign(data, {
-        department:
-          dataCorrespondenceReceived.dataCreateRemitterForm.form.department,
-      });
-
-    dataCorrespondenceReceived.dataCreateRemitterForm.form.city != "" &&
-      dataCorrespondenceReceived.dataCreateRemitterForm.form.city != null &&
-      Object.assign(data, {
-        city: dataCorrespondenceReceived.dataCreateRemitterForm.form.city,
-      });
-
-    dataCorrespondenceReceived.dataCreateRemitterForm.form.address != "" &&
-      dataCorrespondenceReceived.dataCreateRemitterForm.form.address != null &&
-      Object.assign(data, {
-        address: dataCorrespondenceReceived.dataCreateRemitterForm.form.address,
-      });
-
-    dataCorrespondenceReceived.dataCreateRemitterForm.form.phone_number != "" &&
-      dataCorrespondenceReceived.dataCreateRemitterForm.form.phone_number !=
-        null &&
-      Object.assign(data, {
-        phone_number:
-          dataCorrespondenceReceived.dataCreateRemitterForm.form.phone_number,
-      });
-
-    dataCorrespondenceReceived.dataCreateRemitterForm.form.email != "" &&
-      dataCorrespondenceReceived.dataCreateRemitterForm.form.email != null &&
       Object.assign(data, {
         email: dataCorrespondenceReceived.dataCreateRemitterForm.form.email,
       });
 
     UserServices.createRemitter(data)
       .then((response: any) => {
-        dataCorrespondenceReceived.id_remitter = response.data.response.id;
+          console.log(response);
+          
+        dataCorrespondenceReceived.id_remitter = response.email;
         resetRemitterForm();
         dataCorrespondenceReceived.dataModalConfirmation = {
           isActive: "show",
@@ -1667,13 +1558,12 @@ async function sendDataCreateRemitter() {
       })
       .catch((error) => {
         dataCorrespondenceReceived.dataModalConfirmation.isActive = "hidde";
-
+        console.error(error,'error');
         dataCorrespondenceReceived.dataModalAlert = {
           isActive: "show",
           dataText: {
             classText: "center",
             text:
-              error.response.data.error.details[0] ??
               "an_error_has_occurred_please_try_again_later",
             disabled: false,
             onClick: () => {},
@@ -1718,62 +1608,24 @@ async function sendDataCreateRemitter() {
 }
 
 async function sendDataCreateFiling() {
-  const formDataAnonimous: any = new FormData();
   console.log(store.uploadedFiles,'store.uploadedFiles 1');
 
   if (getValidationForm("filing__container__create-filing__form")) {
     console.log(store.uploadedFiles,'store.uploadedFiles 2');
     dataCorrespondenceReceived.dataFilingFlow.stateCreatedFilin = false;
-    if (!dataCorrespondenceReceived.dataFilingFlow.stateViewFileAnonimous) {
-      formData.append("remitter_validation", "001");
-      formData.append(
-        "folio_number",
-        dataCorrespondenceReceived.dataFilingFlow.dataFormFiling.tracking_number
-      );
+      
       formData.append(
         "subject",
         dataCorrespondenceReceived.dataFilingFlow.dataFormFiling.subject
       );
-      formData.append(
-        "confidential_document",
-        dataCorrespondenceReceived.dataFilingFlow.dataFormFiling
-          .confidential_document
-          ? "true"
-          : "false"
-      );
-      formData.append(
-        "presentation_mode",
-        dataCorrespondenceReceived.dataFilingFlow.dataFormFiling
-          .presentation_mode
-      );
-      formData.append(
-        "response_mode",
-        dataCorrespondenceReceived.dataFilingFlow.dataFormFiling.response_mode
-      );
-      formData.append("remitter_id", dataCorrespondenceReceived.id_remitter);
-      formData.append(
-        "description",
-        dataCorrespondenceReceived.dataFilingFlow.dataFormFiling.description
-      );
-      dataCorrespondenceReceived.dataFormTrd.serie != "" &&
-        dataCorrespondenceReceived.dataFormTrd.serie != null &&
-        formData.append("serie", dataCorrespondenceReceived.dataFormTrd.serie);
-      dataCorrespondenceReceived.dataFormTrd.subserie != "" &&
-        dataCorrespondenceReceived.dataFormTrd.subserie != null &&
-        formData.append(
-          "subserie",
-          dataCorrespondenceReceived.dataFormTrd.subserie
-        );
-      dataCorrespondenceReceived.dataFormTrd.documentary_type != "" &&
-        dataCorrespondenceReceived.dataFormTrd.documentary_type != null &&
-        formData.append(
-          "documentary_type",
-          dataCorrespondenceReceived.dataFormTrd.documentary_type
-        );
+      
+      
+      
+      formData.append("user_asigned", dataCorrespondenceReceived.id_remitter);
+      
+      
 
-      formData.append("type_of_filing", "1"); // Input filing
-
-      filesArrayFilingForm.value.forEach((file: any) => {
+      store.uploadedFiles.forEach((file: any) => {
         formData.append("document", file);
       });
       console.log(store.uploadedFiles,'store.uploadedFiles 2.1');
@@ -1873,191 +1725,6 @@ async function sendDataCreateFiling() {
             },
           };
         });
-    } else {
-      //FLOW ANONIMOUS
-      console.log(store.uploadedFiles,'store.uploadedFiles 3');
-      formData.append("remitter_validation", "002");
-      formData.append(
-        "folio_number",
-        dataCorrespondenceReceived.dataFilingFlow.dataFormFiling.tracking_number
-      );
-      formData.append(
-        "subject",
-        dataCorrespondenceReceived.dataFilingFlow.dataFormFiling.subject
-      );
-      formData.append(
-        "confidential_document",
-        dataCorrespondenceReceived.dataFilingFlow.dataFormFiling
-          .confidential_document
-          ? "true"
-          : "false"
-      );
-      formData.append(
-        "presentation_mode",
-        dataCorrespondenceReceived.dataFilingFlow.dataFormFiling
-          .presentation_mode
-      );
-      formData.append(
-        "response_mode",
-        dataCorrespondenceReceived.dataFilingFlow.dataFormFiling.response_mode
-      );
-      formDataAnonimous.append(
-        "address",
-        dataCorrespondenceReceived.dataFilingFlow.dataFormFiling.address
-      );
-      formDataAnonimous.append(
-        "phone_number",
-        dataCorrespondenceReceived.dataFilingFlow.dataFormFiling.phone_number
-      );
-      formDataAnonimous.append(
-        "email",
-        dataCorrespondenceReceived.dataFilingFlow.dataFormFiling.email
-      );
-      formDataAnonimous.append("person_type", "005"); //FLOW USER ANONIMOU
-      dataCorrespondenceReceived.dataFormTrd.serie != "" &&
-        dataCorrespondenceReceived.dataFormTrd.serie != null &&
-        formData.append(
-          "documentary_type",
-          dataCorrespondenceReceived.dataFormTrd.serie
-        );
-      dataCorrespondenceReceived.dataFormTrd.subserie != "" &&
-        dataCorrespondenceReceived.dataFormTrd.subserie != null &&
-        formData.append(
-          "documentary_type",
-          dataCorrespondenceReceived.dataFormTrd.subserie
-        );
-      dataCorrespondenceReceived.dataFormTrd.documentary_type != "" &&
-        dataCorrespondenceReceived.dataFormTrd.documentary_type != null &&
-        formData.append(
-          "documentary_type",
-          dataCorrespondenceReceived.dataFormTrd.documentary_type
-        );
-      formData.append("type_of_filing", "1"); // Input filing
-      filesArrayFilingForm.value.forEach((file: any) => {
-        formData.append("document", file);
-      });
-      FilingServices.createAndGetAnonimousRemitter(formDataAnonimous)
-        .then((response: any) => {
-          console.log(store.uploadedFiles,'store.uploadedFiles 12');
-          formData.append("remitter_id", response.id);
-          FilingServices.createFiling(formData)
-            .then((response: any) => {
-              console.log(store.uploadedFiles,'store.uploadedFiles 13');
-              filing_code_filing.value = response.filing_code; //Must be encapsulated for be used globaly on this component and be used
-              idRecord.value = response.record_id;
-              dataCorrespondenceReceived.dataModalConfirmation = {
-                isActive: "show",
-                dataText: {
-                  classText: "big",
-                  text: "the_filing_was_successfully_created",
-                  disabled: false,
-                  onClick: () => {},
-                },
-                dataButton: {
-                  className: "blue",
-                  text: "continue",
-                  alt: "continue",
-                  url: "/Buttons/right-arrow.svg",
-                  reverse: true,
-                  disabled: false,
-                  onClick: () => {
-                    dataCorrespondenceReceived.dataFilingFlow.stateCreatedFilin =
-                      true; //State filing created view
-                    dataCorrespondenceReceived.dataModalConfirmation.isActive =
-                      "hidde"; //Hidde modal confirmation with text-
-                    assignButtonNextData(
-                      "assign",
-                      "/Buttons/icon-assign.svg",
-                      "step12345",
-                      "large"
-                    );
-                    dataCorrespondenceReceived.dataFilingFlow.stateResponseFiling =
-                      true; //State for view and show view Response filing.
-                  },
-                },
-              };
-              dataCorrespondenceReceived.dataFilingFlow.dataResponse.dataImgQR.src =
-                response.filing_qr;
-              dataCorrespondenceReceived.dataFilingFlow.dataResponse.filing_code =
-                filing_code_filing.value;
-              dataCorrespondenceReceived.dataFilingFlow.dataResponse.filing_date =
-                response.filing_date;
-              dataCorrespondenceReceived.dataFilingFlow.dataResponse.remitter =
-                response.remitter
-                  ? response.remitter.contact_name
-                    ? response.remitter.contact_name
-                    : response.remitter.first_name
-                    ? response.remitter.first_name +
-                      " " +
-                      response.remitter.last_name
-                    : response.remitter.email
-                  : "anonymous_person";
-              dataCorrespondenceReceived.dataFilingFlow.dataResponse.type_of_filing =
-                response.type_of_filing.name;
-              dataCorrespondenceReceived.dataFilingFlow.dataResponse.presentation_mode =
-                response.presentation_mode.label;
-              dataCorrespondenceReceived.dataFilingFlow.dataResponse.subject =
-                response.subject;
-              resetFilingForm();
-              searchFilingsList("", 1); 
-              formData = new FormData();
-              console.log(store.uploadedFiles,'store.uploadedFiles 3.1');
-              dataCorrespondenceReceived.dataFilingFlow.stateViewFileAnonimous =
-                false;
-            })
-            .catch((error: any) => {
-              dataCorrespondenceReceived.dataModalAlert = {
-                isActive: "show",
-                dataText: {
-                  classText: "center",
-                  text:
-                    error?.details[0] ??
-                    "an_error_has_occurred_please_try_again_later",
-                  disabled: false,
-                  onClick: () => {},
-                },
-                dataButton: {
-                  className: "blue",
-                  text: "continue",
-                  disabled: false,
-                  onClick: () => {
-                    dataCorrespondenceReceived.dataModalAlert.isActive =
-                      "hidde";
-                    dataCorrespondenceReceived.dataFilingFlow.stateCreatedFilin =
-                      true;
-                  },
-                },
-              };
-            });
-        })
-        .catch((error: any) => {
-          dataCorrespondenceReceived.dataModalAlert = {
-            isActive: "show",
-            dataText: {
-              classText: "center",
-              text:
-                error?.details[0] ??
-                "an_error_has_occurred_please_try_again_later",
-              disabled: false,
-              onClick: () => {},
-            },
-            dataButton: {
-              className: "blue",
-              text: "close",
-              alt: "close",
-              url: "/Buttons/decline.svg",
-              iconSize: "short",
-              reverse: false,
-              disabled: false,
-              onClick: () => {
-                dataCorrespondenceReceived.dataModalAlert.isActive = "hidde";
-                dataCorrespondenceReceived.dataFilingFlow.stateCreatedFilin =
-                  true;
-              },
-            },
-          };
-        });
-    }
   } else {
     console.log(store.uploadedFiles,'store.uploadedFiles 11');
     dataCorrespondenceReceived.dataModalAlert = {

@@ -69,6 +69,7 @@ const loginService = {
   async logOut() {
     axios.defaults.headers.common['Authorization'] = ''
     localStorage.removeItem('idToken')
+    localStorage.removeItem('uid')
 
     return true;
 

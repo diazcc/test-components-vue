@@ -41,6 +41,7 @@ const UserService = {
         const response = await axios.post("/verify_token", {
             id_token: idToken
         });
+        localStorage.setItem("uid", response.data.uid);
 
         console.log("Usuario verificado:", response.data);
 
@@ -143,16 +144,53 @@ const UserService = {
         .then((response:any)=>response.data.response)
         .catch((error:any)=>{throw error})
     },
-    createRemitter(data:any){
-        return axios.post('/api/correspondence/remitters/', data)
-         .then(response=>response)
-         .catch((error:any)=>{throw error})
+    async createRemitter(data:any){
+        try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      if (!user) throw new Error("Usuario no autenticado");
+
+      const idToken = await user.getIdToken(); // 👈 Token JWT real
+
+      const response = await axios.post('/remitters/', data,
+        {
+          headers: {
+            "Authorization": idToken, // 👈 Enviamos el token al backend
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      return response.data.remitter;
+    } catch (error) {
+      console.error("❌ Error al obtener remitters:", error);
+      throw error;
+    }
     },
-    async getRemitters() {
-        return await axios.get('/api/correspondence/remitters/')
-            .then(response => response.data)
-            .catch((error: any) => { throw error });
-    },
+  async getRemitters(searched_value: string = "", page: number = 1, page_size: number = 10) {
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      if (!user) throw new Error("Usuario no autenticado");
+
+      const idToken = await user.getIdToken(); // 👈 Token JWT real
+
+      const response = await axios.get(
+        `/remitters?searched_value=${searched_value}&page=${page}&page_size=${page_size}`,
+        {
+          headers: {
+            "Authorization": idToken, // 👈 Enviamos el token al backend
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      return response.data.response;
+    } catch (error) {
+      console.error("❌ Error al obtener remitters:", error);
+      throw error;
+    }
+  },
     async getMyTenants() {
         try {
             const access = localStorage.getItem('access');

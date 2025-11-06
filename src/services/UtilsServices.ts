@@ -269,7 +269,7 @@ const UtilsServices = {
 
       })
       .catch((error:any)=>{
-          console.warn("⚠️ Backend responde, pero hay error en Firestore:", error.data.message);
+          console.warn("⚠️ Backend responde, pero hay error en Firestore:", error);
 
       });
 

@@ -69,14 +69,12 @@
         </nav>
         <table class="table" @scroll="UtilsServices.handleScroll(dataResults)">
             <thead class="table__row table--header">
-                <!-- <th class="table__row__cell">{{ t('item') }}</th> -->
+                <th class="table__row__cell">{{ t('item') }}</th>
                 <th class="table__row__cell">{{ t('subject') }}</th>
-                <th class="table__row__cell">{{ t('filing_number') }}</th>
                 <th class="table__row__cell" >
                     {{ dataTableCorrespondenceReceived.validateSubmenu ? t('remitter') :
                         t('addressee') }}
                 </th>
-                <th class="table__row__cell">{{ t('from') }}</th>
                 <th class="table__row__cell">{{ t('email') }}</th>
                 <th class="table__row__cell">{{ t('date_of_filing') }}</th>
                 <th class="table__row__cell">{{ t('state') }}</th>
@@ -94,42 +92,31 @@
                 <td class="table__row__cell">{{ t('no_filing') }}</td>
             </tbody>
             <tbody v-else class="table__row" v-for="(data, index) in dataResults" :key="index" @click="toggleMenu(data, $event, index)">
-                <!-- <td class="table__row__cell" >
+                <td class="table__row__cell" >
                     {{ index + 1 }}
-                </td> -->
+                </td>
                 <td class="table__row__cell table__row__cell--left-align" >
-                    {{ data?.filings ? data?.filings[data?.filings.length - 1]?.subject : data?.subject }}
+                    {{ data?.subject }}
+                </td>
+                <td class="table__row__cell table__row__cell--left-align" >
+                    {{ data?.creator_user ? data?.creator_user : 'remitterName(data)' }}
+                </td>
+                <td class="table__row__cell table__row__cell--left-align" >
+                    {{ data.email ?? t('did_not_specify') }}
                 </td>
                 <td class="table__row__cell" >
-                    <span>{{ data?.filings ? data.filings[data?.filings.length - 1]?.filing_code :
-                        data?.filing_code }}</span>
-                </td>
-                <td class="table__row__cell table__row__cell--left-align" >
-                    {{ data?.filings ? remitterName(data.filings[data?.filings.length - 1]?.filing_info.remitter) :
-                        (data?.filing_info.remitter ? remitterName(data?.filing_info.remitter) : remitterName(data)) }}
-                </td>
-                <td class="table__row__cell table__row__cell--left-align" >
-                    {{ data.filings ? t(data.filings[data?.filings.length - 1].filing_info.creation_medium) :
-                        t('web_filing')
-                    }}
-                </td>
-                <td class="table__row__cell table__row__cell--left-align" >
-                    {{ data.filings ? (data.filings[data?.filings.length - 1]?.filing_info.remitter ?
-                        data.filings[data?.filings.length - 1]?.filing_info.remitter.email : t('did_not_specify')) : data.filing_info.remitter ?
-                        data.filing_info.remitter.email : t('did_not_specify') }}
-                </td>
-                <td class="table__row__cell" >
-                    <span v-if="data?.filings != undefined">{{ data?.filings[0].filing_info.filing_date }}</span>
-                    <span v-else>{{ data.filing_info.filing_date }}</span>
+                    <span v-if="data?.date_created != undefined">{{ data?.date_created }}</span>
+                    <span v-else>{{ data.date_created }}</span>
                 </td>
                 <td class="table__row__cell table__row__cell--positon-relative" >
-                    <p
+                    {{ data.status ?? t('pending') }}
+                    <!-- <p
                         :class="'table__row__cell__status table__row__cell__status--' + UtilsServices.getColorByPercentage(data.filings ? data.filings[0]?.percentage_of_relationship_matrix : data.percentage_of_relationship_matrix, data?.status?.code || data?.related_record_info?.filing_info.status_display.code)">
                         {{ data?.filing_info.status_display ? t(data?.filing_info.status_display == 'in_process' ? 'unanswered'  : 'null') :
                             t(data?.related_record_info?.filing_info.status_display.label == 'in_process' ? 'unanswered'  : 'N/A') }}
-                    </p>
+                    </p> -->
                     <div class="icon-container">
-                        <span
+                        <!-- <span
                             :class="'tooltip' + (dataTableCorrespondenceReceived.validateSubmenu ? '' : ' tooltip--table-sent')"
                             v-if="UtilsServices.getColorByPercentage(data.filings ? data.filings[0]?.percentage_of_relationship_matrix : data.percentage_of_relationship_matrix, data?.status?.code || data?.related_record_info?.status_display.code) == 'status-red'">
                             {{ t("filing_expiring_soon") }}:
@@ -164,14 +151,14 @@
                                 )
 
                             }}
-                        </span>
-                        <DotIcon
+                        </span> -->
+                       <!--  <DotIcon
                             :class="'icon-container__dot-icon icon-container__dot-icon--' + UtilsServices.getColorByPercentage(data.filings ? data.filings[0]?.percentage_of_relationship_matrix : data.percentage_of_relationship_matrix, data?.status?.code || data?.related_record_info?.status_display.code)"
-                            :status="UtilsServices.getColorByPercentage(data.filings ? data.filings[0]?.percentage_of_relationship_matrix : data.percentage_of_relationship_matrix, data?.status?.code || data?.related_record_info?.status_display.code)" />
+                            :status="UtilsServices.getColorByPercentage(data.filings ? data.filings[0]?.percentage_of_relationship_matrix : data.percentage_of_relationship_matrix, data?.status?.code || data?.related_record_info?.status_display.code)" /> -->
                     </div>
                 </td>
                 <td class="table__row__cell table__row__cell--positon-relative" v-if="dataTableCorrespondenceReceived.validateSubmenu" >
-                    <ul v-if="data.isMenuOpen" class="table__row__cell__menu" :id="'table__row__cell__menu-' + index">
+                    <!-- <ul v-if="data.isMenuOpen" class="table__row__cell__menu" :id="'table__row__cell__menu-' + index">
                         <div v-for="(action, indexAction) in data.user_actions" :key="indexAction">
                             <li @click="dataTableCorrespondenceReceived.actionsMenu(action, data)"
                                 v-if="!arrayActionsDecline.includes(action)">
@@ -186,7 +173,7 @@
                         :class="['table__row__cell__button', { 'table__row__cell__button--focused': data.isMenuOpen }]"
                         @click="toggleMenu(data, $event, index)">
                         <img src="/icon-arrow-item-menu-padre-white.svg">
-                    </button>
+                    </button> -->
                 </td>
             </tbody>
         </table>

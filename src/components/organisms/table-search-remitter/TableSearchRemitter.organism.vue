@@ -11,28 +11,20 @@
                 <thead class="table__row table--header">
                     <th class="table__row__cell">{{t('item')}}</th>
                     <th class="table__row__cell">{{t('name')}}</th>
-                    <th class="table__row__cell">{{t('identification_number')}} / {{t('nit') }}</th>
                     <th class="table__row__cell">{{t('email')}}</th>
-                    <th class="table__row__cell">{{ t('from') }}</th>
                 </thead>
                 <tbody v-if="filteredUsers.length === 0" class="table__row table--only-row">
                     <td class="table__row__cell">{{ t('no_results_found') }}</td>
                 </tbody>
-                <tbody v-for="(user, index) in filteredUsers" class="table__row" @click="getUser(user)" :key="user.id">
+                <tbody v-for="(user, index) in filteredUsers" class="table__row" @click="getUser(user.email)" :key="user.id">
                     <td class="table__row__cell">
                         {{ index+1 }}
                     </td>
                     <td class="table__row__cell table__row__cell--left-align">
-                        {{ user.first_name != null ? user.first_name : user?.contact_name ?? t('anonymous_person')}}
-                    </td>
-                    <td class="table__row__cell table__row__cell--left-align">
-                        {{ user.identification_number ?? user.nit_number ?? t('anonymous_person')}}
+                        {{ user.name ?? t('anonymous_person')}}
                     </td>
                     <td class="table__row__cell table__row__cell--left-align"> 
                         {{ user.email }}
-                    </td>
-                    <td class="table__row__cell">
-                        {{ user.person_type?.label ? t(user.person_type.label,user.person_type.label) : user.dependence.name }}
                     </td>
                 </tbody>
             </TransitionGroup>
@@ -66,7 +58,9 @@ function getUser(user:any){
 function getUsers() {
     UserService.getRemitters()
         .then((response: any) => {
-            userList.value = response.response.results;
+            console.log(response,'response');
+            
+            userList.value = response.results;
         })
         .catch((error: any) => {
             console.error(error);
@@ -103,7 +97,7 @@ const removeAccents = (str: any) => {
 const filteredUsers: any = computed(() => {
     searchTerm.value = props.dataTableRemitters.dataInputSearch.dataInput.model
     return userList.value.filter((user: any) => {
-        const searchField = user.first_name || user.contact_name || ''; 
+        const searchField = user.name || ''; 
         const searchValue = removeAccents(searchField.toLowerCase());
         const searchTermValue = removeAccents(searchTerm.value.toLowerCase());
         return searchValue.includes(searchTermValue);

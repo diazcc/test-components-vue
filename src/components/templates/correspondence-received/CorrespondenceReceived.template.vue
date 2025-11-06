@@ -143,7 +143,7 @@ function showPdf(codeFiling: any) {
   emits("codeFiling", codeFiling);
 }
 function getUser(user: any) {
-  emits("user", user.id);
+  emits("user", user);
 }
 function getFilingSelected(data:any){
   emits("filingSelectedMenu", data);

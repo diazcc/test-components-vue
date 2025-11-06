@@ -1,5 +1,6 @@
 // LoginService.ts
 import axios from 'axios';
+import { getAuth } from 'firebase/auth';
 
 const FilingServices = {
     getFilingsCreatedByUser(searched_value:any = "", page:any = 1, page_size:any = null) {
@@ -13,9 +14,28 @@ const FilingServices = {
             .catch((error: any) => { throw error.response.data.error });
     },
     async createFiling(formData: any) {
-        return axios.post('/api/correspondence/filings/', formData)
-            .then(response => response.data.response)
-            .catch((error: any) => { throw error });
+          try {
+              const auth = getAuth();
+              const user = auth.currentUser;
+              if (!user) throw new Error("Usuario no autenticado");
+        
+              const idToken = await user.getIdToken(); // 👈 Token JWT real
+        
+              const response = await axios.post('/request', formData,
+                {
+                  headers: {
+                    "Authorization": idToken, // 👈 Enviamos el token al backend
+                    "Content-Type": "multipart/form-data",
+                  },
+                }
+              );
+              console.log("sssssss:", response);
+        
+              return response.data;
+            } catch (error) {
+              console.error("❌ Error al obtener remitters:", error);
+              throw error;
+            }
     },
     async createOutFiling(formData: any, id: number | string) {
         return axios.post(`/api/correspondence/records/${id}/salida`, formData)

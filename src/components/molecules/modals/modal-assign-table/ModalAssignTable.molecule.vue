@@ -38,7 +38,7 @@
               <td class="table__row__cell">{{ index+1 }}</td>
               <td class="table__row__cell">{{ data.code || 'null' }}</td>
               <td class="table__row__cell table__row__cell--left-align">{{ data.name || 'null' }}</td>
-              <td class="table__row__cell table__row__cell--left-align">{{ data.dependencies || '' }}</td>
+              <td class="table__row__cell table__row__cell--left-align">{{ 'data.dependencies' }}</td>
               <td class="table__row__cell table__row--img" @click="{dataModalAssignTable.openDocument(data.url); data.checked = !data.checked}">
                 <TooltipIcon v-if="dataModalAssignTable.dataTooltipIcons[0].show()" :dataTooltipIcon="dataModalAssignTable.dataTooltipIcons[0]" @click="dataModalAssignTable.dataTooltipIcons[0].onClick({data: data})"/>
               </td>
@@ -126,7 +126,6 @@ function getFilesModal(searched_value: any, page: any){
           code: file.archive_number,
           name: file.document_name,
           url: file.document,
-          dependencies: file.dependence.map((obj: any) => obj.name).join(', '),
           checked: false,
         };
       });

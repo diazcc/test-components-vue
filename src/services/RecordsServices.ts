@@ -1,5 +1,6 @@
 // RecordsServices.ts
 import axios from "axios";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const RecordsServices = {
   async searchRecords(
@@ -48,11 +49,39 @@ const RecordsServices = {
       .then(response => response.data.response)
       .catch((error: any) => { throw error });
   },
-  async searchFilings(searched_value:any = "", page:any = 1, page_size:any = null) {
-    return axios.get(`/api/correspondence/records?searched_value=${searched_value}&page=${page}&page_size=${page_size}`) // 
-    .then(response => response.data.response)
-    .catch(error => { throw error.response.data });
-  },
+  async  searchFilings(searched_value:any = "", page:any = 1, page_size:any = null) {
+  try {
+    const auth = getAuth();
+
+    // Esperar hasta que Firebase determine el estado del usuario
+    const user :any= await new Promise((resolve) => {
+      const unsub = onAuthStateChanged(auth, (user) => {
+        unsub();
+        resolve(user);
+      });
+    });
+
+    if (!user) throw new Error("Usuario no autenticado");
+
+    const idToken = await user.getIdToken();
+
+    const response = await axios.get(
+      `/requests?searched_value=${searched_value}&page=${page}&page_size=${page_size}`,
+      {
+        headers: {
+          "Authorization": idToken,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data.response;
+  } catch (error) {
+    console.error("❌ Error al obtener filings:", error);
+    throw error;
+  }
+}
+,
 };
 
 export default RecordsServices;

@@ -214,7 +214,7 @@ watch(() => props.dataModalResponseFiling.contentDocument, (newValue) => {
 })
 
 function callServices() {
-    UserService.getRemitters()
+    /* UserService.getRemitters()
         .then((response: any) => {
             response.response.results.map((element: any) => {
                 dataSelectRemitters.options.push({
@@ -225,7 +225,7 @@ function callServices() {
         })
         .catch((error: any) => {
             console.error(error)
-        })
+        }) */
 }
 const remitterName = (remitter: any) => {
     if (!remitter) {

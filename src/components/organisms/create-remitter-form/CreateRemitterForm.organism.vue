@@ -9,23 +9,16 @@
         </p>
 
         <section class="create-remitter-form__content">
-            <ul class="create-remitter-form__content__select-type">
-                <div class="create-remitter-form__content__select-type__container"
-                    v-for="(personType, i) in listPersonType">
-                    <input type="radio" :value="personType.code" v-model="dataCreateRemitterForm.form.personType">
-                    <p class="create-remitter-form__content__select-type__text">{{ t(personType.label) }}</p>
-                </div>
-            </ul>
 
-            <ul class="create-remitter-form__content__form" v-if="dataCreateRemitterForm.form.personType != ''">
+            <ul class="create-remitter-form__content__form">
                 <li class="create-remitter-form__content__form__card"
-                    v-if="dataCreateRemitterForm.form.personType == '001' || dataCreateRemitterForm.form.personType == '003' || dataCreateRemitterForm.form.personType == '004'">
-                    <input type="text" v-model="dataCreateRemitterForm.form.first_name" :placeholder="t('first_name')"
+                    >
+                    <input type="text" v-model="dataCreateRemitterForm.form.name" :placeholder="t('first_name')"
                          
                          @input="event => FormValidators.validateOnlyLetters(event, 'first_name', dataCreateRemitterForm.form)"
                         required>
                 </li>
-
+<!-- 
                 <li class="create-remitter-form__content__form__card"
                     v-if="dataCreateRemitterForm.form.personType == '001' || dataCreateRemitterForm.form.personType == '003' || dataCreateRemitterForm.form.personType == '004'">
                     <input type="text" v-model="dataCreateRemitterForm.form.middle_name"
@@ -75,37 +68,37 @@
                         :placeholder="t('social_razon')"
                          required>
                 </li>
-
-                <li class="create-remitter-form__content__form__card"
+ -->
+             <!--    <li class="create-remitter-form__content__form__card"
                     v-if="dataCreateRemitterForm.form.personType == '002'">
                     <input type="number" v-model="dataCreateRemitterForm.form.nit_number" :placeholder="t('nit')"
                         @input ="event => limitInputValue(event, 'nit_number')" required>
-                </li>
+                </li> -->
 
-                <li class="create-remitter-form__content__form__card">
+              <!--   <li class="create-remitter-form__content__form__card">
                     <Select :dataSelect="dataSelectCountry" />
                 </li>
 
                 <li class="create-remitter-form__content__form__card">
                     <Select :dataSelect="dataSelectDepartament" />
-                </li>
+                </li> -->
 
-                <li class="create-remitter-form__content__form__card">
+              <!--   <li class="create-remitter-form__content__form__card">
                     <Select :dataSelect="dataSelectCity" />
-                </li>
+                </li> -->
 
-                <li class="create-remitter-form__content__form__card">
+                <!-- <li class="create-remitter-form__content__form__card">
                     <input type="text" v-model="dataCreateRemitterForm.form.address" :placeholder="t('address')"
                     @blur="FormValidators.trimInputField($event, 'address', dataCreateRemitterForm.form)"   
                     required>
-                </li>
+                </li> -->
 
-                <li class="create-remitter-form__content__form__card">
+                <!-- <li class="create-remitter-form__content__form__card">
                     <input type="number" v-model="dataCreateRemitterForm.form.phone_number"
                         :placeholder="t('phone_number')"   
                          @input="event => limitInputValue(event, 'phone_number')" 
                          required>     
-                </li>
+                </li> -->
 
                 <li class="create-remitter-form__content__form__card">
                     <input type="text" v-model="dataCreateRemitterForm.form.email" :placeholder="t('email')" 
@@ -240,22 +233,33 @@ dataSelectIdentificationTypes.value.placeholder = props.dataCreateRemitterForm.f
 
 
 onMounted(() => {
-    getDataPersonTypes();
+     getDataPersonTypes();/*
     getDataIdentificationTypes();
-    getDataCountries();
+    getDataCountries(); */
 })
 async function getDataPersonTypes() {
-    try {
-        const response = await FilingServices.getPersonTypes()
-        listPersonType.value = response;
-    } catch (error) {
-        console.error(error, 'error getDataPersonTypes');
-        listPersonType.value = [];
-    }
+        listPersonType.value = [
+            {
+                label:'aa',
+                code:'001'
+            },
+            {
+                label:'aa',
+                code:'002'
+            },
+            {
+                label:'aa',
+                code:'003'
+            },
+            {
+                label:'aa',
+                code:'004'
+            }
+        ];
 }
 async function getDataIdentificationTypes() {
 
-    const arrayData: any = [];
+   /*  const arrayData: any = [];
     try {
         const response = await FilingServices.getIdentificationTypes()
 
@@ -270,11 +274,11 @@ async function getDataIdentificationTypes() {
     } catch (error) {
         console.error(error, 'error getDataIdentificationTypes');
         dataSelectIdentificationTypes.value.options = [];
-    }
+    } */
 
 }
 async function setDataSelectCountry(data: any, label: any) {
-    props.dataCreateRemitterForm.form.country = label
+   /*  props.dataCreateRemitterForm.form.country = label
     const arrayData: any = [];
     try {
         const response = await LocalizationServices.getCountriesStates(data)
@@ -294,12 +298,12 @@ async function setDataSelectCountry(data: any, label: any) {
         dataSelectDepartament.value.options = [];
         dataSelectDepartament.value.disabled = true;
 
-    }
+    } */
 }
 
 async function setDataSelectDepartament(data: any, label: any) {
 
-    props.dataCreateRemitterForm.form.department = label
+   /*  props.dataCreateRemitterForm.form.department = label
 
     const arrayData: any = [];
     try {
@@ -321,12 +325,12 @@ async function setDataSelectDepartament(data: any, label: any) {
         dataSelectCity.value.options = [];
         dataSelectCity.value.disabled = true;
 
-    }
+    } */
 
 }
 async function getDataCountries() {
 
-    const arrayData: any = [];
+   /*  const arrayData: any = [];
     try {
         const response = await LocalizationServices.getCountries()
         if (response.error) {
@@ -343,7 +347,7 @@ async function getDataCountries() {
         console.error(error, 'error selectDependenceInputChange');
         dataSelectCountry.value.options = [];
     }
-
+ */
 }
 
 

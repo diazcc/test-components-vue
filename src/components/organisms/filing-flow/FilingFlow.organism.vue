@@ -64,17 +64,15 @@
                             <option selected disabled value="">{{ t("select_presentation_mode") }}</option>
                             <option value="001">{{ t("written") }}</option>
                             <option value="002">{{ t("verbal") }}</option>
-                            <option value="003">{{ t("telephonic") }}</option>
-                            <option value="004">{{ t("electronic_media") }}</option>
                         </select>
                     </li>
-                    <li class="filing__container__create-filing__form__container__content__card">
+                    <!-- <li class="filing__container__create-filing__form__container__content__card">
                         <select v-model="dataFilingFlow.dataFormFiling.response_mode" required>
                             <option selected disabled value="">{{ t("select_response_mode") }}</option>
                             <option value="001">{{ t("e-mail") }}</option>
                             <option value="002">{{ t("physical_correspondence") }}</option>
                         </select>
-                    </li>
+                    </li> -->
                     <li class="filing__container__create-filing__form__container__content__card"
                         v-if="dataFilingFlow.stateViewFileAnonimous">
                         <input type="text" v-model="dataFilingFlow.dataFormFiling.address" :placeholder="t('address')"

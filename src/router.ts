@@ -50,10 +50,10 @@ const TypeDocumental = () => import('./components/pages/type-documental/TypeDocu
 const Trd = () => import('./components/pages/trd/Trd.page.vue');
 
 const routes: RouteRecordRaw[] = [
-  /* {
+  {
     path: '/',
     redirect: () => '/loading'
-  }, */
+  },
   {
     path: '/login',
     component: Login,
@@ -264,13 +264,13 @@ const routes: RouteRecordRaw[] = [
       
     ]
   },
-  /* {
+  {
     path: '/:pathMatch(.*)*',
     redirect: (to) => {
       console.log(`[ROUTER REDIRECT] Global catchall redirect - path:`, to.path, 'full to object:', to);
       return '/loading';
     }
-  } */
+  }
 ];
 
 const router = createRouter({
