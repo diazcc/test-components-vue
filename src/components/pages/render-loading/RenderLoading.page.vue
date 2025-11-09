@@ -26,7 +26,7 @@ dataRenderLoading.isConnected = false;
         .then((response:any)=>{
             dataRenderLoading.isLoading = false;
             dataRenderLoading.isConnected = true;
-            // router.push('/home/dashboard');
+            router.push('/home/dashboard');
         })
         .catch((error:any)=>{
             console.error(error);
