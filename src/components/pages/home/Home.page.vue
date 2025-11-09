@@ -206,19 +206,10 @@ const mockModules = [
     templateColor: { menu: "#1E90FF", table: "#F0F8FF" },
     paths: [
       { name: "received", path: "correspondence/received", state: false },
-      { name: "sents", path: "correspondence/sents", state: false },
     ],
   },
   {
-    name: "administration-tenant",
-    state: false,
-    templateColor: { menu: "#32CD32", table: "#E0FFE0" },
-    paths: [
-      { name: "users", path: "administration-tenant/users", state: false },
-    ],
-  },
-  {
-    name: "files_records",
+    name: "files",
     state: false,
     templateColor: { menu: "#32CD32", table: "#E0FFE0" },
     paths: [
@@ -249,7 +240,7 @@ onMounted(async () => {
     logOut(); 
   } */
     getModulesMenu();
-callServices()
+    callServices()
 });
 
 function callServices(){

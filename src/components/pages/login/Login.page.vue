@@ -284,25 +284,18 @@ const getValidationTenant = (param: string | string[]):void=>{ (param || param.l
 function sendDataRegister() {
   const formData = new FormData;
 
-  formData.append('person_type', dataLogin.stateChoiseTypePerson);
   formData.append('email', dataLogin.dataInputEmail.model);
   formData.append('password', dataLogin.dataInputPassword.model);
-  formData.append('phone_number', dataLogin.dataInputPhone.model);
 
-  if (dataLogin.stateChoiseTypePerson == '001') {
-    formData.append('first_name', dataLogin.dataInputName.model);
-    formData.append('last_name', dataLogin.dataInputLastName.model);
-    formData.append('identification_number', dataLogin.dataInputId.model);
-  }
+    formData.append('name', dataLogin.dataInputName.model);
 
-  if (dataLogin.stateChoiseTypePerson == '002') {
-    formData.append('contact_name', dataLogin.dataInputBusinessName.model);
-    formData.append('nit_number', dataLogin.dataInputNit.model);
-  }
 
-  const formObject = Object.fromEntries(formData.entries());
-
-  ExternalUserService.sendExternalUser(formData)
+const formObject = { // Crea un objeto JavaScript plano, no FormData
+    email: dataLogin.dataInputEmail.model,
+    password: dataLogin.dataInputPassword.model,
+    name: dataLogin.dataInputName.model
+};
+  ExternalUserService.sendExternalUser(formObject)
     .then(async (response) => {
       dataLogin.dataModalConfirmation.isActive = 'show'
     })

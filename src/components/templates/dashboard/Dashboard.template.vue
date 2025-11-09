@@ -24,9 +24,6 @@
           dataDashboardTemplate.dataTableCorrespondenceInternal
         "
       />
-      <router-link to="/home/correspondence/received" class="mi-router-link">{{
-        t("see_all")
-      }}</router-link>
     </article>
     <!-- <article class="dashboard__widget">
       <header class="dashboard__widget__header">
@@ -50,9 +47,6 @@
           dataDashboardTemplate.dataTableCorrespondenceEntry
         "
       />
-      <router-link to="/home/correspondence/received" class="mi-router-link">{{
-        t("search")
-      }}</router-link>
     </article>
   <!--   <article class="dashboard__widget">
       <Statistic :dataStatistic="dataDashboardTemplate.dataStatistic"></Statistic>

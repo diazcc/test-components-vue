@@ -20,33 +20,10 @@
         <td class="table__row__cell table__row__cell--left-align">{{ te(element?.remitter) ? t(element?.remitter) : element?.remitter }}</td>
         <td class="table__row__cell table__row__cell--positon-relative">
           <p
-            :class="'table__row__cell__status table__row__cell__status--' + UtilsServices.getColorByPercentage(element.filings ? element.filings[0]?.percentage_of_relationship_matrix : element.percentage_of_relationship_matrix, element?.status?.code || element?.related_record_info?.status_display.code)">
-            {{ t(element?.related_record_info.status_display.label) }}
-          </p>
-          <div class="icon-container">
-            <span :class="'tooltip tooltip--table-sent'"
-              v-if="UtilsServices.getColorByPercentage(element.percentage_of_relationship_matrix, element?.related_record_info?.status_display.code) == 'status-red'">
-              {{ t("filing_expiring_soon") }}:
-              {{
-                element?.days_left.days === 0 ?
-                  (Math.floor(element?.days_left?.seconds / 3600) + " " + t('hours')) :
-                  (element?.days_left?.days + " " + t('days'))
+            :class="'table__row__cell__status table__row__cell__status--'">
 
-              }}
-            </span>
-            <span :class="'tooltip tooltip--table-sent'"
-              v-if="UtilsServices.getColorByPercentage(  element.percentage_of_relationship_matrix,  element?.related_record_info?.status_display.code) == 'status-black'">
-              {{ t("filing_expired") }} {{ t("for") }}
-              {{
-                  element?.days_left.days === 0 ?
-                    (Math.floor(element?.days_left?.seconds / 3600) + " " + t('hours')) :
-                    (element?.days_left?.days + " " + t('days'))
-              }}
-            </span>
-            <DotIconAtom
-              :class="'icon-container__dot-icon icon-container__dot-icon--' + UtilsServices.getColorByPercentage(element.filings ? element.filings[0]?.percentage_of_relationship_matrix : element.percentage_of_relationship_matrix, element?.status?.code || element?.related_record_info?.status_display.code)"
-              :status="UtilsServices.getColorByPercentage( element.percentage_of_relationship_matrix,  element?.related_record_info?.status_display.code)" />
-          </div>
+{{element.status}}          </p>
+          
         </td>
       </tbody>
     </table>

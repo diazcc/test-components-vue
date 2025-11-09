@@ -39,6 +39,23 @@
         &__status {
             color: $blue-light;
         }
+        &__load {
+            color: $blue-light;
+            width: 100%;
+            height: 1.5rem;
+                position: relative;
+            border: 1px solid $blue-light;
+            &::after{
+                content: '';
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                width: 0%;
+                height: 100%;
+                background-color: rgba(255, 255, 255, 0.486);
+                animation: loading 100s ease-in-out forwards;
+            }
+        }
     }
 
     &__footer{
@@ -49,5 +66,16 @@
         box-sizing: border-box;
         padding: 1rem;
         color: #aca8a8;
+    }
+}
+
+
+@keyframes loading {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+
     }
 }

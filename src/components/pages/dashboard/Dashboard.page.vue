@@ -93,12 +93,13 @@ onMounted(() => {
 })
 
 function callServices() {
-    /* getFilings();
-    getRecords(); */
+    getFilings();
+    getRecords();
 }
 
+
 function getFilings() {
-    dataDashboard.dataTableCorrespondenceEntry.stateLoadData = true;
+    /* dataDashboard.dataTableCorrespondenceEntry.stateLoadData = true;
     dataDashboard.dataTableCorrespondenceInternal.stateLoadData = true;
     dataDashboard.dataTableCorrespondenceEntry.data.lists = [];
     dataDashboard.dataTableCorrespondenceInternal.data.lists = [];
@@ -137,17 +138,58 @@ function getFilings() {
         }).catch((error:any)=>{
             dataDashboard.dataTableCorrespondenceInternal.stateLoadData = false;
             console.error(error);
-        })
+        }) */
+       FilingServices.getFilesSent()
+        .then((response:any)=>{
+      console.log(response);
+            dataDashboard.dataTableCorrespondenceEntry.data.lists = response.results
+                .map((value: any) => ({
+                    id: value.id,
+                    subject: value.subject,
+                    remitter: value.creator_user,
+                    radication: value.date_created,
+                    type: "Natural",
+                    related_record_info: 'value.related_record_info',
+                    percentage_of_relationship_matrix:'value.percentage_of_relationship_matrix',
+                    status:value.status,
+                    days_left:'value.days_left'
+                }));
+                dataDashboard.dataTableCorrespondenceEntry.stateLoadData = false;
+        }).catch((error:any)=>{
+            dataDashboard.dataTableCorrespondenceEntry.stateLoadData = false;
+            console.error(error);
+        });
+    
+       RecordsServices.searchFilings('', 1, 10)
+    .then((response: any) => {
+      console.log(response);
+      dataDashboard.dataTableCorrespondenceInternal.data.lists = response.results
+                .map((value: any) => ({
+                    id: value.id,
+                    subject: value.subject,
+                    remitter: value.creator_user,
+                    radication: value.date_created,
+                    type: "Natural",
+                    related_record_info: 'value.related_record_info',
+                    percentage_of_relationship_matrix:'value.percentage_of_relationship_matrix',
+                    days_left:'value.days_left',
+                    status:value.status
+                }));
+     
+    })
+    .catch((error: any) => {
+      console.error("Error fetching data:", error);
+    });
 }
 
 function getRecords() {
-    RecordsServices.searchRecordsStatic()
+    /* RecordsServices.searchRecordsStatic()
         .then((response:any) => {
             dataDashboard.dataStatistic.dataChartPie.data = response.results;
         })
         .catch((error:any) => {
             console.error(error);
-        });
+        }); */
 }
 
 </script>

@@ -6,13 +6,11 @@
         <ol class="header__content">
             <li class="header__content__icon">
                 <router-link to="/home/dashboard">
-                    <Img :dataImg="dataHeaderOrganism.dataImgLogo" />
+                    {{ 'DOCMAIL' }}
                 </router-link>
             </li>
-            <li v-if="!askDocugate" class="header__content__search">
-                <InputSearch :dataInputSearch="dataHeaderOrganism.dataInputSearch" :active="true"/>
-            </li>
-            <li v-else class="header__content__search"></li>
+            
+            <li  class="header__content__search"></li>
             <li class="header__content__nav">
                <!--  <NavegationOptionsHeader
                     :dataNavegationOptionsHeader="dataHeaderOrganism.dataNavegationOptionsHeader" />
@@ -20,8 +18,7 @@
             </li>
             <li class="header__content__user">
                 <UserMenuHeader :dataUserMenuHeader="dataHeaderOrganism.dataUserMenuHeader" />
-                <img :src="dataHeaderOrganism.entrepriceLogo" alt="jnci"
-                class="header__content__user__entrepricelogo"/>
+                
             </li>
         </ol>
     </header>

@@ -39,34 +39,7 @@
 
 <template>
     <section class="table-correspondence-received">
-        <nav class="table-correspondence-received__nav-options">
-            <div class="table-correspondence-received__nav-options__filter-item">
-                <label for="">{{ t('filing') }}:</label>
-                <MultiSelectAtom :dataMultiSelect="{...dataMultiSelectFilings,key:1}" @onChange="applyFilters" :type="'text'"/>
-            </div>
-            <div  class="table-correspondence-received__nav-options__filter-item">
-                <label for=""> {{ dataTableCorrespondenceReceived.validateSubmenu ? t('remitter') :
-                        t('addressee')  }}:</label>
-                <MultiSelectAtom :dataMultiSelect="{...dataMultiSelect,key:2}" @onChange="applyFilters"/>
-            </div>
-            <div class="table-correspondence-received__nav-options__filter-item">
-                <label for="">{{ t('from') }}:</label>
-                <MultiSelectAtom :dataMultiSelect="{...dataMultiSelect,key:3}" @onChange="applyFilters"/>
-            </div>
-            <div class="table-correspondence-received__nav-options__filter-item">
-                <label for="">{{ t('email') }}:</label>
-                <MultiSelectAtom :dataMultiSelect="{...dataMultiSelect,key:4}" @onChange="applyFilters"/>
-            </div>
-            <div class="table-correspondence-received__nav-options__filter-item">
-                <label for="">{{ t('date') }}:</label>
-                <MultiSelectAtom :dataMultiSelect="{...dataMultiSelect,key:5}" @onChange="applyFilters"/>
-            </div>
-            <div class="table-correspondence-received__nav-options__filter-item">
-                <label for="">{{ t('state') }}:</label>
-                <MultiSelectAtom :dataMultiSelect="{...dataMultiSelect,key:6}" @onChange="applyFilters"/>
-            </div>
-            <InputSearch v-if="isSearch" :dataInputSearch="dataTableCorrespondenceReceived.dataInputSearch" />
-        </nav>
+        
         <table class="table" @scroll="UtilsServices.handleScroll(dataResults)">
             <thead class="table__row table--header">
                 <th class="table__row__cell">{{ t('item') }}</th>
@@ -91,7 +64,7 @@
                 v-else-if="dataResults.length < 1">
                 <td class="table__row__cell">{{ t('no_filing') }}</td>
             </tbody>
-            <tbody v-else class="table__row" v-for="(data, index) in dataResults" :key="index" @click="toggleMenu(data, $event, index)">
+            <tbody v-else class="table__row" v-for="(data, index) in dataResults" :key="index" @click="router.push('/home/filing/'+data?.id)">
                 <td class="table__row__cell" >
                     {{ index + 1 }}
                 </td>
@@ -109,7 +82,7 @@
                     <span v-else>{{ data.date_created }}</span>
                 </td>
                 <td class="table__row__cell table__row__cell--positon-relative" >
-                    {{ data.status ?? t('pending') }}
+                    {{ t(data.status) ?? t('pending') }}
                     <!-- <p
                         :class="'table__row__cell__status table__row__cell__status--' + UtilsServices.getColorByPercentage(data.filings ? data.filings[0]?.percentage_of_relationship_matrix : data.percentage_of_relationship_matrix, data?.status?.code || data?.related_record_info?.filing_info.status_display.code)">
                         {{ data?.filing_info.status_display ? t(data?.filing_info.status_display == 'in_process' ? 'unanswered'  : 'null') :

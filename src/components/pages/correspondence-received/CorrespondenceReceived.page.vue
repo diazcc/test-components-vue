@@ -138,7 +138,7 @@ const dataCorrespondenceReceived: any = reactive({
   },
   dataButtonRedirectToSearchRemitter: {
     className: "gray-blue",
-    text: "find_remitter",
+    text: "find_addresser",
     disabled: false,
     onClick: () => {
       dataCorrespondenceReceived.stateViewFile = "step12";
@@ -146,7 +146,7 @@ const dataCorrespondenceReceived: any = reactive({
   },
   dataButtonRedirectToCreateRemitter: {
     className: "gray-mouse-blue",
-    text: "create_remitter",
+    text: "create_addresser",
     disabled: false,
     onClick: () => {
       assignButtonNextData("continue", "/Buttons/right-arrow.svg", "step123");
@@ -568,7 +568,7 @@ const dataCorrespondenceReceived: any = reactive({
   },
   dataTableCorrespondenceReceived: {
     stateLoadData: true,
-    validateSubmenu: true,
+    validateSubmenu: false,
     data: [],
     dataInputSearch: {
       dataInput: {
@@ -1479,7 +1479,7 @@ async function searchFilingsList(searched_value: any, page: any) {
   dataCorrespondenceReceived.dataTableCorrespondenceReceived.data = [];
   dataCorrespondenceReceived.dataTableCorrespondenceReceived.stateLoadData =
     true;
-  RecordsServices.searchFilings(searched_value, page, dataCorrespondenceReceived.dataPaginator.page_size)
+  RecordsServices.getAllFiles(searched_value, page, dataCorrespondenceReceived.dataPaginator.page_size)
     .then((response: any) => {
       console.log(response);
       

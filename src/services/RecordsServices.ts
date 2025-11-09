@@ -44,12 +44,77 @@ const RecordsServices = {
       .then(response => response.data)
       .catch((error: any) => { throw error })
   },
+  async getRequest(id: any) {
+  try {
+    const auth = getAuth();
+
+    // Esperar hasta que Firebase determine el estado del usuario
+    const user :any= await new Promise((resolve) => {
+      const unsub = onAuthStateChanged(auth, (user) => {
+        unsub();
+        resolve(user);
+      });
+    });
+
+    if (!user) throw new Error("Usuario no autenticado");
+
+    const idToken = await user.getIdToken();
+
+    const response = await axios.get(`/request/${id}`,
+      {
+        headers: {
+          "Authorization": idToken,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data.response;
+  } catch (error) {
+    console.error("❌ Error al obtener filings:", error);
+    throw error;
+  }
+}
+,
   getTrazabilityRecord(id: any) {
     return axios.get(`/api/correspondence/traceability_records/?record_traceability=${id}`)
       .then(response => response.data.response)
       .catch((error: any) => { throw error });
   },
   async  searchFilings(searched_value:any = "", page:any = 1, page_size:any = null) {
+  try {
+    const auth = getAuth();
+
+    // Esperar hasta que Firebase determine el estado del usuario
+    const user :any= await new Promise((resolve) => {
+      const unsub = onAuthStateChanged(auth, (user) => {
+        unsub();
+        resolve(user);
+      });
+    });
+
+    if (!user) throw new Error("Usuario no autenticado");
+
+    const idToken = await user.getIdToken();
+
+    const response = await axios.get(
+      `/requests-received?searched_value=${searched_value}&page=${page}&page_size=${page_size}`,
+      {
+        headers: {
+          "Authorization": idToken,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data.response;
+  } catch (error) {
+    console.error("❌ Error al obtener filings:", error);
+    throw error;
+  }
+}
+,
+async  getAllFiles(searched_value:any = "", page:any = 1, page_size:any = null) {
   try {
     const auth = getAuth();
 
@@ -81,7 +146,6 @@ const RecordsServices = {
     throw error;
   }
 }
-,
 };
 
 export default RecordsServices;

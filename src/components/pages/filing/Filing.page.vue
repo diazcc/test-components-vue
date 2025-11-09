@@ -449,7 +449,9 @@ const dataFiling: any = reactive({
     redirectTrd();
   },
   onClickDocument: (document: any) => {
-    openModalPdfViewer(document.url);
+    console.log(document.url);
+    
+    findUrl(document.url);
   },
   openModalListDocuments: (documents: any, index: any) => {
     openModalListDocuments(documents, index);
@@ -474,7 +476,28 @@ onMounted(() => {
  * TODO GET AND SEN
  * ?
  */
+async function findUrl(url: string) {
+  try {
+    // 1️⃣ Descarga el archivo como Blob
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Error al descargar el archivo');
 
+    // 2️⃣ Convierte a Blob con tipo PDF
+    const blob = await response.blob();
+    const pdfBlob = new Blob([blob], { type: 'application/pdf' });
+
+    // 3️⃣ Crea una URL temporal para el visor
+    const blobUrl = URL.createObjectURL(pdfBlob);
+
+    // 4️⃣ Abre el modal con el PDF
+    openModalPdfViewer(blobUrl);
+
+    // 5️⃣ Guarda el ID o URL original
+  } catch (error) {
+    console.error(error);
+    openModalAlert('something_happened_try_later');
+  }
+}
 async function setTrdFormData() {
   dataFiling.dataFormTrd.typeFlow =
     (await filing?.data?.type_of_filing?.id) || 1;
@@ -489,64 +512,20 @@ async function setTrdFormData() {
 
 function callServices() {
   getRecord(recordId.value);
-  getParentDependences();
+  // getParentDependences();
 }
 
 async function getRecord(id: any) {
   try {
-    const response = await RecordsServices.getRecord(id);
-    dataFiling.filings = response.response.filings;
+    const response = await RecordsServices.getRequest(id);
+    console.log(response,'response');
+    
     recordData.value = response.response;
-    dataFiling.record_documents = response.response?.documents?.record;
-    filing.data =
-      response.response.filings[response.response.filings.length - 1];
-    setTrdFormData();
-    dataFiling.data.subject =
-      response.response.filings[response.response.filings.length - 1].subject;
-    dataFiling.data.filing_code =
-      response.response.filings[
-        response.response.filings.length - 1
-      ].filing_code;
-    dataFiling.data.remitter = getRemitterName(response.response.filings.at(-1));
-    dataFiling.data.show_remitter_email = Boolean(
-      response.response.filings[response.response.filings.length - 1]?.remitter
-        ?.contact_name ||
-        response.response.filings[response.response.filings.length - 1]
-          ?.remitter?.first_name
-    );
-    dataFiling.data.person_type =
-      response.response.filings[response.response.filings.length - 1]?.remitter
-        ?.person_type.label || "Anonimo";
-    dataFiling.data.email =
-      response.response.filings[response.response.filings.length - 1]?.remitter
-        ?.email || "No ingresado";
-    dataFiling.data.filing_date =
-      response.response.filings[
-        response.response.filings.length - 1
-      ].filing_date;
-    dataFiling.data.status = response.response.status_display.label;
-    dataFiling.data.type_of_filing =
-      response.response.filings[
-        response.response.filings.length - 1
-      ].type_of_filing.name;
-    if (
-      response.response.filings[response.response.filings.length - 1]
-        ?.documents != null
-    ) {
-      dataFiling.data.documents = response.response.filings[
-        response.response.filings.length - 1
-      ]?.documents.map((value: any) => ({
-        name: value.name,
-        url: value.url,
-      }));
-    }
-    emailUser.value = response.response.email;
-    getTrazabilityRecord();
-    const actions = response.response.user_actions.map((data: any) => ({
-      value: data,
-      label: data,
-    }));
-    validateOptionSelectActions(actions);
+    dataFiling.record_documents = response.documents;
+    dataFiling.data =
+      response;
+      validateOptionSelectActions();
+    
   } catch (error) {
     console.error(error);
   }
@@ -615,6 +594,20 @@ function revertAssignmentRecord() {
     .catch((error: any) => {
       console.error(error);
       openModalAlert(error.response.data.error.details[0]);
+    });
+}
+
+function actionFile(action:string) {
+  ActionServices.actionFile(dataFiling.data.id,action)
+    .then((response: any) => {
+      openModalConfirmation("the_file_was_successfully_returned");
+      dataFiling.dataModalConfirmation.dataButton.onClick = () => {
+        router.push("/home/correspondence/received");
+      };
+    })
+    .catch((error: any) => {
+      console.error(error);
+      openModalAlert('sope');
     });
 }
 
@@ -840,11 +833,19 @@ function closeModalAlert() {
  *
  */
 
-function validateOptionSelectActions(arrayActions: string[]) {
-  dataFiling.dataSelectActions.options = [];
+function validateOptionSelectActions() {
+  /* dataFiling.dataSelectActions.options = [];
   let options: any = reactive([]);
-  arrayActions.map((action) => options.push(action));
-  dataFiling.dataSelectActions.options = options;
+  arrayActions.map((action) => options.push(action)); */
+  dataFiling.dataSelectActions.options = [
+    {
+      label:'review',
+      value:'answered'
+  }, {
+      label:'reject',
+      value:'rejected'
+  }
+  ];
 }
 
 function validateSelect(key: any) {
@@ -861,10 +862,12 @@ function validateSelect(key: any) {
       openModalResponseFiling(recordData.value);
       break;
     case "revert_assignment_record":
+      break;
+    case "revert_assignment_record":
       revertAssignmentRecord();
       break;
     default:
-      openModalAction(key, recordId.value);
+      actionFile(key);
 
       break;
   }

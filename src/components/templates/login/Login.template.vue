@@ -17,32 +17,12 @@
                 <CardOptionLogin :dataCardOptionLogin="dataLogin.dataCardOptionLogin"
                     class="login__wrapper__content__options__card" />
                 <CardOptionLogin :dataCardOptionLogin="dataLogin.dataCardOptionRegister"
-                    class="login__wrapper__content__options__card" v-if="dataLogin.stateLogin=='user'"/>
+                    class="login__wrapper__content__options__card" />
             </ul>
             <section
                 :class="'login__wrapper__content__form login__wrapper__content__form--' + (!dataLogin.stateForm ? 'register' : '')+' login__wrapper__content__form login__wrapper__content__form--' + (!dataLogin.visible ? 'hidde' : '')">
-                <span v-if="!dataLogin.stateForm" class="login__wrapper__content__form__options">
-                    <label>{{ t('natural_person') }}
-                        <input type="radio" name="option" id="" :value="'001'"
-                            v-model="dataLogin.stateChoiseTypePerson">
-                    </label>
-                    <label>{{ t('legal_person') }}
-                        <input type="radio" name="option" id="" :value="'002'"
-                            v-model="dataLogin.stateChoiseTypePerson">
-                    </label>
-                </span>
-                <InputText :dataInput="dataLogin.dataInputId"
-                    v-if="!dataLogin.stateForm && dataLogin.stateChoiseTypePerson == '001'" required />
                 <InputText :dataInput="dataLogin.dataInputName"
-                    v-if="!dataLogin.stateForm && dataLogin.stateChoiseTypePerson == '001'" required />
-                <InputText :dataInput="dataLogin.dataInputBusinessName"
-                    v-if="!dataLogin.stateForm && dataLogin.stateChoiseTypePerson == '002'" required />
-                <InputText :dataInput="dataLogin.dataInputNit"
-                    v-if="!dataLogin.stateForm && dataLogin.stateChoiseTypePerson == '002'" required />
-                <InputText :dataInput="dataLogin.dataInputLastName"
-                    v-if="!dataLogin.stateForm && dataLogin.stateChoiseTypePerson == '001'" required />
-                <InputText :dataInput="dataLogin.dataInputPhone" v-if="!dataLogin.stateForm"
-                    required />
+                    v-if="!dataLogin.stateForm " required />
                 <InputText :dataInput="dataLogin.dataInputEmail" required />
                 <InputText :dataInput="dataLogin.dataInputPassword" required />
                 <Button :dataButton="dataLogin.dataButton" />

@@ -8,6 +8,7 @@
             <p class="render-loading__card__subtitle" >{{ t('please_wait_to_contection_components') }}</p>
             <p class="render-loading__card__message" >{{ t('in_a_less_of_2_min_redirect_to_page') }}</p>
             <p class="render-loading__card__loading" v-if="dataRenderLoading.isLoading">{{ t('loading') }}...</p>
+            <p class="render-loading__card__load" ></p>
             <p class="render-loading__card__status" >{{ dataRenderLoading.isConnected ? t('connected') : t('disconnected') }}</p>
         </section>
         <footer class="render-loading__footer">

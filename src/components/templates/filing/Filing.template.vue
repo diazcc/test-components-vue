@@ -7,7 +7,7 @@
                 <Img class="filing__header__buttons-nav__img" :dataImg="dataFiling.dataImgGoBack" />
             </nav>
         </header>
-        <section class="filing__info" v-if="dataFiling.data.filing_date != null && dataFiling.data.filing_date != ''">
+        <section class="filing__info ">
             <ul class="filing__info__content">
                 <li class="filing__info__content__card">
                     <p class="filing__info__content__card__subtitle">
@@ -22,7 +22,7 @@
                         {{ t('filing_number') }}:
 
                         <span>
-                            {{ dataFiling.data.filing_code }}
+                            {{ dataFiling.data.id }}
                         </span>
                     </p>
                 </li>
@@ -31,19 +31,11 @@
                         {{ t('remitter') }}:
 
                         <span>
-                            {{ te(dataFiling.data.remitter) ? t(dataFiling.data.remitter)  : dataFiling.data.remitter }}
+                            {{  dataFiling.data.creator_user }}
                         </span>
                     </p>
                 </li>
-                <li class="filing__info__content__card">
-                    <p class="filing__info__content__card__subtitle">
-                        {{ t('type_of_person') }}:
-
-                        <span>
-                            {{ t(dataFiling.data.person_type) }}
-                        </span>
-                    </p>
-                </li>
+                
             </ul>
             <ul class="filing__info__content">
                 <li class="filing__info__content__card" >
@@ -51,7 +43,7 @@
                         {{ t('email') }}:
 
                         <span>
-                            {{ dataFiling.data.email }}
+                            {{ dataFiling.data.user_asigned }}
                         </span>
                     </p>
                 </li>
@@ -60,7 +52,7 @@
                         {{ t('creation_date') }}:
 
                         <span>
-                            {{ dataFiling.data.filing_date }}
+                            {{ dataFiling.data.date_created }}
                         </span>
                     </p>
                 </li>
@@ -73,131 +65,26 @@
                         </span>
                     </p>
                 </li>
-                <li class="filing__info__content__card">
-                    <p class="filing__info__content__card__subtitle">
-                        {{ t('type_of_filing') }}:
-
-                        <span>
-                            {{ t(dataFiling.data.type_of_filing) }}
-                        </span>
-                    </p>
-                </li>
             </ul>
-            <ul class="filing__info__content">
-                <li class="filing__info__content__card">
-                    <p class="filing__info__content__card__subtitle">
-                        {{ t('actions_executed') }}:
-                    </p>
-                </li>
-                <li class="filing__info__content__card filing__info__content__card--action">
-                    <p v-if="filteredTrazability.length == 0"> {{ t('no_actions_executed') }}</p>
-                    <p v-for="data in filteredTrazability">
-                        <span>{{ data?.user1 + ' '}}</span>
-                        <a v-html="UtilsServices.highlightVerbForPastSentences({inputString:t(data?.description), color:'#000000', 
-                            style: 'font-style: italic; text-transform: capitalize;'})"></a>
-                        <a v-if="data?.user2"> {{ ' ' + t('to') }} </a> 
-                        <span v-if="data?.user2">{{ ' ' + data?.user2 }}</span>.
-                    </p>
-                </li>
-            </ul>
-        </section>
-        <section class="filing__info" v-else>
-            <ul class="filing__info__content">
-                <li class="filing__info__content__card">
-                    <p
-                        class="filing__info__content__card__subtitle loading-component filing__info__content__card__subtitle--load">
-                    </p>
-                </li>
-                <li class="filing__info__content__card">
-                    <p
-                        class="filing__info__content__card__subtitle loading-component filing__info__content__card__subtitle--load">
-                    </p>
-                </li>
-                <li class="filing__info__content__card">
-                    <p
-                        class="filing__info__content__card__subtitle loading-component filing__info__content__card__subtitle--load">
-                    </p>
-                </li>
-                <li class="filing__info__content__card">
-                    <p
-                        class="filing__info__content__card__subtitle loading-component filing__info__content__card__subtitle--load">
-                    </p>
-                </li>
-            </ul>
-            <ul class="filing__info__content">
-                <li class="filing__info__content__card">
-                    <p
-                        class="filing__info__content__card__subtitle loading-component filing__info__content__card__subtitle--load">
-                    </p>
-                </li>
-                <li class="filing__info__content__card">
-                    <p
-                        class="filing__info__content__card__subtitle loading-component filing__info__content__card__subtitle--load">
-                    </p>
-                </li>
-                <li class="filing__info__content__card">
-                    <p
-                        class="filing__info__content__card__subtitle loading-component filing__info__content__card__subtitle--load">
-                    </p>
-                </li>
-            </ul>
+            
         </section>
         <section class="filing__wrapper"
-            v-if="dataFiling.data.filing_date != null && dataFiling.data.filing_date != ''">
+            v-if="dataFiling.record_documents.length > 1 || dataFiling.record_documents != null">
             <ul class="filing__wrapper__navegation">
                 
                 <li :class="'filing__wrapper__navegation__card filing__wrapper__navegation__card--' + (dataFiling.stateViewDocuments ? 'focused' : '')"
                     @click="dataFiling.redirectDocuments">{{ t('documents') }}</li>
-                <li :class="'filing__wrapper__navegation__card filing__wrapper__navegation__card--' + (dataFiling.stateViewTrazability ? 'focused' : '')"
-                    @click="dataFiling.redirectTrazability"
-                    v-if="hasPermissions.validator('view_traceability')">
-                    {{ t('trazability_data') }}
-                </li>
-                <li :class="'filing__wrapper__navegation__card filing__wrapper__navegation__card--' + (dataFiling.stateViewTrd ? 'focused' : '')"
-                    @click="dataFiling.redirectTrd"
-                    v-if="hasPermissions.validator('view_trd_filing')">
-                    {{ t('documental_classification') }}
-                </li>
-                <li :class="'filing__wrapper__navegation__card filing__wrapper__navegation__card--' + (dataFiling.stateViewRecord ? 'focused' : '')"
-                    @click="dataFiling.redirectRecord">{{ t('record') }}</li>
+                
             </ul>
             <div class="filing__wrapper__container">
-                <LineHistory v-if="dataFiling.stateViewTrazability && hasPermissions.validator('view_traceability')" :dataLineHistory="dataFiling.dataLineHistory"
-                    :bgColor="dataFiling.bgColor" />
-                <ul class="filing__wrapper__container__info" v-if="hasPermissions.validator('view_trd_filing') && dataFiling.stateViewTrd">
-                    <FormTrd :dataFormTrd="dataFiling.dataFormTrd"/>
-                    <ButtonAtom class="filing__wrapper__container__info__button"
-                        :dataButton="dataFiling.dataButtonAssignTrd"
-                        v-if="hasPermissions.validator('update_trd_filing')"/>
-                </ul>
-                <ul class="filing__wrapper__container__info" v-if="dataFiling.stateViewRecord">
-                    <table class="table">
-                        <thead class="table__row table--header">
-                            <th class="table__row__cell">{{ t('item') }}</th>
-                            <th class="table__row__cell">{{ t('subject') }}</th>
-                            <th class="table__row__cell">{{ t('from') }}</th>
-                            <th class="table__row__cell">{{ t('type') }}</th>
-                            <th class="table__row__cell">{{ t('actions') }}</th>
-                        </thead>
-                        <tbody class="table__row" v-for="(filing, index) in dataFiling.filings">
-                            <td class="table__row__cell">{{ index + 1 }}</td>
-                            <td class="table__row__cell table__row__cell--left-align">{{ filing.subject }}</td>
-                            <td class="table__row__cell table__row__cell--left-align">{{ t(filing.creation_medium) }}</td>
-                            <td class="table__row__cell">{{ filing.type_of_filing.name }}</td>
-                            <td class="table__row__cell table__row--img">
-                                <TooltipIcon v-if="dataTooltipIcons[0].show(filing)" :dataTooltipIcon="dataTooltipIcons[0]" @click="dataTooltipIcons[0].onClick({filing: filing, index: index})"/>
-                            </td>
-                        </tbody>
-                    </table>
-                </ul>
-                <ul class="filing__wrapper__container__info" v-if="dataFiling.stateViewDocuments">
+                <ul class="filing__wrapper__container__info" >
                     <table class="table">
                         <thead class="table__row table--row2 table--header">
                             <th class="table__row__cell">{{ t("name") }}</th>
                             <th class="table__row__cell"></th>
                         </thead>
                         <tbody class="table__row table--row2"
-                            v-if="dataFiling.record_documents < 1 || dataFiling.record_documents == null">
+                            v-if="dataFiling.record_documents.length < 1 || dataFiling.record_documents == null">
                             <td class="table__row__cell">{{ t('without_data')}}</td>
                         </tbody>
                         <tbody class="table__row table--row2" v-else v-for="document in dataFiling.record_documents">

@@ -46,8 +46,6 @@
                     <Button :dataButton="dataCorrespondenceReceived.dataButtonRedirectToSearchRemitter"/>
                     <Button v-if="hasPermissions.validator('create_remitter')" 
                         :dataButton="dataCorrespondenceReceived.dataButtonRedirectToCreateRemitter"/>
-                    <Button v-if="hasPermissions.validator('create_anonymous_filing')"
-                        :dataButton="dataCorrespondenceReceived.dataButtonRedirectToCreateFileAnonimous"/>
                 </nav>
             </section>
             <TableSearchRemitter class="correspondence-received-file__container__search-remitter"  v-if="dataCorrespondenceReceived.stateViewFile=='step12'" :dataTableRemitters="dataCorrespondenceReceived.dataTableRemitters" @user="getUser"/>
